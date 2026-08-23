@@ -42,7 +42,7 @@
           --blue: #0f766e;
           --violet: #c56a18;
           position: relative;
-          overflow: hidden;
+          overflow: clip;
           background: var(--bg);
           color: var(--text);
           font-family: Inter, "Noto Sans JP", "Noto Sans SC", Arial, sans-serif;
@@ -1722,9 +1722,12 @@
         }
         /* Full-screen chapter layout and a more substantial About narrative */
         .nd-nav {
-          position: sticky;
+          position: fixed;
           top: 0;
-          z-index: 20;
+          left: 0;
+          right: 0;
+          width: 100%;
+          z-index: 50;
         }
         .nd-about-page,
         .nd-section,
@@ -1837,9 +1840,15 @@
         .nd-about-page,
         .nd-section,
         .nd-footer {
-          min-height: calc(100svh - 68px);
+          width: 100%;
+          height: calc(100svh - 68px);
+          min-height: 0;
           scroll-margin-top: 0;
           scroll-snap-stop: always;
+          overflow: hidden;
+        }
+        .nd-about-page {
+          margin-top: 68px;
         }
         .nd-section {
           padding-top: clamp(48px, 6vh, 72px);
@@ -1868,6 +1877,7 @@
           max-height: 48vh;
         }
         .nd-footer {
+          width: auto;
           margin: 0 5%;
           padding: clamp(48px, 6vh, 72px) 5%;
           grid-template-columns: 1fr 1fr;
@@ -1932,8 +1942,10 @@
           .nd-about-page,
           .nd-section,
           .nd-footer {
+            height: auto;
             min-height: auto;
             scroll-snap-stop: normal;
+            overflow: visible;
           }
           .nd-contact-details {
             grid-template-columns: 1fr;
@@ -2296,28 +2308,26 @@
         </div>
         <div class="nd-contact-details">
           <article class="nd-contact-detail">
-            <small data-i18n="contactEmailLabel">Email</small
-            ><strong
-              ><a href="mailto:stefanusriyan26@gmail.com"
-                >stefanusriyan26@gmail.com</a
-              ></strong
+            <small data-i18n="contactStrengthLabel">What I bring</small>
+            <strong data-i18n="contactStrengthValue"
+              >Analytical thinking with hands-on execution</strong
             >
           </article>
           <article class="nd-contact-detail">
-            <small data-i18n="contactLocationLabel">Based in</small
-            ><strong data-i18n="contactLocationValue">Depok, Indonesia</strong>
-          </article>
-          <article class="nd-contact-detail">
-            <small data-i18n="contactFocusLabel">Primary focus</small
-            ><strong data-i18n="contactFocusValue"
-              >Full-stack products, data, and education</strong
+            <small data-i18n="contactStyleLabel">How I work</small>
+            <strong data-i18n="contactStyleValue"
+              >Clear scope, thoughtful systems, reliable delivery</strong
             >
           </article>
           <article class="nd-contact-detail">
-            <small data-i18n="contactAvailabilityLabel">Availability</small
-            ><strong data-i18n="contactAvailabilityValue"
-              >Open to meaningful opportunities</strong
+            <small data-i18n="contactInterestLabel">Interested in</small>
+            <strong data-i18n="contactInterestValue"
+              >Full-stack, data products, and education technology</strong
             >
+          </article>
+          <article class="nd-contact-detail">
+            <small data-i18n="contactLocationLabel">Based in</small>
+            <strong data-i18n="contactLocationValue">Depok, Indonesia</strong>
           </article>
         </div>
       </section>
@@ -2510,13 +2520,14 @@
               oneYear: "1 year",
               hybrid: "Hybrid",
               onsite: "On-site",
-              contactEmailLabel: "Email",
+              contactStrengthLabel: "What I bring",
+              contactStrengthValue: "Analytical thinking with hands-on execution",
+              contactStyleLabel: "How I work",
+              contactStyleValue: "Clear scope, thoughtful systems, reliable delivery",
+              contactInterestLabel: "Interested in",
+              contactInterestValue: "Full-stack, data products, and education technology",
               contactLocationLabel: "Based in",
               contactLocationValue: "Depok, Indonesia",
-              contactFocusLabel: "Primary focus",
-              contactFocusValue: "Full-stack products, data, and education",
-              contactAvailabilityLabel: "Availability",
-              contactAvailabilityValue: "Open to meaningful opportunities",
             },
             ja: {
               navEducation: "学歴",
@@ -2546,13 +2557,14 @@
               oneYear: "1年間",
               hybrid: "ハイブリッド",
               onsite: "対面",
-              contactEmailLabel: "メール",
+              contactStrengthLabel: "提供できる価値",
+              contactStrengthValue: "分析思考と実践的な実行力",
+              contactStyleLabel: "仕事の進め方",
+              contactStyleValue: "明確な範囲、丁寧な設計、確実な提供",
+              contactInterestLabel: "関心分野",
+              contactInterestValue: "フルスタック、データ製品、教育技術",
               contactLocationLabel: "拠点",
               contactLocationValue: "インドネシア・デポック",
-              contactFocusLabel: "主な分野",
-              contactFocusValue: "フルスタック製品、データ、教育",
-              contactAvailabilityLabel: "現在の状況",
-              contactAvailabilityValue: "意義ある機会を歓迎",
             },
             zh: {
               navEducation: "教育",
@@ -2582,13 +2594,14 @@
               oneYear: "1年",
               hybrid: "混合办公",
               onsite: "现场",
-              contactEmailLabel: "电子邮件",
+              contactStrengthLabel: "我的优势",
+              contactStrengthValue: "分析思维与实际执行力",
+              contactStyleLabel: "工作方式",
+              contactStyleValue: "明确范围、周全设计、可靠交付",
+              contactInterestLabel: "关注方向",
+              contactInterestValue: "全栈、数据产品与教育科技",
               contactLocationLabel: "所在地",
               contactLocationValue: "印度尼西亚德波",
-              contactFocusLabel: "主要方向",
-              contactFocusValue: "全栈产品、数据与教育",
-              contactAvailabilityLabel: "合作状态",
-              contactAvailabilityValue: "期待有意义的机会",
             },
             id: {
               navEducation: "Pendidikan",
@@ -2618,13 +2631,14 @@
               oneYear: "1 tahun",
               hybrid: "Hibrida",
               onsite: "Di lokasi",
-              contactEmailLabel: "Email",
+              contactStrengthLabel: "Yang saya tawarkan",
+              contactStrengthValue: "Pemikiran analitis dengan eksekusi langsung",
+              contactStyleLabel: "Cara saya bekerja",
+              contactStyleValue: "Cakupan jelas, sistem matang, hasil andal",
+              contactInterestLabel: "Bidang yang diminati",
+              contactInterestValue: "Full-stack, produk data, dan teknologi pendidikan",
               contactLocationLabel: "Berdomisili di",
               contactLocationValue: "Depok, Indonesia",
-              contactFocusLabel: "Fokus utama",
-              contactFocusValue: "Produk full-stack, data, dan pendidikan",
-              contactAvailabilityLabel: "Ketersediaan",
-              contactAvailabilityValue: "Terbuka untuk peluang yang bermakna",
             },
             de: {
               navEducation: "Bildung",
@@ -2654,13 +2668,14 @@
               oneYear: "1 Jahr",
               hybrid: "Hybrid",
               onsite: "Vor Ort",
-              contactEmailLabel: "E-Mail",
+              contactStrengthLabel: "Was ich einbringe",
+              contactStrengthValue: "Analytisches Denken und praktische Umsetzung",
+              contactStyleLabel: "Meine Arbeitsweise",
+              contactStyleValue: "Klarer Umfang, durchdachte Systeme, verlässliche Lieferung",
+              contactInterestLabel: "Interessengebiete",
+              contactInterestValue: "Full-Stack, Datenprodukte und Bildungstechnologie",
               contactLocationLabel: "Standort",
               contactLocationValue: "Depok, Indonesien",
-              contactFocusLabel: "Hauptfokus",
-              contactFocusValue: "Full-Stack-Produkte, Daten und Bildung",
-              contactAvailabilityLabel: "Verfügbarkeit",
-              contactAvailabilityValue: "Offen für sinnvolle Möglichkeiten",
             },
           };
           const keys = [
@@ -2711,6 +2726,29 @@
             r.dataset.theme = d ? "light" : "dark";
             e.currentTarget.textContent = d ? "☾" : "☀";
           };
+          const nav = r.querySelector(".nd-nav");
+          const scrollToSection = (hash, behavior = "smooth") => {
+            const target = document.querySelector(hash);
+            if (!target) return;
+            const top =
+              target.getBoundingClientRect().top +
+              window.scrollY -
+              nav.getBoundingClientRect().height;
+            window.scrollTo({ top: Math.max(0, top), behavior });
+          };
+          r.querySelectorAll('a[href^="#"]').forEach((link) => {
+            link.addEventListener("click", (event) => {
+              const hash = link.getAttribute("href");
+              event.preventDefault();
+              history.pushState(null, "", hash);
+              scrollToSection(hash);
+            });
+          });
+          if (window.location.hash) {
+            requestAnimationFrame(() =>
+              scrollToSection(window.location.hash, "auto"),
+            );
+          }
           const canvas = r.querySelector(".nd-motion"),
             ctx = canvas.getContext("2d"),
             scene = r;
