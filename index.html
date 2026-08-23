@@ -132,6 +132,19 @@
           font-size: 11px;
           font-weight: 750;
         }
+        .nd-menu-toggle {
+          appearance: none;
+          border: 0;
+          padding: 0;
+          background: transparent;
+          color: inherit;
+          font: inherit;
+          cursor: default;
+        }
+        .nd-mobile-menu,
+        .nd-menu-backdrop {
+          display: none;
+        }
         .nd-logo {
           width: 34px;
           height: 34px;
@@ -982,6 +995,91 @@
           }
           .nd-nav {
             grid-template-columns: 1fr auto;
+          }
+          .nd-menu-toggle {
+            cursor: pointer;
+          }
+          .nd-menu-toggle:focus-visible {
+            outline: 2px solid var(--blue);
+            outline-offset: 5px;
+            border-radius: 10px;
+          }
+          .nd-menu-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 80;
+            display: block;
+            border: 0;
+            background: rgba(9, 19, 17, 0.52);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.28s ease;
+          }
+          .nd-mobile-menu {
+            position: fixed;
+            inset: 0 auto 0 0;
+            z-index: 81;
+            display: flex;
+            width: min(82vw, 330px);
+            padding: 24px;
+            flex-direction: column;
+            background: color-mix(in srgb, var(--solid) 94%, transparent);
+            border-right: 1px solid var(--line);
+            box-shadow: 24px 0 60px rgba(9, 19, 17, 0.22);
+            backdrop-filter: blur(24px);
+            transform: translateX(-105%);
+            transition: transform 0.32s cubic-bezier(0.2, 0.75, 0.25, 1);
+          }
+          .nd-mobile-menu-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 22px;
+            border-bottom: 1px solid var(--line);
+          }
+          .nd-mobile-menu-head img {
+            width: 42px;
+            height: 42px;
+          }
+          .nd-menu-close {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            background: var(--glass);
+            color: var(--text);
+            font-size: 22px;
+          }
+          .nd-mobile-links {
+            display: grid;
+            gap: 4px;
+            margin-top: 26px;
+          }
+          .nd-mobile-links a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 4px;
+            border-bottom: 1px solid var(--line);
+            color: var(--text);
+            font-size: 14px;
+            font-weight: 720;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+          }
+          .nd-mobile-links a:after {
+            content: "↘";
+            color: var(--violet);
+          }
+          #nd-future-portfolio.nd-menu-open .nd-menu-backdrop {
+            opacity: 1;
+            pointer-events: auto;
+          }
+          #nd-future-portfolio.nd-menu-open .nd-mobile-menu {
+            transform: translateX(0);
+          }
+          html:has(#nd-future-portfolio.nd-menu-open) {
+            overflow: hidden;
           }
           .nd-hero {
             grid-template-columns: 1fr;
@@ -1840,6 +1938,7 @@
         .nd-about-page,
         .nd-section,
         .nd-footer {
+          --chapter-space: clamp(34px, 3.6vh, 46px);
           width: 100%;
           height: calc(100svh - 68px);
           min-height: 0;
@@ -1849,26 +1948,28 @@
         }
         .nd-about-page {
           margin-top: 68px;
+          padding-top: var(--chapter-space);
+          padding-bottom: var(--chapter-space);
         }
         .nd-section {
-          padding-top: clamp(48px, 6vh, 72px);
-          padding-bottom: clamp(40px, 5vh, 64px);
+          padding-top: var(--chapter-space);
+          padding-bottom: var(--chapter-space);
         }
         .nd-section .nd-head {
           margin-bottom: clamp(24px, 3vh, 38px);
         }
         #experience .nd-timeline {
-          gap: 10px;
+          gap: 9px;
         }
         #experience .nd-company-head {
-          padding: 18px 20px;
+          padding: 13px 18px;
         }
         #experience .nd-path {
-          padding: 5px 24px;
+          padding: 3px 22px;
         }
         #experience .nd-step {
-          padding-top: 14px;
-          padding-bottom: 14px;
+          padding-top: 11px;
+          padding-bottom: 11px;
         }
         #projects .nd-project {
           min-height: auto;
@@ -1929,12 +2030,11 @@
         .nd-project,
         .nd-contact-detail {
           border-color: color-mix(in srgb, var(--blue) 24%, var(--line));
-          background:
-            linear-gradient(
-              145deg,
-              color-mix(in srgb, var(--solid) 94%, transparent),
-              color-mix(in srgb, var(--blue) 5%, var(--glass))
-            );
+          background: linear-gradient(
+            145deg,
+            color-mix(in srgb, var(--solid) 94%, transparent),
+            color-mix(in srgb, var(--blue) 5%, var(--glass))
+          );
           box-shadow:
             0 1px 0 rgba(255, 255, 255, 0.55) inset,
             0 18px 45px rgba(26, 54, 47, 0.08);
@@ -1953,7 +2053,8 @@
         }
         .nd-company {
           position: relative;
-          border-left: 3px solid color-mix(in srgb, var(--blue) 62%, var(--line));
+          border-left: 3px solid
+            color-mix(in srgb, var(--blue) 62%, var(--line));
         }
         .nd-company:nth-child(even) {
           border-left-color: color-mix(in srgb, var(--violet) 62%, var(--line));
@@ -2099,6 +2200,701 @@
           max-width: 88%;
           font-size: 16px;
         }
+        /* Balanced chapter spacing and a more focused card canvas */
+        .nd-head,
+        .nd-timeline,
+        .nd-edu,
+        .nd-projects {
+          width: min(100%, 1480px);
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .nd-about-page .nd-hero {
+          padding-top: 0;
+          padding-bottom: clamp(22px, 2.8vh, 34px);
+          align-items: start;
+        }
+        .nd-about-page .nd-metrics {
+          width: min(90%, 1480px);
+          margin: 0 auto;
+        }
+        .nd-head p {
+          align-self: center;
+          max-width: 520px;
+          padding: 14px 0 14px 20px;
+          border-left: 2px solid
+            color-mix(in srgb, var(--violet) 56%, var(--line));
+        }
+        #experience {
+          padding-top: var(--chapter-space);
+          padding-bottom: var(--chapter-space);
+        }
+        #experience .nd-head {
+          margin-bottom: clamp(22px, 2.8vh, 34px);
+        }
+        #experience .nd-head h2 {
+          font-size: clamp(38px, 4.3vw, 58px);
+        }
+        #experience .nd-timeline {
+          width: min(100%, 1480px);
+        }
+        .nd-company {
+          grid-template-columns: 210px minmax(0, 1fr);
+        }
+        .nd-company-head {
+          display: grid;
+          grid-template-columns: 34px minmax(0, 1fr);
+          column-gap: 12px;
+          align-content: center;
+        }
+        .nd-company-icon {
+          grid-row: 1 / 3;
+          width: 32px;
+          height: 32px;
+          display: grid;
+          place-items: center;
+          align-self: start;
+          border: 1px solid color-mix(in srgb, var(--blue) 30%, var(--line));
+          border-radius: 10px;
+          color: var(--blue);
+          background: color-mix(in srgb, var(--blue) 9%, var(--solid));
+          box-shadow: 0 8px 18px rgba(26, 54, 47, 0.08);
+        }
+        .nd-company-icon svg {
+          width: 17px;
+          height: 17px;
+          fill: none;
+          stroke: currentColor;
+          stroke-width: 1.7;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        .nd-company-head h3 {
+          margin-top: 0;
+        }
+        .nd-company-head p {
+          grid-column: 2;
+        }
+        #projects .nd-projects {
+          width: min(100%, 820px);
+          grid-template-columns: minmax(0, 1fr);
+        }
+        #projects .nd-project {
+          padding: 22px;
+        }
+        #projects .nd-capture {
+          width: 100%;
+          max-height: 34vh;
+        }
+        #projects .nd-project h3 {
+          margin-top: 16px;
+        }
+        .nd-footer {
+          width: min(90%, 1480px);
+          margin: 0 auto;
+          padding: var(--chapter-space) 0;
+          border: 0;
+          border-radius: 0;
+          background: transparent;
+          box-shadow: none;
+          backdrop-filter: none;
+        }
+        .nd-footer:before,
+        .nd-footer:after {
+          display: none;
+        }
+        .nd-contact-details {
+          margin-top: clamp(26px, 3.5vh, 42px);
+        }
+        .nd-contact-detail {
+          min-height: 142px;
+          border-top: 3px solid color-mix(in srgb, var(--blue) 55%, var(--line));
+          box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.65) inset,
+            0 20px 48px rgba(26, 54, 47, 0.12);
+        }
+        .nd-contact-detail:nth-child(even) {
+          border-top-color: color-mix(in srgb, var(--violet) 58%, var(--line));
+        }
+        .nd-contact-detail {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) 92px;
+          grid-template-rows: auto 1fr;
+          gap: 10px 18px;
+        }
+        .nd-contact-detail:before {
+          display: none;
+        }
+        .nd-contact-detail strong {
+          max-width: 100%;
+        }
+        .nd-contact-detail:nth-child(1),
+        .nd-contact-detail:nth-child(2),
+        .nd-contact-detail:nth-child(3) {
+          grid-column: span 4;
+        }
+        .nd-contact-detail small,
+        .nd-contact-detail strong {
+          grid-column: 1;
+        }
+        .nd-contact-visual {
+          grid-column: 2;
+          grid-row: 1 / 3;
+          width: 86px;
+          height: 86px;
+          align-self: center;
+          justify-self: end;
+          color: var(--blue);
+          opacity: 0.78;
+          filter: drop-shadow(0 10px 18px rgba(26, 54, 47, 0.12));
+        }
+        .nd-contact-visual * {
+          vector-effect: non-scaling-stroke;
+        }
+        .nd-contact-detail:nth-child(2) .nd-contact-visual,
+        .nd-contact-detail:nth-child(4) .nd-contact-visual {
+          color: var(--violet);
+        }
+        .nd-contact-detail:nth-child(4) {
+          grid-template-columns: minmax(0, 0.65fr) minmax(280px, 1.35fr);
+          background: linear-gradient(
+            110deg,
+            color-mix(in srgb, var(--violet) 9%, var(--solid)),
+            color-mix(in srgb, var(--blue) 8%, var(--solid))
+          );
+        }
+        .nd-contact-detail:nth-child(4) .nd-contact-visual {
+          width: min(100%, 520px);
+          height: 92px;
+        }
+        .nd-map-pin {
+          transform-origin: center;
+          animation: nd-map-pulse 2.4s ease-in-out infinite;
+        }
+        .nd-footer-side > p {
+          max-width: 520px;
+          padding: 14px 0 14px 20px;
+          border-left: 2px solid
+            color-mix(in srgb, var(--violet) 56%, var(--line));
+          line-height: 1.7;
+        }
+        .nd-location-stage {
+          grid-column: 1 / -1;
+          position: relative;
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          align-items: center;
+          gap: clamp(28px, 5vw, 86px);
+          min-height: 180px;
+          margin-top: clamp(18px, 2.4vh, 30px);
+          padding: 10px 0 8px;
+        }
+        .nd-location-copy {
+          position: relative;
+          padding-left: 24px;
+        }
+        .nd-location-copy:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 2px;
+          bottom: 2px;
+          width: 3px;
+          border-radius: 99px;
+          background: linear-gradient(var(--blue), var(--violet));
+        }
+        .nd-location-copy small {
+          display: block;
+          margin-bottom: 14px;
+          color: var(--blue);
+          font: 10px monospace;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+        }
+        .nd-location-copy strong {
+          display: block;
+          max-width: 390px;
+          font-size: clamp(20px, 2vw, 30px);
+          line-height: 1.25;
+          letter-spacing: -0.035em;
+        }
+        .nd-location-copy > p {
+          max-width: 420px;
+          margin: 12px 0 0;
+          color: var(--muted);
+          font-size: 12px;
+          line-height: 1.65;
+        }
+        .nd-collab-note {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-top: 20px;
+          color: var(--muted);
+          font-size: 12px;
+          line-height: 1.5;
+        }
+        .nd-collab-note i {
+          position: relative;
+          width: 28px;
+          height: 28px;
+          flex: 0 0 28px;
+          border: 1px solid color-mix(in srgb, var(--blue) 44%, var(--line));
+          border-radius: 50%;
+        }
+        .nd-collab-note i:before,
+        .nd-collab-note i:after {
+          content: "";
+          position: absolute;
+          inset: 6px 11px;
+          border: 1px solid var(--blue);
+          border-radius: 50%;
+        }
+        .nd-collab-note i:after {
+          inset: 12px 4px;
+        }
+        .nd-location-map {
+          position: relative;
+          width: 100%;
+          min-height: 240px;
+          height: auto;
+          color: var(--violet);
+          filter: drop-shadow(0 18px 30px rgba(26, 54, 47, 0.1));
+        }
+        .nd-map-frame {
+          position: relative;
+          width: min(100%, 860px);
+          aspect-ratio: 1875 / 750;
+          margin: 0 auto;
+        }
+        .nd-map-image {
+          position: absolute;
+          inset: 0;
+          background: color-mix(in srgb, var(--blue) 46%, var(--muted));
+          -webkit-mask: url("assets/indonesia-map.svg") center / contain
+            no-repeat;
+          mask: url("assets/indonesia-map.svg") center / contain no-repeat;
+          opacity: 0.62;
+        }
+        .nd-map-depok {
+          position: absolute;
+          left: 29.8%;
+          top: 70.5%;
+          width: 18px;
+          height: 18px;
+          padding: 0;
+          border: 0;
+          border-radius: 50%;
+          background: var(--violet);
+          color: var(--violet);
+          transform: translate(-50%, -50%);
+          cursor: pointer;
+          box-shadow:
+            0 0 0 9px color-mix(in srgb, var(--violet) 12%, transparent),
+            0 8px 20px color-mix(in srgb, var(--violet) 24%, transparent);
+          animation: nd-map-pulse 2.4s ease-in-out infinite;
+        }
+        .nd-map-depok span {
+          position: absolute;
+          left: calc(100% + 14px);
+          top: 50%;
+          opacity: 0;
+          pointer-events: none;
+          transform: translate(-8px, -50%);
+          padding: 6px 9px;
+          border-radius: 999px;
+          background: color-mix(in srgb, var(--solid) 86%, transparent);
+          box-shadow: 0 8px 20px rgba(26, 54, 47, 0.1);
+          font: 700 9px monospace;
+          letter-spacing: 0.08em;
+          white-space: nowrap;
+          transition:
+            opacity 0.22s ease,
+            transform 0.22s ease;
+        }
+        .nd-map-depok:hover span,
+        .nd-map-depok:focus-visible span {
+          opacity: 1;
+          transform: translate(0, -50%);
+        }
+        .nd-map-depok:focus-visible {
+          outline: 2px solid var(--text);
+          outline-offset: 5px;
+        }
+        .nd-contact-focus {
+          display: grid;
+          grid-template-columns: 34px 1fr;
+          gap: 5px 14px;
+          align-self: end;
+          max-width: 610px;
+          margin-top: 18px;
+          padding: 0 0 4px 2px;
+        }
+        .nd-contact-focus:before {
+          content: "";
+          grid-row: 1 / 4;
+          width: 30px;
+          height: 30px;
+          margin-top: -2px;
+          border: 1px solid color-mix(in srgb, var(--violet) 40%, var(--line));
+          border-radius: 50%;
+          background:
+            radial-gradient(circle, var(--violet) 0 4px, transparent 5px),
+            conic-gradient(
+              from 35deg,
+              color-mix(in srgb, var(--blue) 18%, transparent),
+              color-mix(in srgb, var(--violet) 18%, transparent),
+              transparent 68%
+            );
+          box-shadow: 0 10px 24px
+            color-mix(in srgb, var(--violet) 12%, transparent);
+        }
+        .nd-contact-focus small {
+          color: var(--blue);
+          font: 10px monospace;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+        }
+        .nd-contact-focus strong {
+          position: relative;
+          max-width: 570px;
+          padding-bottom: 14px;
+          font-size: clamp(13px, 1.15vw, 16px);
+          line-height: 1.55;
+          letter-spacing: -0.015em;
+        }
+        .nd-contact-focus strong:after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 3px;
+          width: min(100%, 520px);
+          height: 1px;
+          background: linear-gradient(
+            90deg,
+            var(--blue),
+            color-mix(in srgb, var(--violet) 76%, transparent),
+            transparent
+          );
+        }
+        .nd-focus-spectrum {
+          grid-column: 2;
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 0;
+          margin-top: 7px;
+          color: var(--muted);
+          font: 9px monospace;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+        .nd-focus-spectrum span {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          min-height: 32px;
+          padding: 10px 14px 0 0;
+          border-top: 1px solid var(--line);
+          gap: 8px;
+        }
+        .nd-focus-spectrum span:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: -4px;
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: var(--blue);
+          box-shadow: 0 0 0 4px color-mix(in srgb, var(--blue) 10%, transparent);
+        }
+        .nd-focus-spectrum span:nth-child(2):before {
+          background: var(--violet);
+          box-shadow: 0 0 0 4px
+            color-mix(in srgb, var(--violet) 10%, transparent);
+        }
+        .nd-focus-spectrum span:nth-child(3):before {
+          background: #728b65;
+          box-shadow: 0 0 0 4px color-mix(in srgb, #728b65 10%, transparent);
+        }
+        .nd-location-map .nd-map-land {
+          fill: color-mix(in srgb, var(--blue) 7%, transparent);
+          stroke: color-mix(in srgb, var(--blue) 50%, var(--line));
+          stroke-width: 1.4;
+        }
+        .nd-location-map .nd-map-route {
+          fill: none;
+          stroke: currentColor;
+          opacity: 0.42;
+          stroke-dasharray: 6 8;
+        }
+        .nd-location-map .nd-map-label {
+          fill: currentColor;
+          font: 600 9px monospace;
+          letter-spacing: 0.08em;
+        }
+        /* Compact editorial focus strip keeps the contact chapter balanced. */
+        .nd-footer {
+          column-gap: 8%;
+          row-gap: clamp(14px, 2vh, 24px);
+        }
+        .nd-contact-focus {
+          grid-column: 1 / -1;
+          display: grid;
+          grid-template-columns: minmax(120px, 0.45fr) minmax(300px, 1.3fr) 1fr;
+          align-items: center;
+          gap: clamp(18px, 3vw, 46px);
+          max-width: none;
+          width: 100%;
+          margin: 0;
+          padding: 14px 0;
+          border-top: 1px solid var(--line);
+          border-bottom: 1px solid var(--line);
+        }
+        .nd-contact-focus:before,
+        .nd-contact-focus strong:after {
+          display: none;
+        }
+        .nd-contact-focus small {
+          position: relative;
+          padding-left: 18px;
+          font-size: 10px;
+        }
+        .nd-contact-focus small:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 50%;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: var(--violet);
+          transform: translateY(-50%);
+          box-shadow: 0 0 0 5px
+            color-mix(in srgb, var(--violet) 10%, transparent);
+        }
+        .nd-contact-focus strong {
+          max-width: 620px;
+          padding: 0;
+          font-size: clamp(13px, 1.05vw, 16px);
+        }
+        .nd-focus-spectrum {
+          grid-column: auto;
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 12px;
+          margin: 0;
+        }
+        .nd-focus-spectrum span {
+          display: grid;
+          grid-template-rows: auto auto;
+          min-height: 44px;
+          padding: 0 0 0 12px;
+          border-top: 0;
+          border-left: 2px solid var(--blue);
+          align-content: center;
+          gap: 3px;
+        }
+        .nd-focus-spectrum span:before {
+          position: static;
+          width: auto;
+          height: auto;
+          border-radius: 0;
+          background: none !important;
+          box-shadow: none !important;
+          color: color-mix(in srgb, var(--blue) 55%, var(--muted));
+          font: 700 8px monospace;
+        }
+        .nd-focus-spectrum span:nth-child(1):before {
+          content: "01";
+        }
+        .nd-focus-spectrum span:nth-child(2) {
+          border-left-color: var(--violet);
+        }
+        .nd-focus-spectrum span:nth-child(2):before {
+          content: "02";
+          color: color-mix(in srgb, var(--violet) 60%, var(--muted));
+        }
+        .nd-focus-spectrum span:nth-child(3) {
+          border-left-color: #728b65;
+        }
+        .nd-focus-spectrum span:nth-child(3):before {
+          content: "03";
+          color: color-mix(in srgb, #728b65 60%, var(--muted));
+        }
+        .nd-location-stage {
+          min-height: 160px;
+          margin-top: 0;
+          padding: 6px 0;
+        }
+        .nd-location-map {
+          min-height: 200px;
+        }
+        .nd-contact-focus {
+          grid-template-columns: 1fr;
+          justify-items: center;
+          padding: 12px 0 10px;
+          text-align: center;
+          transform: translateY(-12px);
+        }
+        .nd-contact-focus > small {
+          display: none;
+        }
+        .nd-contact-focus > strong {
+          max-width: 900px;
+          justify-self: center;
+        }
+        .nd-focus-spectrum {
+          grid-column: 1 / -1;
+          display: block;
+          width: 100%;
+          overflow: hidden;
+          mask-image: linear-gradient(
+            90deg,
+            transparent,
+            #000 5%,
+            #000 95%,
+            transparent
+          );
+        }
+        .nd-focus-track {
+          display: flex;
+          align-items: center;
+          width: max-content;
+          gap: clamp(18px, 2vw, 32px);
+          padding: 6px 0 3px;
+          animation: nd-focus-move-right 28s linear infinite;
+          will-change: transform;
+        }
+        .nd-focus-track span {
+          display: inline-flex;
+          grid-template-rows: none;
+          align-items: center;
+          min-height: auto;
+          padding: 0;
+          border: 0;
+          gap: 9px;
+          white-space: nowrap;
+          color: var(--muted);
+          font: 700 9px monospace;
+          letter-spacing: 0.09em;
+        }
+        .nd-focus-track span:before,
+        .nd-focus-track span:nth-child(n):before {
+          content: "";
+          width: 16px;
+          height: 2px;
+          border-radius: 99px;
+          background: var(--blue) !important;
+          box-shadow: none !important;
+        }
+        .nd-focus-track span:nth-child(3n + 2):before {
+          background: var(--violet) !important;
+        }
+        .nd-focus-track span:nth-child(3n):before {
+          background: #728b65 !important;
+        }
+        @keyframes nd-focus-move-right {
+          from {
+            transform: translateX(calc(-50% - 16px));
+          }
+          to {
+            transform: translateX(0);
+          }
+        }
+        .nd-edu-meta [data-i18n="expectedGraduation"] {
+          position: absolute;
+          top: 14px;
+          right: 16px;
+          display: inline-block;
+          margin: 0;
+          padding: 6px 10px;
+          border-radius: 999px;
+          background: linear-gradient(110deg, var(--blue), var(--violet));
+          color: #fff;
+          box-shadow: 0 8px 20px
+            color-mix(in srgb, var(--violet) 22%, transparent);
+          font-size: 0.9em;
+          letter-spacing: 0.04em;
+        }
+        .nd-edu-meta {
+          padding-top: 28px;
+        }
+        /* Center each desktop chapter within the available viewport. */
+        .nd-about-page,
+        .nd-section {
+          justify-content: center;
+        }
+        .nd-about-page .nd-hero {
+          flex: 0 1 auto;
+        }
+        .nd-footer {
+          align-content: center;
+        }
+        @keyframes nd-map-pulse {
+          0%,
+          100% {
+            opacity: 0.55;
+            transform: scale(0.82);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.12);
+          }
+        }
+        .nd-reveal-item {
+          opacity: 0;
+          transform: translateY(22px) scale(0.985);
+          transition:
+            opacity 0.65s cubic-bezier(0.2, 0.75, 0.25, 1),
+            transform 0.65s cubic-bezier(0.2, 0.75, 0.25, 1);
+          transition-delay: var(--reveal-delay, 0ms);
+        }
+        .nd-in-view .nd-reveal-item {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+        .nd-company-icon {
+          transition:
+            transform 0.35s ease,
+            color 0.35s ease,
+            background 0.35s ease;
+        }
+        .nd-company:hover .nd-company-icon {
+          transform: translateY(-3px) rotate(-4deg);
+          color: var(--violet);
+          background: color-mix(in srgb, var(--violet) 11%, var(--solid));
+        }
+        .nd-project .nd-capture img {
+          transition: transform 0.7s cubic-bezier(0.2, 0.75, 0.25, 1);
+        }
+        .nd-project:hover .nd-capture img {
+          transform: scale(1.018);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .nd-reveal-item {
+            opacity: 1;
+            transform: none;
+            transition: none;
+          }
+          .nd-company-icon,
+          .nd-project .nd-capture img,
+          .nd-map-pin,
+          .nd-map-depok,
+          .nd-focus-track {
+            transition: none;
+            animation: none;
+          }
+        }
+        @media (max-height: 820px) and (min-width: 681px) {
+          .nd-about-page,
+          .nd-section,
+          .nd-footer {
+            height: auto;
+            min-height: calc(100svh - 68px);
+            overflow: visible;
+          }
+        }
         @media (max-width: 900px) {
           .nd-contact-details {
             grid-template-columns: 1fr 1fr;
@@ -2107,9 +2903,23 @@
           .nd-contact-detail:nth-child(n) {
             grid-column: auto;
           }
+          .nd-contact-detail:nth-child(4) {
+            grid-template-columns: minmax(0, 1fr) 92px;
+          }
+          .nd-contact-detail:nth-child(4) .nd-contact-visual {
+            width: 92px;
+          }
           .nd-footer {
             grid-template-columns: 1fr;
             gap: 24px;
+          }
+          .nd-contact-focus {
+            max-width: none;
+            margin-top: 0;
+          }
+          .nd-location-stage {
+            grid-template-columns: 1fr;
+            gap: 8px;
           }
           .nd-footer .nd-index,
           .nd-contact-details {
@@ -2128,8 +2938,53 @@
             scroll-snap-stop: normal;
             overflow: visible;
           }
+          .nd-about-page,
+          .nd-section {
+            justify-content: flex-start;
+          }
+          .nd-footer {
+            align-content: start;
+          }
           .nd-contact-details {
             grid-template-columns: 1fr;
+          }
+          .nd-location-stage {
+            min-height: auto;
+            margin-top: 20px;
+          }
+          .nd-location-map {
+            min-height: 150px;
+            height: auto;
+          }
+          .nd-map-frame {
+            width: 100%;
+          }
+          .nd-map-depok span {
+            left: 50%;
+            top: auto;
+            bottom: calc(100% + 14px);
+            transform: translate(-50%, 8px);
+          }
+          .nd-map-depok:hover span,
+          .nd-map-depok:focus-visible span {
+            transform: translate(-50%, 0);
+          }
+          .nd-contact-focus {
+            grid-template-columns: 1fr;
+            gap: 10px;
+            padding: 16px 0;
+          }
+          .nd-focus-spectrum {
+            display: block;
+            grid-column: 1;
+          }
+          .nd-contact-detail {
+            grid-template-columns: minmax(0, 1fr) 72px !important;
+          }
+          .nd-contact-visual,
+          .nd-contact-detail:nth-child(4) .nd-contact-visual {
+            width: 68px;
+            height: 68px;
           }
           .nd-footer {
             margin: 0 3%;
@@ -2161,11 +3016,18 @@
       <div class="nd-blob nd-b2"></div>
       <div class="nd-blob nd-b3"></div>
       <nav class="nd-nav">
-        <div class="nd-brand">
+        <button
+          class="nd-brand nd-menu-toggle"
+          type="button"
+          aria-label="Open navigation"
+          data-i18n-aria="navOpen"
+          aria-controls="nd-mobile-menu"
+          aria-expanded="false"
+        >
           <img class="nd-logo" src="assets/ndr-mark.svg" alt="NDR logo" /><span
             >Natalius Desta Riyanto</span
           >
-        </div>
+        </button>
         <div class="nd-links">
           <a href="#about" data-i18n="navAbout">About</a
           ><a href="#experience" data-i18n="navExperience">Experience</a
@@ -2183,6 +3045,33 @@
           ><button class="nd-theme" aria-label="Toggle theme">☾</button>
         </div>
       </nav>
+      <button
+        class="nd-menu-backdrop"
+        type="button"
+        aria-label="Close navigation"
+        data-i18n-aria="navClose"
+        tabindex="-1"
+      ></button>
+      <aside class="nd-mobile-menu" id="nd-mobile-menu" aria-hidden="true">
+        <div class="nd-mobile-menu-head">
+          <img src="assets/ndr-mark.svg" alt="NDR logo" />
+          <button
+            class="nd-menu-close"
+            type="button"
+            aria-label="Close navigation"
+            data-i18n-aria="navClose"
+          >
+            ×
+          </button>
+        </div>
+        <div class="nd-mobile-links">
+          <a href="#about" data-i18n="navAbout">About</a>
+          <a href="#experience" data-i18n="navExperience">Experience</a>
+          <a href="#education" data-i18n="navEducation">Education</a>
+          <a href="#projects" data-i18n="navWork">Projects</a>
+          <a href="#contact" data-i18n="navContact">Contact</a>
+        </div>
+      </aside>
       <div class="nd-about-page" id="about">
         <section class="nd-hero">
           <div>
@@ -2289,9 +3178,15 @@
         <div class="nd-timeline">
           <article class="nd-company">
             <div class="nd-company-head">
+              <span class="nd-company-icon" aria-hidden="true"
+                ><svg viewBox="0 0 24 24">
+                  <path d="M4 8h16v11H4zM9 8V5h6v3M4 12h16M10 12v2h4v-2" /></svg
+              ></span>
               <h3>TNEX</h3>
               <p>
-                Kota Damansara, Malaysia<br />Remote ·
+                <span data-i18n="tnexLocation"
+                  >Kota Damansara, Selangor, Malaysia</span
+                ><br />Remote ·
                 <span data-i18n="oneYear">1 year</span>
               </p>
             </div>
@@ -2301,54 +3196,86 @@
                   <h4 data-i18n="role1Title">
                     Full-Stack Developer · Working Student
                   </h4>
-                  <span class="nd-date">2026.08 –</span>
+                  <span class="nd-date" data-i18n="dateWorking"
+                    >Aug 2026 – Present</span
+                  >
                 </div>
               </div>
               <div class="nd-step">
                 <div class="nd-step-top">
                   <h4 data-i18n="role2Title">Full-Stack Developer · Intern</h4>
-                  <span class="nd-date">2025.09 – 2026.07</span>
+                  <span class="nd-date" data-i18n="dateIntern"
+                    >Sep 2025 – Jul 2026</span
+                  >
                 </div>
               </div>
             </div>
           </article>
           <article class="nd-company">
             <div class="nd-company-head">
+              <span class="nd-company-icon" aria-hidden="true"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M4 5.5A3.5 3.5 0 0 1 7.5 2H20v17H7.5A3.5 3.5 0 0 0 4 22zM4 5.5V22M8 7h8M8 11h8"
+                  /></svg
+              ></span>
               <h3>Bimbel PMUI</h3>
               <p>
-                Depok, Indonesia<br /><span data-i18n="hybrid">Hybrid</span>
+                <span data-i18n="depokLocation"
+                  >Depok, West Java, Indonesia</span
+                ><br /><span data-i18n="hybrid">Hybrid</span>
               </p>
             </div>
             <div class="nd-path">
               <div class="nd-step">
                 <div class="nd-step-top">
                   <h4 data-i18n="tutorTitle">Mathematics Tutor</h4>
-                  <span class="nd-date">2026.01 –</span>
+                  <span class="nd-date" data-i18n="datePm"
+                    >Jan 2026 – Present</span
+                  >
                 </div>
               </div>
             </div>
           </article>
           <article class="nd-company">
             <div class="nd-company-head">
+              <span class="nd-company-icon" aria-hidden="true"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 3 3 8l9 5 9-5zM6 11v5c3 2.7 9 2.7 12 0v-5M21 8v7"
+                  /></svg
+              ></span>
               <h3>Bimbingan Alumni</h3>
               <p>
-                Depok, Indonesia<br /><span data-i18n="hybrid">Hybrid</span>
+                <span data-i18n="depokLocation"
+                  >Depok, West Java, Indonesia</span
+                ><br /><span data-i18n="hybrid">Hybrid</span>
               </p>
             </div>
             <div class="nd-path">
               <div class="nd-step">
                 <div class="nd-step-top">
                   <h4 data-i18n="tutorTitle">Mathematics Tutor</h4>
-                  <span class="nd-date">2025.05 – 2026.04</span>
+                  <span class="nd-date" data-i18n="dateAlumni"
+                    >May 2025 – Apr 2026</span
+                  >
                 </div>
               </div>
             </div>
           </article>
           <article class="nd-company">
             <div class="nd-company-head">
-              <h3>Universitas Indonesia</h3>
+              <span class="nd-company-icon" aria-hidden="true"
+                ><svg viewBox="0 0 24 24">
+                  <path
+                    d="m12 3 9 5H3zM5 10h14M6 10v8M10 10v8M14 10v8M18 10v8M3 21h18"
+                  /></svg
+              ></span>
+              <h3>FMIPA UI</h3>
               <p>
-                FMIPA UI · Depok<br /><span data-i18n="onsite">On-site</span>
+                <span data-i18n="depokLocation"
+                  >Depok, West Java, Indonesia</span
+                ><br /><span data-i18n="onsite">On-site</span>
               </p>
             </div>
             <div class="nd-path">
@@ -2357,7 +3284,9 @@
                   <h4 data-i18n="taBasic">
                     Teaching Assistant · Basic Mathematics
                   </h4>
-                  <span class="nd-date">2024.08 – 2024.12</span>
+                  <span class="nd-date" data-i18n="dateUi"
+                    >Aug 2024 – Dec 2024</span
+                  >
                 </div>
               </div>
               <div class="nd-step">
@@ -2365,7 +3294,9 @@
                   <h4 data-i18n="taCalculus">
                     Teaching Assistant · Calculus I
                   </h4>
-                  <span class="nd-date">2024.08 – 2024.12</span>
+                  <span class="nd-date" data-i18n="dateUi"
+                    >Aug 2024 – Dec 2024</span
+                  >
                 </div>
               </div>
             </div>
@@ -2387,7 +3318,9 @@
         </div>
         <article class="nd-edu">
           <div>
-            <h3 data-i18n="degreeTitle">Bachelor of Science in Mathematics</h3>
+            <h3 data-i18n="degreeTitle">
+              Bachelor of Science (B.Sc.) in Mathematics
+            </h3>
             <p>
               Universitas Indonesia ·
               <span data-i18n="faculty"
@@ -2395,7 +3328,13 @@
               >
             </p>
           </div>
-          <div class="nd-edu-meta">2023 – 2027<br />Depok, Indonesia</div>
+          <div class="nd-edu-meta">
+            <span data-i18n="educationPeriod">Aug 2023 – Aug 2027</span><br />
+            <span data-i18n="expectedGraduation">Expected</span><br /><span
+              data-i18n="educationLocation"
+              >Depok, West Java, Indonesia</span
+            >
+          </div>
         </article>
       </section>
       <section class="nd-section" id="projects">
@@ -2475,7 +3414,7 @@
                 /></svg
               ><span class="nd-sr">LinkedIn</span></a
             ><a
-              href="https://github.com/stefanusriyan26pc-cloud"
+              href="https://github.com/Natalius-Desta-Riyanto"
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub"
@@ -2487,33 +3426,100 @@
             >
           </div>
         </div>
-        <div class="nd-contact-details">
-          <article class="nd-contact-detail" data-card="01">
-            <small data-i18n="contactStrengthLabel">What I bring</small>
-            <strong data-i18n="contactStrengthValue"
-              >Analytical thinking with hands-on execution</strong
-            >
-          </article>
-          <article class="nd-contact-detail" data-card="02">
-            <small data-i18n="contactStyleLabel">How I work</small>
-            <strong data-i18n="contactStyleValue"
-              >Clear scope, thoughtful systems, reliable delivery</strong
-            >
-          </article>
-          <article class="nd-contact-detail" data-card="03">
-            <small data-i18n="contactInterestLabel">Interested in</small>
-            <strong data-i18n="contactInterestValue"
-              >Full-stack, data products, and education technology</strong
-            >
-          </article>
-          <article class="nd-contact-detail" data-card="04">
+        <div class="nd-location-stage">
+          <div class="nd-location-copy">
             <small data-i18n="contactLocationLabel">Based in</small>
-            <strong data-i18n="contactLocationValue">Depok, Indonesia</strong>
-          </article>
+            <strong data-i18n="contactLocationValue"
+              >Depok, West Java, Indonesia</strong
+            >
+            <p data-i18n="locationContext">
+              Working from Indonesia and collaborating across disciplines and
+              time zones.
+            </p>
+            <div class="nd-collab-note">
+              <i aria-hidden="true"></i>
+              <span data-i18n="collabTimezone"
+                >Available for remote collaboration · UTC+7</span
+              >
+            </div>
+          </div>
+          <div class="nd-location-map">
+            <div class="nd-map-frame">
+              <div class="nd-map-image" aria-hidden="true"></div>
+              <button
+                class="nd-map-depok"
+                type="button"
+                aria-label="Depok, West Java, Indonesia"
+                data-i18n-aria="contactLocationValue"
+              >
+                <span
+                  >DEPOK ·
+                  <b data-i18n="mapRegion">WEST JAVA · INDONESIA</b></span
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="nd-contact-focus">
+          <small data-i18n="contactFocusLabel">Current focus</small>
+          <strong data-i18n="contactFocusValue"
+            >Reliable full-stack systems, thoughtful data products, and
+            education technology.</strong
+          >
+          <div class="nd-focus-spectrum">
+            <div class="nd-focus-track">
+              <span data-i18n="focusSystems">Systems</span>
+              <span data-i18n="focusData">Data products</span>
+              <span data-i18n="focusEducation">Education</span>
+              <span data-i18n="focusApis">API integration</span>
+              <span data-i18n="focusDelivery">Reliable delivery</span>
+              <span data-i18n="focusAnalysis">Analytical thinking</span>
+              <span data-i18n="focusProduct">Product engineering</span>
+              <span data-i18n="focusAutomation">Workflow automation</span>
+              <span data-i18n="focusCommunication"
+                >Technical communication</span
+              >
+              <span aria-hidden="true" data-i18n="focusSystems">Systems</span>
+              <span aria-hidden="true" data-i18n="focusData"
+                >Data products</span
+              >
+              <span aria-hidden="true" data-i18n="focusEducation"
+                >Education</span
+              >
+              <span aria-hidden="true" data-i18n="focusApis"
+                >API integration</span
+              >
+              <span aria-hidden="true" data-i18n="focusDelivery"
+                >Reliable delivery</span
+              >
+              <span aria-hidden="true" data-i18n="focusAnalysis"
+                >Analytical thinking</span
+              >
+              <span aria-hidden="true" data-i18n="focusProduct"
+                >Product engineering</span
+              >
+              <span aria-hidden="true" data-i18n="focusAutomation"
+                >Workflow automation</span
+              >
+              <span aria-hidden="true" data-i18n="focusCommunication"
+                >Technical communication</span
+              >
+            </div>
+          </div>
         </div>
       </section>
       <script>
         (() => {
+          if ("scrollRestoration" in history)
+            history.scrollRestoration = "manual";
+          history.replaceState(
+            null,
+            "",
+            `${location.pathname}${location.search}#about`,
+          );
+          requestAnimationFrame(() => {
+            window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+          });
           const r = document.getElementById("nd-future-portfolio");
           const i18n = {
             en: [
@@ -2689,8 +3695,31 @@
               educationTitle: "Academic foundation.",
               educationIntro:
                 "Formal study in mathematical reasoning, abstraction, quantitative analysis, and structured problem solving.",
-              degreeTitle: "Bachelor of Science in Mathematics",
+              degreeTitle: "Bachelor of Science (B.Sc.) in Mathematics",
               faculty: "Faculty of Mathematics and Natural Sciences",
+              educationPeriod: "Aug 2023 – Aug 2027",
+              expectedGraduation: "Expected",
+              educationLocation: "Depok, West Java, Indonesia",
+              tnexLocation: "Kota Damansara, Selangor, Malaysia",
+              depokLocation: "Depok, West Java, Indonesia",
+              mapRegion: "WEST JAVA · INDONESIA",
+              navOpen: "Open navigation",
+              navClose: "Close navigation",
+              collabTimezone: "Available for remote collaboration · UTC+7",
+              locationContext:
+                "Working from Indonesia and collaborating across disciplines and time zones.",
+              contactFocusLabel: "Current focus",
+              contactFocusValue:
+                "Reliable full-stack systems, thoughtful data products, and education technology.",
+              focusSystems: "Systems",
+              focusData: "Data products",
+              focusEducation: "Education",
+              focusApis: "API integration",
+              focusDelivery: "Reliable delivery",
+              focusAnalysis: "Analytical thinking",
+              focusProduct: "Product engineering",
+              focusAutomation: "Workflow automation",
+              focusCommunication: "Technical communication",
               projectIndex: "03 / SELECTED WORK",
               contactIndex: "04 / CONNECT",
               role1Title: "Full-Stack Developer · Working Student",
@@ -2701,14 +3730,22 @@
               oneYear: "1 year",
               hybrid: "Hybrid",
               onsite: "On-site",
+              dateWorking: "Aug 2026 – Present",
+              dateIntern: "Sep 2025 – Jul 2026",
+              datePm: "Jan 2026 – Present",
+              dateAlumni: "May 2025 – Apr 2026",
+              dateUi: "Aug 2024 – Dec 2024",
               contactStrengthLabel: "What I bring",
-              contactStrengthValue: "Analytical thinking with hands-on execution",
+              contactStrengthValue:
+                "Analytical thinking with hands-on execution",
               contactStyleLabel: "How I work",
-              contactStyleValue: "Clear scope, thoughtful systems, reliable delivery",
+              contactStyleValue:
+                "Clear scope, thoughtful systems, reliable delivery",
               contactInterestLabel: "Interested in",
-              contactInterestValue: "Full-stack, data products, and education technology",
+              contactInterestValue:
+                "Full-stack, data products, and education technology",
               contactLocationLabel: "Based in",
-              contactLocationValue: "Depok, Indonesia",
+              contactLocationValue: "Depok, West Java, Indonesia",
             },
             ja: {
               navEducation: "学歴",
@@ -2726,8 +3763,31 @@
               educationTitle: "学術的基盤。",
               educationIntro:
                 "数学的推論、抽象化、定量分析、構造的な問題解決を学んでいます。",
-              degreeTitle: "数学学士",
+              degreeTitle: "数学理学士（B.Sc.）",
               faculty: "数学・自然科学部",
+              educationPeriod: "2023年8月 – 2027年8月",
+              expectedGraduation: "予定",
+              educationLocation: "インドネシア、西ジャワ州、デポック",
+              tnexLocation: "マレーシア、セランゴール州、コタ・ダマンサラ",
+              depokLocation: "インドネシア、西ジャワ州、デポック",
+              mapRegion: "西ジャワ州 · インドネシア",
+              navOpen: "ナビゲーションを開く",
+              navClose: "ナビゲーションを閉じる",
+              collabTimezone: "リモート協業に対応 · UTC+7",
+              locationContext:
+                "インドネシアを拠点に、分野や時間帯を越えて協働しています。",
+              contactFocusLabel: "現在の注力分野",
+              contactFocusValue:
+                "信頼性の高いフルスタックシステム、データ製品、教育技術。",
+              focusSystems: "システム",
+              focusData: "データ製品",
+              focusEducation: "教育",
+              focusApis: "API連携",
+              focusDelivery: "確実なデリバリー",
+              focusAnalysis: "分析的思考",
+              focusProduct: "プロダクトエンジニアリング",
+              focusAutomation: "ワークフロー自動化",
+              focusCommunication: "技術コミュニケーション",
               projectIndex: "03 / 主な実績",
               contactIndex: "04 / 連絡先",
               role1Title: "フルスタック開発者 · ワーキングステューデント",
@@ -2738,6 +3798,11 @@
               oneYear: "1年間",
               hybrid: "ハイブリッド",
               onsite: "対面",
+              dateWorking: "2026年8月 – 現在",
+              dateIntern: "2025年9月 – 2026年7月",
+              datePm: "2026年1月 – 現在",
+              dateAlumni: "2025年5月 – 2026年4月",
+              dateUi: "2024年8月 – 2024年12月",
               contactStrengthLabel: "提供できる価値",
               contactStrengthValue: "分析思考と実践的な実行力",
               contactStyleLabel: "仕事の進め方",
@@ -2745,7 +3810,7 @@
               contactInterestLabel: "関心分野",
               contactInterestValue: "フルスタック、データ製品、教育技術",
               contactLocationLabel: "拠点",
-              contactLocationValue: "インドネシア・デポック",
+              contactLocationValue: "インドネシア、西ジャワ州、デポック",
             },
             zh: {
               navEducation: "教育",
@@ -2763,8 +3828,29 @@
               educationTitle: "学术基础。",
               educationIntro:
                 "系统学习数学推理、抽象思维、定量分析与结构化问题解决。",
-              degreeTitle: "数学理学学士",
+              degreeTitle: "数学理学学士（B.Sc.）",
               faculty: "数学与自然科学学院",
+              educationPeriod: "2023年8月 – 2027年8月",
+              expectedGraduation: "预计",
+              educationLocation: "印度尼西亚西爪哇省德波市",
+              tnexLocation: "马来西亚雪兰莪州哥打白沙罗",
+              depokLocation: "印度尼西亚西爪哇省德波市",
+              mapRegion: "西爪哇省 · 印度尼西亚",
+              navOpen: "打开导航",
+              navClose: "关闭导航",
+              collabTimezone: "可远程协作 · UTC+7",
+              locationContext: "立足印度尼西亚，开展跨领域、跨时区协作。",
+              contactFocusLabel: "当前重点",
+              contactFocusValue: "可靠的全栈系统、周全的数据产品与教育科技。",
+              focusSystems: "系统",
+              focusData: "数据产品",
+              focusEducation: "教育",
+              focusApis: "API 集成",
+              focusDelivery: "可靠交付",
+              focusAnalysis: "分析思维",
+              focusProduct: "产品工程",
+              focusAutomation: "工作流自动化",
+              focusCommunication: "技术沟通",
               projectIndex: "03 / 精选项目",
               contactIndex: "04 / 联系",
               role1Title: "全栈开发者 · 在职学生",
@@ -2775,6 +3861,11 @@
               oneYear: "1年",
               hybrid: "混合办公",
               onsite: "现场",
+              dateWorking: "2026年8月 – 至今",
+              dateIntern: "2025年9月 – 2026年7月",
+              datePm: "2026年1月 – 至今",
+              dateAlumni: "2025年5月 – 2026年4月",
+              dateUi: "2024年8月 – 2024年12月",
               contactStrengthLabel: "我的优势",
               contactStrengthValue: "分析思维与实际执行力",
               contactStyleLabel: "工作方式",
@@ -2782,7 +3873,7 @@
               contactInterestLabel: "关注方向",
               contactInterestValue: "全栈、数据产品与教育科技",
               contactLocationLabel: "所在地",
-              contactLocationValue: "印度尼西亚德波",
+              contactLocationValue: "印度尼西亚西爪哇省德波市",
             },
             id: {
               navEducation: "Pendidikan",
@@ -2800,8 +3891,31 @@
               educationTitle: "Fondasi akademik.",
               educationIntro:
                 "Studi formal dalam penalaran matematis, abstraksi, analisis kuantitatif, dan pemecahan masalah terstruktur.",
-              degreeTitle: "Sarjana Sains Matematika",
+              degreeTitle: "Sarjana Sains (S.Si.) Matematika",
               faculty: "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+              educationPeriod: "Agu 2023 – Agu 2027",
+              expectedGraduation: "Estimasi",
+              educationLocation: "Depok, Jawa Barat, Indonesia",
+              tnexLocation: "Kota Damansara, Selangor, Malaysia",
+              depokLocation: "Depok, Jawa Barat, Indonesia",
+              mapRegion: "JAWA BARAT · INDONESIA",
+              navOpen: "Buka navigasi",
+              navClose: "Tutup navigasi",
+              collabTimezone: "Tersedia untuk kolaborasi jarak jauh · UTC+7",
+              locationContext:
+                "Bekerja dari Indonesia dan berkolaborasi lintas bidang serta zona waktu.",
+              contactFocusLabel: "Fokus saat ini",
+              contactFocusValue:
+                "Sistem full-stack yang andal, produk data yang matang, dan teknologi pendidikan.",
+              focusSystems: "Sistem",
+              focusData: "Produk data",
+              focusEducation: "Pendidikan",
+              focusApis: "Integrasi API",
+              focusDelivery: "Pengiriman andal",
+              focusAnalysis: "Pemikiran analitis",
+              focusProduct: "Rekayasa produk",
+              focusAutomation: "Otomasi alur kerja",
+              focusCommunication: "Komunikasi teknis",
               projectIndex: "03 / KARYA PILIHAN",
               contactIndex: "04 / HUBUNGI",
               role1Title: "Pengembang Full-Stack · Working Student",
@@ -2812,14 +3926,21 @@
               oneYear: "1 tahun",
               hybrid: "Hibrida",
               onsite: "Di lokasi",
+              dateWorking: "Agu 2026 – Sekarang",
+              dateIntern: "Sep 2025 – Jul 2026",
+              datePm: "Jan 2026 – Sekarang",
+              dateAlumni: "Mei 2025 – Apr 2026",
+              dateUi: "Agu 2024 – Des 2024",
               contactStrengthLabel: "Yang saya tawarkan",
-              contactStrengthValue: "Pemikiran analitis dengan eksekusi langsung",
+              contactStrengthValue:
+                "Pemikiran analitis dengan eksekusi langsung",
               contactStyleLabel: "Cara saya bekerja",
               contactStyleValue: "Cakupan jelas, sistem matang, hasil andal",
               contactInterestLabel: "Bidang yang diminati",
-              contactInterestValue: "Full-stack, produk data, dan teknologi pendidikan",
+              contactInterestValue:
+                "Full-stack, produk data, dan teknologi pendidikan",
               contactLocationLabel: "Berdomisili di",
-              contactLocationValue: "Depok, Indonesia",
+              contactLocationValue: "Depok, Jawa Barat, Indonesia",
             },
             de: {
               navEducation: "Bildung",
@@ -2837,8 +3958,31 @@
               educationTitle: "Akademische Grundlage.",
               educationIntro:
                 "Formales Studium von mathematischem Denken, Abstraktion, quantitativer Analyse und strukturierter Problemlösung.",
-              degreeTitle: "Bachelor of Science in Mathematik",
+              degreeTitle: "Bachelor of Science (B.Sc.) in Mathematik",
               faculty: "Fakultät für Mathematik und Naturwissenschaften",
+              educationPeriod: "Aug. 2023 – Aug. 2027",
+              expectedGraduation: "Voraussichtlich",
+              educationLocation: "Depok, Westjava, Indonesien",
+              tnexLocation: "Kota Damansara, Selangor, Malaysia",
+              depokLocation: "Depok, Westjava, Indonesien",
+              mapRegion: "WESTJAVA · INDONESIEN",
+              navOpen: "Navigation öffnen",
+              navClose: "Navigation schließen",
+              collabTimezone: "Verfügbar für Remote-Zusammenarbeit · UTC+7",
+              locationContext:
+                "Von Indonesien aus arbeite ich fach- und zeitzonenübergreifend zusammen.",
+              contactFocusLabel: "Aktueller Fokus",
+              contactFocusValue:
+                "Zuverlässige Full-Stack-Systeme, durchdachte Datenprodukte und Bildungstechnologie.",
+              focusSystems: "Systeme",
+              focusData: "Datenprodukte",
+              focusEducation: "Bildung",
+              focusApis: "API-Integration",
+              focusDelivery: "Zuverlässige Umsetzung",
+              focusAnalysis: "Analytisches Denken",
+              focusProduct: "Produktentwicklung",
+              focusAutomation: "Workflow-Automatisierung",
+              focusCommunication: "Technische Kommunikation",
               projectIndex: "03 / AUSGEWÄHLTE ARBEITEN",
               contactIndex: "04 / KONTAKT",
               role1Title: "Full-Stack-Entwickler · Werkstudent",
@@ -2849,14 +3993,22 @@
               oneYear: "1 Jahr",
               hybrid: "Hybrid",
               onsite: "Vor Ort",
+              dateWorking: "Aug. 2026 – Heute",
+              dateIntern: "Sep. 2025 – Juli 2026",
+              datePm: "Jan. 2026 – Heute",
+              dateAlumni: "Mai 2025 – Apr. 2026",
+              dateUi: "Aug. 2024 – Dez. 2024",
               contactStrengthLabel: "Was ich einbringe",
-              contactStrengthValue: "Analytisches Denken und praktische Umsetzung",
+              contactStrengthValue:
+                "Analytisches Denken und praktische Umsetzung",
               contactStyleLabel: "Meine Arbeitsweise",
-              contactStyleValue: "Klarer Umfang, durchdachte Systeme, verlässliche Lieferung",
+              contactStyleValue:
+                "Klarer Umfang, durchdachte Systeme, verlässliche Lieferung",
               contactInterestLabel: "Interessengebiete",
-              contactInterestValue: "Full-Stack, Datenprodukte und Bildungstechnologie",
+              contactInterestValue:
+                "Full-Stack, Datenprodukte und Bildungstechnologie",
               contactLocationLabel: "Standort",
-              contactLocationValue: "Depok, Indonesien",
+              contactLocationValue: "Depok, Westjava, Indonesien",
             },
           };
           const keys = [
@@ -2899,9 +4051,40 @@
                 value = extra[key] ?? base[keys.indexOf(key)];
               if (value !== undefined) e.textContent = value;
             });
+            r.querySelectorAll("[data-i18n-aria]").forEach((e) => {
+              const key = e.dataset.i18nAria,
+                value = extra[key] ?? base[keys.indexOf(key)];
+              if (value !== undefined) e.setAttribute("aria-label", value);
+            });
             document.documentElement.lang = lang;
           };
           languageSelect.onchange = () => applyLanguage(languageSelect.value);
+          const menuToggle = r.querySelector(".nd-menu-toggle");
+          const mobileMenu = r.querySelector(".nd-mobile-menu");
+          const menuBackdrop = r.querySelector(".nd-menu-backdrop");
+          const menuClose = r.querySelector(".nd-menu-close");
+          const setMenu = (open) => {
+            r.classList.toggle("nd-menu-open", open);
+            menuToggle.setAttribute("aria-expanded", String(open));
+            mobileMenu.setAttribute("aria-hidden", String(!open));
+            if (open) menuClose.focus();
+            else if (document.activeElement === menuClose) menuToggle.focus();
+          };
+          menuToggle.addEventListener("click", () => {
+            if (window.matchMedia("(max-width: 680px)").matches) setMenu(true);
+          });
+          menuClose.addEventListener("click", () => setMenu(false));
+          menuBackdrop.addEventListener("click", () => setMenu(false));
+          mobileMenu.querySelectorAll('a[href^="#"]').forEach((link) => {
+            link.addEventListener("click", () => setMenu(false));
+          });
+          document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && r.classList.contains("nd-menu-open"))
+              setMenu(false);
+          });
+          window.addEventListener("resize", () => {
+            if (window.innerWidth > 680) setMenu(false);
+          });
           r.querySelector(".nd-theme").onclick = (e) => {
             const d = r.dataset.theme === "dark";
             r.dataset.theme = d ? "light" : "dark";
@@ -2928,6 +4111,39 @@
           if (window.location.hash) {
             requestAnimationFrame(() =>
               scrollToSection(window.location.hash, "auto"),
+            );
+          }
+          const revealSections = r.querySelectorAll(
+            ".nd-about-page, .nd-section, .nd-footer",
+          );
+          revealSections.forEach((section) => {
+            const items = section.querySelectorAll(
+              ".nd-hero-copy, .nd-portrait-wrap, .nd-metric, .nd-head > *, .nd-company, .nd-edu, .nd-project, .nd-footer > h2, .nd-footer-side, .nd-location-stage",
+            );
+            items.forEach((item, index) => {
+              item.classList.add("nd-reveal-item");
+              item.style.setProperty(
+                "--reveal-delay",
+                `${Math.min(index * 75, 360)}ms`,
+              );
+            });
+          });
+          if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            revealSections.forEach((section) =>
+              section.classList.add("nd-in-view"),
+            );
+          } else {
+            const revealObserver = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting)
+                    entry.target.classList.add("nd-in-view");
+                });
+              },
+              { threshold: 0.22 },
+            );
+            revealSections.forEach((section) =>
+              revealObserver.observe(section),
             );
           }
           const canvas = r.querySelector(".nd-motion"),
@@ -3001,6 +4217,60 @@
                 ctx.stroke();
               }
             }
+            const mx = Number.parseFloat(
+                getComputedStyle(r).getPropertyValue("--mx") || "0",
+              ),
+              my = Number.parseFloat(
+                getComputedStyle(r).getPropertyValue("--my") || "0",
+              );
+            const shapes = [
+              { x: 0.12, y: 0.16, radius: 54, sides: 4, speed: 0.00008 },
+              { x: 0.86, y: 0.31, radius: 76, sides: 0, speed: -0.00006 },
+              { x: 0.18, y: 0.52, radius: 42, sides: 3, speed: 0.0001 },
+              { x: 0.82, y: 0.7, radius: 64, sides: 6, speed: -0.00007 },
+              { x: 0.48, y: 0.88, radius: 48, sides: 4, speed: 0.00009 },
+            ];
+            shapes.forEach((shape, index) => {
+              const x = w * shape.x + mx * (18 + index * 3),
+                y = h * shape.y + my * (14 + index * 2),
+                angle = t * shape.speed + index * 0.7;
+              ctx.save();
+              ctx.translate(x, y);
+              ctx.rotate(angle);
+              ctx.strokeStyle = dark
+                ? index % 2
+                  ? "rgba(231,168,95,.16)"
+                  : "rgba(91,191,179,.18)"
+                : index % 2
+                  ? "rgba(197,106,24,.11)"
+                  : "rgba(15,118,110,.13)";
+              ctx.lineWidth = 1.2;
+              ctx.beginPath();
+              if (!shape.sides) {
+                ctx.ellipse(
+                  0,
+                  0,
+                  shape.radius,
+                  shape.radius * 0.55,
+                  0,
+                  0,
+                  Math.PI * 1.65,
+                );
+              } else {
+                for (let side = 0; side <= shape.sides; side++) {
+                  const a = (side / shape.sides) * Math.PI * 2,
+                    px = Math.cos(a) * shape.radius,
+                    py = Math.sin(a) * shape.radius * 0.72;
+                  side ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+                }
+              }
+              ctx.stroke();
+              ctx.beginPath();
+              ctx.arc(0, 0, 3.2, 0, Math.PI * 2);
+              ctx.fillStyle = ctx.strokeStyle;
+              ctx.fill();
+              ctx.restore();
+            });
             particles.forEach((q) => {
               q.y -= q.v;
               if (q.y < -5) q.y = h + 5;
