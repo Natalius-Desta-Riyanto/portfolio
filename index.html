@@ -16,7 +16,7 @@
       <style>
         html {
           scroll-behavior: smooth;
-          scroll-snap-type: y mandatory;
+          scroll-snap-type: y proximity;
           scroll-padding-top: 68px;
         }
         html,
@@ -216,10 +216,10 @@
           background: var(--bg);
         }
         .nd-motion {
-          position: absolute;
+          position: fixed;
           inset: 0;
           width: 100%;
-          height: 100%;
+          height: 100svh;
           z-index: 0;
           opacity: 0.9;
           pointer-events: none;
@@ -1943,8 +1943,16 @@
           height: calc(100svh - 68px);
           min-height: 0;
           scroll-margin-top: 0;
-          scroll-snap-stop: always;
           overflow: hidden;
+        }
+
+        /* Keep expensive decorative motion scoped to the visible chapter. */
+        .nd-section:not(.nd-in-view)::before,
+        .nd-section:not(.nd-in-view)::after,
+        .nd-section:not(.nd-in-view) .nd-company::after,
+        .nd-section:not(.nd-in-view) .nd-edu::after,
+        .nd-section:not(.nd-in-view) .nd-project::after {
+          animation-play-state: paused;
         }
         .nd-about-page {
           margin-top: 68px;
@@ -4436,26 +4444,44 @@
             );
           }
           const canvas = r.querySelector(".nd-motion"),
-            ctx = canvas.getContext("2d"),
-            scene = r;
+            ctx = canvas.getContext("2d", { alpha: true }),
+            reducedMotion = matchMedia("(prefers-reduced-motion: reduce)"),
+            coarsePointer = matchMedia("(pointer: coarse)");
           let particles = [];
           function size() {
             const d = 1,
-              box = scene.getBoundingClientRect();
-            canvas.width = box.width * d;
-            canvas.height = box.height * d;
+              width = window.innerWidth,
+              height = window.innerHeight;
+            canvas.width = width * d;
+            canvas.height = height * d;
             ctx.setTransform(d, 0, 0, d, 0, 0);
-            particles = Array.from({ length: 110 }, (_, i) => ({
-              x: Math.random() * box.width,
-              y: Math.random() * box.height,
-              v: 0.12 + Math.random() * 0.35,
-              s: 0.5 + Math.random() * 1.6,
-              p: i * 0.48,
-            }));
+            particles = Array.from(
+              { length: coarsePointer.matches ? 36 : 64 },
+              (_, i) => ({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                v: 0.12 + Math.random() * 0.35,
+                s: 0.5 + Math.random() * 1.6,
+                p: i * 0.48,
+              }),
+            );
           }
+          let pointerX = 0,
+            pointerY = 0,
+            pointerFrame = 0,
+            lastFrame = 0;
           function draw(t) {
-            const w = scene.clientWidth,
-              h = scene.clientHeight,
+            if (document.hidden) {
+              requestAnimationFrame(draw);
+              return;
+            }
+            if (t - lastFrame < 1000 / 45) {
+              requestAnimationFrame(draw);
+              return;
+            }
+            lastFrame = t;
+            const w = canvas.width,
+              h = canvas.height,
               dark = r.dataset.theme === "dark";
             ctx.clearRect(0, 0, w, h);
             for (let band = 0; band < 4; band++) {
@@ -4506,12 +4532,8 @@
                 ctx.stroke();
               }
             }
-            const mx = Number.parseFloat(
-                getComputedStyle(r).getPropertyValue("--mx") || "0",
-              ),
-              my = Number.parseFloat(
-                getComputedStyle(r).getPropertyValue("--my") || "0",
-              );
+            const mx = pointerX,
+              my = pointerY;
             const shapes = [
               { x: 0.12, y: 0.16, radius: 54, sides: 4, speed: 0.00008 },
               { x: 0.86, y: 0.31, radius: 76, sides: 0, speed: -0.00006 },
@@ -4574,22 +4596,20 @@
             requestAnimationFrame(draw);
           }
           size();
-          new ResizeObserver(size).observe(scene);
+          window.addEventListener("resize", size, { passive: true });
           r.addEventListener("pointermove", (e) => {
             const box = r.getBoundingClientRect();
-            r.style.setProperty(
-              "--mx",
-              ((e.clientX - box.left) / box.width - 0.5).toFixed(3),
-            );
-            r.style.setProperty(
-              "--my",
-              (
-                (e.clientY - box.top) / Math.min(box.height, innerHeight) -
-                0.5
-              ).toFixed(3),
-            );
-          });
-          if (!matchMedia("(prefers-reduced-motion: reduce)").matches)
+            pointerX = (e.clientX - box.left) / box.width - 0.5;
+            pointerY = e.clientY / innerHeight - 0.5;
+            if (!pointerFrame) {
+              pointerFrame = requestAnimationFrame(() => {
+                r.style.setProperty("--mx", pointerX.toFixed(3));
+                r.style.setProperty("--my", pointerY.toFixed(3));
+                pointerFrame = 0;
+              });
+            }
+          }, { passive: true });
+          if (!reducedMotion.matches)
             requestAnimationFrame(draw);
         })();
       </script>
