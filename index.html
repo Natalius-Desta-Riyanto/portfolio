@@ -3549,6 +3549,53 @@
             transform: translate(-50%, -50%) scale(1.12);
           }
         }
+        @media (max-width: 380px) {
+          .nd-nav {
+            grid-template-columns: minmax(30px, 1fr) auto;
+            padding-inline: 10px;
+          }
+          .nd-logo {
+            width: 30px;
+            height: 30px;
+          }
+          .nd-controls {
+            min-width: 0;
+            gap: 4px;
+          }
+          .nd-lang-btn {
+            width: 62px;
+            max-width: 62px;
+            height: 32px;
+            padding-right: 23px;
+            padding-left: 8px;
+          }
+          .nd-theme {
+            width: 32px;
+            height: 32px;
+            flex: 0 0 32px;
+          }
+        }
+        @media (max-width: 300px) {
+          .nd-nav {
+            padding-inline: 8px;
+          }
+          .nd-logo {
+            width: 28px;
+            height: 28px;
+          }
+          .nd-lang-btn {
+            width: 56px;
+            max-width: 56px;
+            height: 30px;
+            padding-right: 20px;
+            padding-left: 6px;
+          }
+          .nd-theme {
+            width: 30px;
+            height: 30px;
+            flex-basis: 30px;
+          }
+        }
       </style>
       <canvas class="nd-motion" aria-hidden="true"></canvas>
       <div class="nd-film" aria-hidden="true">
