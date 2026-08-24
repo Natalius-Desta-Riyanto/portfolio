@@ -3288,6 +3288,71 @@
             width: min(88vw, 330px);
           }
         }
+
+        /* Mobile performance mode: preserve the composition without repainting
+           full-screen blur and canvas layers while the browser is scrolling. */
+        @media (max-width: 820px), (pointer: coarse) {
+          html {
+            scroll-behavior: auto;
+            overscroll-behavior-y: none;
+          }
+          body {
+            touch-action: pan-y;
+          }
+          #nd-future-portfolio {
+            transition: none;
+            background:
+              radial-gradient(
+                circle at 88% 8%,
+                color-mix(in srgb, var(--blue) 11%, transparent),
+                transparent 28rem
+              ),
+              radial-gradient(
+                circle at 12% 48%,
+                color-mix(in srgb, var(--violet) 9%, transparent),
+                transparent 24rem
+              ),
+              var(--bg);
+          }
+          .nd-motion,
+          .nd-film,
+          .nd-blob {
+            display: none;
+          }
+          #nd-future-portfolio *,
+          #nd-future-portfolio *::before,
+          #nd-future-portfolio *::after {
+            animation: none !important;
+          }
+          .nd-nav,
+          .nd-lang-btn,
+          .nd-theme,
+          .nd-mobile-menu,
+          .nd-metric,
+          .nd-company,
+          .nd-edu,
+          .nd-project,
+          .nd-footer {
+            -webkit-backdrop-filter: none !important;
+            backdrop-filter: none !important;
+          }
+          .nd-section::before,
+          .nd-section::after,
+          .nd-company::after,
+          .nd-edu::after,
+          .nd-project::after {
+            content: none;
+          }
+          .nd-nav {
+            background: color-mix(in srgb, var(--bg) 96%, transparent);
+          }
+          .nd-mobile-menu {
+            background: var(--solid);
+          }
+          .nd-reveal-item {
+            transition-duration: 0.35s;
+          }
+        }
       </style>
       <canvas class="nd-motion" aria-hidden="true"></canvas>
       <div class="nd-film" aria-hidden="true">
@@ -4446,7 +4511,9 @@
           const canvas = r.querySelector(".nd-motion"),
             ctx = canvas.getContext("2d", { alpha: true }),
             reducedMotion = matchMedia("(prefers-reduced-motion: reduce)"),
-            coarsePointer = matchMedia("(pointer: coarse)");
+            coarsePointer = matchMedia("(pointer: coarse)"),
+            mobilePerformance =
+              coarsePointer.matches || window.innerWidth <= 820;
           let particles = [];
           function size() {
             const d = 1,
@@ -4595,22 +4662,27 @@
             });
             requestAnimationFrame(draw);
           }
-          size();
-          window.addEventListener("resize", size, { passive: true });
-          r.addEventListener("pointermove", (e) => {
-            const box = r.getBoundingClientRect();
-            pointerX = (e.clientX - box.left) / box.width - 0.5;
-            pointerY = e.clientY / innerHeight - 0.5;
-            if (!pointerFrame) {
-              pointerFrame = requestAnimationFrame(() => {
-                r.style.setProperty("--mx", pointerX.toFixed(3));
-                r.style.setProperty("--my", pointerY.toFixed(3));
-                pointerFrame = 0;
-              });
-            }
-          }, { passive: true });
-          if (!reducedMotion.matches)
-            requestAnimationFrame(draw);
+          if (!mobilePerformance) {
+            size();
+            window.addEventListener("resize", size, { passive: true });
+            r.addEventListener(
+              "pointermove",
+              (e) => {
+                const box = r.getBoundingClientRect();
+                pointerX = (e.clientX - box.left) / box.width - 0.5;
+                pointerY = e.clientY / innerHeight - 0.5;
+                if (!pointerFrame) {
+                  pointerFrame = requestAnimationFrame(() => {
+                    r.style.setProperty("--mx", pointerX.toFixed(3));
+                    r.style.setProperty("--my", pointerY.toFixed(3));
+                    pointerFrame = 0;
+                  });
+                }
+              },
+              { passive: true },
+            );
+            if (!reducedMotion.matches) requestAnimationFrame(draw);
+          }
         })();
       </script>
     </div>
