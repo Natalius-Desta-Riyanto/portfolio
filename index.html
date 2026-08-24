@@ -3549,7 +3549,42 @@
             transform: translate(-50%, -50%) scale(1.12);
           }
         }
-        @media (max-width: 380px) {
+        @media (min-width: 821px) and (max-width: 1440px) {
+          .nd-nav {
+            grid-template-columns: minmax(34px, 1fr) auto minmax(104px, 1fr);
+            padding-inline: 2%;
+          }
+          .nd-logo {
+            width: 30px;
+            height: 30px;
+          }
+          .nd-links {
+            gap: clamp(12px, 1.35vw, 20px);
+            font-size: 9px;
+          }
+          .nd-controls {
+            min-width: 0;
+            gap: 6px;
+          }
+          .nd-lang-btn {
+            width: 60px;
+            max-width: 60px;
+            height: 28px;
+            padding: 0 20px 0 8px;
+            font-size: 9px;
+          }
+          .nd-theme {
+            width: 28px;
+            height: 28px;
+            flex: 0 0 28px;
+          }
+        }
+        @media (min-width: 821px) and (max-width: 1100px) {
+          .nd-brand > span:last-child {
+            display: none;
+          }
+        }
+        @media (max-width: 820px) {
           .nd-nav {
             grid-template-columns: minmax(30px, 1fr) auto;
             padding-inline: 10px;
@@ -3559,20 +3594,50 @@
             height: 30px;
           }
           .nd-controls {
-            min-width: 0;
-            gap: 4px;
+            width: 106px;
+            max-width: 106px;
+            gap: 6px;
           }
           .nd-lang-btn {
-            width: 62px;
-            max-width: 62px;
+            width: 68px;
+            min-width: 0;
+            max-width: 68px;
             height: 32px;
-            padding-right: 23px;
-            padding-left: 8px;
+            padding: 0 23px 0 9px;
+            font-size: 10px;
           }
           .nd-theme {
             width: 32px;
             height: 32px;
             flex: 0 0 32px;
+          }
+        }
+        @media (max-width: 380px) {
+          .nd-nav {
+            grid-template-columns: minmax(30px, 1fr) auto;
+            padding-inline: 8px;
+          }
+          .nd-logo {
+            width: 28px;
+            height: 28px;
+          }
+          .nd-controls {
+            width: 100px;
+            max-width: 100px;
+            min-width: 0;
+            gap: 6px;
+          }
+          .nd-lang-btn {
+            width: 64px;
+            max-width: 64px;
+            height: 30px;
+            padding-right: 21px;
+            padding-left: 8px;
+          }
+          .nd-theme {
+            width: 30px;
+            height: 30px;
+            flex: 0 0 30px;
           }
         }
         @media (max-width: 300px) {
@@ -3584,16 +3649,20 @@
             height: 28px;
           }
           .nd-lang-btn {
-            width: 56px;
-            max-width: 56px;
-            height: 30px;
-            padding-right: 20px;
-            padding-left: 6px;
+            width: 58px;
+            max-width: 58px;
+            height: 28px;
+            padding-right: 19px;
+            padding-left: 7px;
           }
           .nd-theme {
-            width: 30px;
-            height: 30px;
-            flex-basis: 30px;
+            width: 28px;
+            height: 28px;
+            flex-basis: 28px;
+          }
+          .nd-controls {
+            width: 90px;
+            max-width: 90px;
           }
         }
       </style>
@@ -3643,10 +3712,10 @@
         <div class="nd-controls">
           <select class="nd-lang-btn" aria-label="Language">
             <option value="en">EN</option>
-            <option value="ja">日本語</option>
-            <option value="zh">中文</option>
-            <option value="id">Indonesia</option>
-            <option value="de">Deutsch</option></select
+            <option value="ja">JP</option>
+            <option value="zh">ZH</option>
+            <option value="id">ID</option>
+            <option value="de">DE</option></select
           ><button class="nd-theme" aria-label="Toggle theme">☾</button>
         </div>
       </nav>
