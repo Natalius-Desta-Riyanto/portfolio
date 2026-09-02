@@ -2309,15 +2309,275 @@
           grid-column: 2;
         }
         #projects .nd-projects {
-          width: min(100%, 820px);
+          width: min(100%, 1100px);
+          display: grid;
           grid-template-columns: minmax(0, 1fr);
+          overflow: hidden;
+          perspective: 1200px;
         }
         #projects .nd-project {
+          grid-area: 1 / 1;
+          width: 100%;
+          min-width: 0;
           padding: 22px;
+          display: grid;
+          grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+          align-items: stretch;
+          gap: 22px;
+          min-height: 530px;
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          transform: translateX(28%) rotateY(-7deg) scale(0.92);
+          transform-origin: left center;
+          filter: blur(7px) saturate(0.75);
+          transition:
+            opacity 0.46s ease,
+            transform 0.82s cubic-bezier(0.16, 1, 0.3, 1),
+            filter 0.62s ease,
+            visibility 0s linear 0.82s;
+        }
+        #projects .nd-project.is-active {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+          transform: translateX(0);
+          transform-origin: center;
+          filter: blur(0) saturate(1);
+          transition:
+            opacity 0.46s ease,
+            transform 0.82s cubic-bezier(0.16, 1, 0.3, 1),
+            filter 0.62s ease,
+            visibility 0s;
+        }
+        #projects .nd-project.is-leaving-left {
+          visibility: visible;
+          animation: nd-project-card-out-left 0.78s
+            cubic-bezier(0.55, 0, 1, 0.45) both;
+        }
+        #projects .nd-project.is-leaving-right {
+          visibility: visible;
+          animation: nd-project-card-out-right 0.78s
+            cubic-bezier(0.55, 0, 1, 0.45) both;
+        }
+        #projects .nd-project.is-active.is-entering-left {
+          animation: nd-project-card-in-left 0.92s
+            cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        #projects .nd-project.is-active.is-entering-right {
+          animation: nd-project-card-in-right 0.92s
+            cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        @keyframes nd-project-card-in-right {
+          from {
+            opacity: 0;
+            transform: translateX(42%) rotateY(-13deg) scale(0.86);
+            filter: blur(10px) saturate(0.55);
+            clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0) rotateY(0) scale(1);
+            filter: blur(0) saturate(1);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+          }
+        }
+        @keyframes nd-project-card-in-left {
+          from {
+            opacity: 0;
+            transform: translateX(-42%) rotateY(13deg) scale(0.86);
+            filter: blur(10px) saturate(0.55);
+            clip-path: polygon(0 0, 82% 0, 100% 100%, 0 100%);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0) rotateY(0) scale(1);
+            filter: blur(0) saturate(1);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+          }
+        }
+        @keyframes nd-project-card-out-left {
+          from {
+            opacity: 1;
+            transform: translateX(0) rotateY(0) scale(1);
+            filter: blur(0);
+          }
+          to {
+            opacity: 0;
+            transform: translateX(-30%) rotateY(10deg) scale(0.9);
+            filter: blur(8px);
+          }
+        }
+        @keyframes nd-project-card-out-right {
+          from {
+            opacity: 1;
+            transform: translateX(0) rotateY(0) scale(1);
+            filter: blur(0);
+          }
+          to {
+            opacity: 0;
+            transform: translateX(30%) rotateY(-10deg) scale(0.9);
+            filter: blur(8px);
+          }
+        }
+        #projects .nd-project.is-active .nd-capture {
+          animation: nd-project-visual-enter 0.78s
+            cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        #projects .nd-project.is-active h3,
+        #projects .nd-project.is-active .nd-project-copy > p,
+        #projects .nd-project.is-active .nd-stack {
+          animation: nd-project-detail-enter 0.66s
+            cubic-bezier(0.2, 0.75, 0.25, 1) both;
+        }
+        #projects .nd-project.is-active h3 {
+          animation-delay: 70ms;
+        }
+        #projects .nd-project.is-active .nd-project-copy > p {
+          animation-delay: 120ms;
+        }
+        #projects .nd-project.is-active .nd-stack {
+          animation-delay: 170ms;
+        }
+        @keyframes nd-project-visual-enter {
+          from {
+            opacity: 0;
+            clip-path: inset(0 24% 0 0 round 13px);
+            transform: scale(1.035);
+          }
+          to {
+            opacity: 1;
+            clip-path: inset(0 0 0 0 round 13px);
+            transform: scale(1);
+          }
+        }
+        @keyframes nd-project-detail-enter {
+          from {
+            opacity: 0;
+            transform: translateY(16px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .nd-project-carousel {
+          width: min(100%, 1100px);
+          margin: 30px auto 0;
+          position: relative;
+        }
+        .nd-project-controls {
+          position: absolute;
+          inset: 0;
+          z-index: 4;
+          pointer-events: none;
+        }
+        .nd-project-title {
+          display: flex;
+          align-items: baseline;
+          gap: 12px;
+        }
+        .nd-project-copy {
+          min-width: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        .nd-project-copy .nd-project-title h3 {
+          margin-top: 0;
+          font-size: clamp(28px, 2.4vw, 38px);
+        }
+        .nd-project-copy > p {
+          max-width: none;
+          margin-bottom: 18px;
+          font-size: clamp(12px, 1.15vw, 16px);
+          line-height: 1.45;
+        }
+        .nd-project-copy .nd-stack span {
+          padding: 7px 10px;
+          font-size: 9px;
+        }
+        @media (max-width: 680px) {
+          #projects .nd-project {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 16px;
+            min-height: auto;
+          }
+        }
+        .nd-project-control {
+          width: 36px;
+          height: 36px;
+          display: grid;
+          place-items: center;
+          border: 1px solid var(--line);
+          border-radius: 50%;
+          color: var(--ink);
+          background: var(--glass);
+          cursor: pointer;
+          pointer-events: auto;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          transition:
+            transform 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease,
+            background 0.2s ease;
+        }
+        .nd-project-control:hover:not(:disabled) {
+          transform: translateY(calc(-50% - 2px));
+          color: var(--blue);
+          border-color: var(--blue);
+          background: var(--solid);
+        }
+        .nd-project-control:focus-visible {
+          outline: 2px solid var(--blue);
+          outline-offset: 3px;
+        }
+        .nd-project-control:disabled {
+          opacity: 0.3;
+          cursor: default;
+        }
+        .nd-project-control svg {
+          width: 15px;
+          height: 15px;
+          fill: none;
+          stroke: currentColor;
+          stroke-width: 1.8;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        .nd-project-prev {
+          left: -54px;
+        }
+        .nd-project-next {
+          right: -54px;
+        }
+        @media (max-width: 940px) {
+          .nd-project-prev {
+            left: 12px;
+          }
+          .nd-project-next {
+            right: 12px;
+          }
         }
         #projects .nd-capture {
           width: 100%;
-          max-height: 34vh;
+          height: 100%;
+          max-height: none;
+          min-height: 482px;
+          aspect-ratio: auto;
+        }
+        @media (max-width: 680px) {
+          #projects .nd-capture {
+            min-height: 220px;
+            aspect-ratio: 16 / 9;
+          }
+        }
+        #projects .nd-capture img {
+          object-fit: contain;
+          object-position: center;
+          background: color-mix(in srgb, var(--solid) 92%, var(--blue));
         }
         #projects .nd-project h3 {
           margin-top: 16px;
@@ -4030,7 +4290,33 @@
             scope and responsible data practices.
           </p>
         </div>
-        <div class="nd-projects">
+        <div class="nd-project-carousel">
+          <div class="nd-project-controls" aria-label="Project navigation">
+          <button
+            class="nd-project-control nd-project-prev"
+            type="button"
+            aria-label="Previous project"
+            disabled
+          >
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="m10 3-5 5 5 5" />
+            </svg>
+          </button>
+          <button
+            class="nd-project-control nd-project-next"
+            type="button"
+            aria-label="Next project"
+          >
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="m6 3 5 5-5 5" />
+            </svg>
+          </button>
+          </div>
+          <div
+            class="nd-projects"
+            tabindex="0"
+            aria-label="Selected projects. Scroll horizontally to browse."
+          >
           <article class="nd-project">
             <a
               class="nd-capture"
@@ -4042,16 +4328,47 @@
                 alt="Credit Risk Analytics dashboard"
                 loading="lazy"
             /></a>
-            <h3>Credit Risk Analytics</h3>
-            <p data-i18n="project2">
-              Explainable lending portfolio analytics with validated data
-              contracts, statistical safeguards, and ethical limitations.
-            </p>
-            <div class="nd-stack">
-              <span>Python</span><span>pandas</span><span>Next.js</span
-              ><span>Statistics</span><span>Data Ethics</span>
+            <div class="nd-project-copy">
+              <div class="nd-project-title">
+                <h3>Credit Risk Analytics</h3>
+              </div>
+              <p data-i18n="project2">
+                Explainable lending portfolio analytics with validated data
+                contracts, statistical safeguards, and ethical limitations.
+              </p>
+              <div class="nd-stack">
+                <span>Python</span><span>pandas</span><span>Next.js</span
+                ><span>Statistics</span><span>Data Ethics</span>
+              </div>
             </div>
           </article>
+          <article class="nd-project">
+            <a
+              class="nd-capture"
+              href="https://sakuara.vercel.app/"
+              target="_blank"
+              rel="noreferrer"
+              ><img
+                src="assets/sakuara-dashboard.png"
+                alt="Sakuara personal finance dashboard"
+                loading="lazy"
+            /></a>
+            <div class="nd-project-copy">
+              <div class="nd-project-title">
+                <h3>Sakuara</h3>
+              </div>
+              <p data-i18n="project3">
+                A secure personal finance workspace for multi-account cash
+                flow, budgets, savings goals, analytics, and foreign
+                currencies.
+              </p>
+              <div class="nd-stack">
+                <span>React</span><span>TypeScript</span><span>Supabase</span
+                ><span>PostgreSQL</span><span>Vercel</span>
+              </div>
+            </div>
+            </article>
+          </div>
         </div>
       </section>
       <section class="nd-footer" id="contact">
@@ -4212,6 +4529,78 @@
             window.scrollTo({ top: 0, left: 0, behavior: "auto" });
           });
           const r = document.getElementById("nd-future-portfolio");
+          const projectRail = r.querySelector(".nd-projects");
+          const projectSlides = [
+            ...projectRail.querySelectorAll(".nd-project"),
+          ];
+          const projectPrev = r.querySelector(".nd-project-prev");
+          const projectNext = r.querySelector(".nd-project-next");
+          let projectIndex = 0;
+          let projectAnimationTimer;
+          const showProject = (index, smooth = true) => {
+            const nextIndex = Math.max(
+              0,
+              Math.min(projectSlides.length - 1, index),
+            );
+            const reducedMotion = window.matchMedia(
+              "(prefers-reduced-motion: reduce)",
+            ).matches;
+            window.clearTimeout(projectAnimationTimer);
+            const currentSlide = projectSlides[projectIndex];
+            const nextSlide = projectSlides[nextIndex];
+            const forward = nextIndex > projectIndex;
+            projectSlides.forEach((slide) =>
+              slide.classList.remove(
+                "is-leaving-left",
+                "is-leaving-right",
+                "is-entering-left",
+                "is-entering-right",
+              ),
+            );
+            if (!smooth || reducedMotion || nextIndex === projectIndex) {
+              projectSlides.forEach((slide) =>
+                slide.classList.remove("is-active"),
+              );
+              nextSlide.classList.add("is-active");
+            } else {
+              currentSlide.classList.remove("is-active");
+              currentSlide.classList.add(
+                forward ? "is-leaving-left" : "is-leaving-right",
+              );
+              nextSlide.classList.add(
+                forward ? "is-entering-right" : "is-entering-left",
+              );
+              nextSlide.classList.add("is-active");
+              projectAnimationTimer = window.setTimeout(() => {
+                currentSlide.classList.remove(
+                  "is-leaving-left",
+                  "is-leaving-right",
+                );
+                nextSlide.classList.remove(
+                  "is-entering-left",
+                  "is-entering-right",
+                );
+              }, 960);
+            }
+            projectIndex = nextIndex;
+            projectPrev.disabled = projectIndex === 0;
+            projectNext.disabled = projectIndex === projectSlides.length - 1;
+          };
+          projectPrev?.addEventListener("click", () =>
+            showProject(projectIndex - 1),
+          );
+          projectNext?.addEventListener("click", () =>
+            showProject(projectIndex + 1),
+          );
+          projectRail?.addEventListener("keydown", (event) => {
+            if (event.key !== "ArrowLeft" && event.key !== "ArrowRight")
+              return;
+            event.preventDefault();
+            showProject(
+              projectIndex + (event.key === "ArrowRight" ? 1 : -1),
+            );
+          });
+          showProject(0, false);
           const i18n = {
             en: [
               "About",
@@ -4412,6 +4801,8 @@
               focusAutomation: "Workflow automation",
               focusCommunication: "Technical communication",
               projectIndex: "03 / SELECTED WORK",
+              project3:
+                "A secure personal finance workspace for multi-account cash flow, budgets, savings goals, analytics, and foreign currencies.",
               contactIndex: "04 / CONNECT",
               role1Title: "Full-Stack Developer · Working Student",
               role2Title: "Full-Stack Developer · Intern",
@@ -4480,6 +4871,8 @@
               focusAutomation: "ワークフロー自動化",
               focusCommunication: "技術コミュニケーション",
               projectIndex: "03 / 主な実績",
+              project3:
+                "複数口座のキャッシュフロー、予算、貯蓄目標、分析、外貨を管理する安全な個人向け財務ワークスペース。",
               contactIndex: "04 / 連絡先",
               role1Title: "フルスタック開発者 · ワーキングステューデント",
               role2Title: "フルスタック開発者 · インターン",
@@ -4543,6 +4936,8 @@
               focusAutomation: "工作流自动化",
               focusCommunication: "技术沟通",
               projectIndex: "03 / 精选项目",
+              project3:
+                "用于管理多账户现金流、预算、储蓄目标、分析与外币的安全个人财务工作空间。",
               contactIndex: "04 / 联系",
               role1Title: "全栈开发者 · 在职学生",
               role2Title: "全栈开发者 · 实习生",
@@ -4608,6 +5003,8 @@
               focusAutomation: "Otomasi alur kerja",
               focusCommunication: "Komunikasi teknis",
               projectIndex: "03 / KARYA PILIHAN",
+              project3:
+                "Ruang kerja keuangan pribadi yang aman untuk arus kas multi-akun, anggaran, target tabungan, analitik, dan mata uang asing.",
               contactIndex: "04 / HUBUNGI",
               role1Title: "Pengembang Full-Stack · Working Student",
               role2Title: "Pengembang Full-Stack · Magang",
@@ -4675,6 +5072,8 @@
               focusAutomation: "Workflow-Automatisierung",
               focusCommunication: "Technische Kommunikation",
               projectIndex: "03 / AUSGEWÄHLTE ARBEITEN",
+              project3:
+                "Ein sicherer persönlicher Finanzarbeitsbereich für kontenübergreifende Geldflüsse, Budgets, Sparziele, Analysen und Fremdwährungen.",
               contactIndex: "04 / KONTAKT",
               role1Title: "Full-Stack-Entwickler · Werkstudent",
               role2Title: "Full-Stack-Entwickler · Praktikant",
