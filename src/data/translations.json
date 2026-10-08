@@ -203,7 +203,8 @@
     "riskOverview": "An explainable lending portfolio analysis exploring payment difficulty across applicant segments. It supports analytical review rather than automated lending approval.",
     "riskFlow": "CSV sources are cleaned and transformed in Python, combined into an applicant-level model, and exported as aggregate JSON for the Next.js dashboard.",
     "riskFeatures": "Validated applicant keys · Affordability ratios · Segment exploration · 95% Wilson confidence intervals · Small-segment safeguards",
-    "riskImplementation": "The repository contains the Python pipeline and tests that are not executed by the static frontend. It provides code for reviewing cleaning, feature engineering, metrics, and export logic."
+    "riskImplementation": "The repository contains the Python pipeline and tests that are not executed by the static frontend. It provides code for reviewing cleaning, feature engineering, metrics, and export logic.",
+    "allProjects": "All projects"
   },
   "id": {
     "work": "Karya pilihan",
@@ -409,7 +410,8 @@
     "riskOverview": "Analisis portofolio pinjaman yang menjelaskan kesulitan pembayaran antarsegmen pemohon. Mendukung tinjauan analitis, bukan persetujuan kredit otomatis.",
     "riskFlow": "Sumber CSV dibersihkan dan ditransformasi dengan Python, digabungkan pada tingkat pemohon, lalu diekspor menjadi agregat JSON untuk dashboard Next.js.",
     "riskFeatures": "Validasi kunci pemohon · Rasio keterjangkauan · Eksplorasi segmen · Interval kepercayaan Wilson 95% · Pengamanan segmen kecil",
-    "riskImplementation": "Repository berisi pipeline Python dan pengujian yang tidak dijalankan oleh frontend statis. Kodenya memperlihatkan proses pembersihan, feature engineering, metrik, dan ekspor data."
+    "riskImplementation": "Repository berisi pipeline Python dan pengujian yang tidak dijalankan oleh frontend statis. Kodenya memperlihatkan proses pembersihan, feature engineering, metrik, dan ekspor data.",
+    "allProjects": "Semua proyek"
   },
   "ja": {
     "work": "制作実績",
@@ -615,7 +617,8 @@
     "riskOverview": "申込者セグメントごとの支払困難を調べる説明可能な融資ポートフォリオ分析。分析支援用で、自動融資承認用ではありません。",
     "riskFlow": "CSVをPythonで整形・変換し、申込者単位に集約してNext.js向けのJSON集計を出力します。",
     "riskFeatures": "キー検証 · 返済負担比率 · セグメント分析 · 95% Wilson信頼区間 · 小規模セグメントの保護",
-    "riskImplementation": "リポジトリには静的フロントエンドでは実行されないPython処理とテストがあり、データ整形、特徴量、指標、出力を確認できます。"
+    "riskImplementation": "リポジトリには静的フロントエンドでは実行されないPython処理とテストがあり、データ整形、特徴量、指標、出力を確認できます。",
+    "allProjects": "すべてのプロジェクト"
   },
   "de": {
     "work": "Ausgewählte Projekte",
@@ -821,7 +824,8 @@
     "riskOverview": "Eine erklärbare Kreditportfolioanalyse zu Zahlungsschwierigkeiten in verschiedenen Antragstellersegmenten. Sie unterstützt Analysen, keine automatisierte Kreditgenehmigung.",
     "riskFlow": "CSV-Daten werden in Python bereinigt und transformiert, auf Antragstellerebene zusammengeführt und als JSON-Aggregate für das Next.js-Dashboard exportiert.",
     "riskFeatures": "Validierte Schlüssel · Erschwinglichkeitskennzahlen · Segmentanalyse · 95%-Wilson-Konfidenzintervalle · Schutz kleiner Segmente",
-    "riskImplementation": "Das Repository enthält die Python-Pipeline und Tests, die das statische Frontend nicht ausführt: Bereinigung, Feature Engineering, Kennzahlen und Export."
+    "riskImplementation": "Das Repository enthält die Python-Pipeline und Tests, die das statische Frontend nicht ausführt: Bereinigung, Feature Engineering, Kennzahlen und Export.",
+    "allProjects": "Alle Projekte"
   },
   "zh": {
     "work": "精选作品",
@@ -1027,6 +1031,7 @@
     "riskOverview": "探索不同申请人群体支付困难的可解释信贷组合分析。用于分析支持，而非自动贷款审批。",
     "riskFlow": "在 Python 中清理和转换 CSV，按申请人整合，并导出 JSON 汇总供 Next.js 仪表板使用。",
     "riskFeatures": "键验证 · 负担能力比率 · 群体探索 · 95% Wilson 置信区间 · 小群体保护",
-    "riskImplementation": "仓库提供静态前端不会执行的 Python 流水线和测试，可查看清理、特征工程、指标与导出逻辑。"
+    "riskImplementation": "仓库提供静态前端不会执行的 Python 流水线和测试，可查看清理、特征工程、指标与导出逻辑。",
+    "allProjects": "所有项目"
   }
 }
