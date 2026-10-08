@@ -155,3 +155,5 @@ html{scroll-padding-top:calc(var(--header-height,88px) + 12px)}
 #contact{min-height:calc(100svh - var(--header-height,88px) - var(--footer-height,84px) - 12px)!important}
 
 .site-footer{padding-block:18px!important;background:transparent!important;border-top:1px solid var(--line);position:relative;z-index:1}.footer-line{display:flex;align-items:center;justify-content:space-between;gap:16px;color:var(--muted)}.footer-line small,.footer-line>span{font-size:11px;line-height:1.6}.footer-line>span{opacity:.75}@media(max-width:700px){.footer-line{flex-wrap:wrap;gap:4px 16px}.footer-line small,.footer-line>span{font-size:10px}.site-footer{padding-block:14px!important}}
+
+#contact{display:flex;flex-direction:column;justify-content:center}.contact-heading{width:100%}.contact-composition{width:100%;align-items:center}.contact-details{padding-top:0;padding-bottom:0}.contact-bottom-row{margin-top:12px;padding-top:14px}.contact-social-row{padding-block:18px 8px}.contact-location{align-self:center}@media(max-width:700px){#contact{justify-content:flex-start}.contact-composition{align-items:start}.contact-bottom-row{margin-top:4px}.contact-location{align-self:stretch}}
