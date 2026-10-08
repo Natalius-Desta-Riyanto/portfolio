@@ -556,10 +556,10 @@
       "製品の信頼性"
     ],
     "engineeringTaskDescriptions": [
-      "AIチャットボットとContent Bot",
-      "OpenAI連携",
-      "n8nワークフロー",
-      "製品の信頼性"
+      "AIチャットボットとContent Botの機能開発。",
+      "OpenAIの機能とアプリケーションの連携。",
+      "n8nを用いた自動化ワークフローの構築と保守。",
+      "製品ワークフローの信頼性を支える業務。"
     ],
     "internTaskTitles": [
       "Compliance・PPMアプリケーション",
@@ -567,9 +567,9 @@
       "システム連携とダッシュボード"
     ],
     "internTaskDescriptions": [
-      "Compliance・PPMアプリケーション",
-      "AIアシスタントとWBS生成",
-      "システム連携とダッシュボード"
+      "コンプライアンスとプロジェクト・ポートフォリオ管理アプリの開発。",
+      "AIアシスタントと作業分解構成図（WBS）の生成。",
+      "アプリ連携とダッシュボードによる情報の可視化。"
     ]
   },
   "de": {
@@ -747,10 +747,10 @@
       "Produktzuverlässigkeit"
     ],
     "engineeringTaskDescriptions": [
-      "KI-Chatbot und Content Bot",
-      "OpenAI-Integration",
-      "n8n-Workflows",
-      "Produktzuverlässigkeit"
+      "Arbeit an KI-Chatbot- und Content-Bot-Funktionen.",
+      "Verbindung von OpenAI-Funktionen mit Anwendungsabläufen.",
+      "Aufbau und Pflege automatisierter Workflows mit n8n.",
+      "Unterstützung zuverlässiger Produktabläufe."
     ],
     "internTaskTitles": [
       "Compliance- und PPM-Anwendungen",
@@ -758,9 +758,9 @@
       "Integrationen und Dashboards"
     ],
     "internTaskDescriptions": [
-      "Compliance- und PPM-Anwendungen",
-      "KI-Assistenten und WBS-Erstellung",
-      "Integrationen und Dashboards"
+      "Arbeit an Compliance- und Projektportfoliomanagement-Anwendungen.",
+      "Arbeit an KI-Assistenten und der Erstellung von Projektstrukturplänen.",
+      "Verknüpfung von Anwendungsabläufen und Darstellung in Dashboards."
     ]
   },
   "zh": {
@@ -938,10 +938,10 @@
       "产品可靠性"
     ],
     "engineeringTaskDescriptions": [
-      "AI 聊天机器人与 Content Bot",
-      "OpenAI 集成",
-      "n8n 工作流",
-      "产品可靠性"
+      "参与 AI 聊天机器人和 Content Bot 功能开发。",
+      "将 OpenAI 能力集成到应用流程中。",
+      "使用 n8n 构建和维护自动化工作流。",
+      "支持产品流程的可靠运行。"
     ],
     "internTaskTitles": [
       "合规与 PPM 应用",
@@ -949,9 +949,9 @@
       "集成与仪表板"
     ],
     "internTaskDescriptions": [
-      "合规与 PPM 应用",
-      "AI 助手与 WBS 生成",
-      "集成与仪表板"
+      "参与合规与项目组合管理应用开发。",
+      "参与 AI 助手与工作分解结构（WBS）生成。",
+      "连接应用流程并通过仪表板展示信息。"
     ]
   }
 }
