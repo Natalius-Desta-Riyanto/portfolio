@@ -1,0 +1,8 @@
+---
+import Page from '../components/Page.astro';
+import {locales,projects} from '../data/site';
+export function getStaticPaths(){return locales.flatMap(locale=>{
+ const prefix=locale==='en'?'':locale+'/';
+ return [{params:{route:prefix || undefined},props:{locale,page:'home'}},...['work','about','experience','education','contact'].map(page=>({params:{route:prefix+page},props:{locale,page}})),...projects.map(p=>({params:{route:prefix+'work/'+p.slug},props:{locale,page:'case',slug:p.slug}}))];});}
+---
+<Page {...Astro.props}/>

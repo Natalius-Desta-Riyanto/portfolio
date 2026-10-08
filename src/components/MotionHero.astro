@@ -1,0 +1,8 @@
+---
+import Icon from './Icon.astro';
+import {t,type Locale} from '../data/site';
+interface Props{locale:Locale;}
+const {locale}=Astro.props;const c=t(locale);
+const base=import.meta.env.BASE_URL;
+---
+<figure class="motion-hero" data-motion-hero><div class="motion-frame"><video class="hero-video" muted loop playsinline preload="none" poster={`${base}media/systems-poster.webp`} data-src={`${base}media/systems-motion.webm`} aria-hidden="true" tabindex="-1"></video><div class="motion-overlay"><span class="motion-label">{c.motionLabel}</span><button type="button" class="motion-control" data-motion-toggle data-play-label={c.playMotion} data-pause-label={c.pauseMotion} aria-label={c.playMotion} title={c.playMotion} aria-pressed="false" hidden data-enhance><span data-motion-icon><span data-play-icon><Icon name="play"/></span><span data-pause-icon hidden><Icon name="pause"/></span></span></button></div></div><figcaption>{c.motionDescription}</figcaption></figure>

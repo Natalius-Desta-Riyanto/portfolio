@@ -1,0 +1,8 @@
+---
+import Icon from './Icon.astro';
+import {t,type Locale} from '../data/site';
+import {profileAssets} from '../data/profile';
+interface Props {locale:Locale;}
+const c=t(Astro.props.locale);
+---
+{profileAssets.cv ? <a class="button cv-button" href={`${import.meta.env.BASE_URL}${profileAssets.cv}`} download>{c.downloadCv}<Icon name="download"/></a> : <span class="cv-pending"><button class="button cv-button" disabled>{c.downloadCv}<Icon name="download"/></button><small>{c.cvPending}</small></span>}

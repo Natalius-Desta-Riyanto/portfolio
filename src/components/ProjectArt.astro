@@ -1,0 +1,7 @@
+---
+interface Props { kind: string; title?:string; }
+const {kind,title='Sakuara'} = Astro.props;
+---
+<div class:list={['project-art',kind]} aria-hidden="true">
+{kind==='software' ? <><div class="art-top"><span>{title}</span><span>↗</span></div><div class="art-title">A little more clarity.</div><div class="finance-grid"><div class="art-line"></div><div class="art-line short"></div><div class="art-chart">{[25,42,35,61,51,78,69,92].map(h=><i style={`height:${h}%`}></i>)}</div></div><div class="art-bottom">ACCOUNTS / BUDGETS / GOALS</div></> : kind==='analytics' ? <><div class="art-top"><span>{title}</span><span>02</span></div><div class="plot"><div class="plot-axis"></div>{Array.from({length:28},(_,i)=><i style={`left:${12+(i*17)%78}%;bottom:${16+(i*23)%69}%`}></i>)}</div><div class="art-bottom">LOOK CLOSER. ASK BETTER QUESTIONS.</div></> : null}
+</div>

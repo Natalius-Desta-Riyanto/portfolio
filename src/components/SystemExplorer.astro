@@ -1,0 +1,11 @@
+---
+import {t,type Locale} from '../data/site';
+interface Props {locale:Locale;}
+const {locale}=Astro.props; const c=t(locale);
+const nodes=[['browserNode','browserDetail','01','⌘'],['apiNode','apiDetail','02','↔'],['databaseNode','databaseDetail','03','▤']] as const;
+---
+<div class="system-explorer" data-system>
+<div class="system-toolbar"><span class="micro">{c.diagramLabel}</span><div class="system-tabs" hidden data-enhance><button type="button" data-view="build" aria-pressed="true">{c.buildView}</button><button type="button" data-view="data" aria-pressed="false">{c.dataView}</button></div></div>
+<div class="system-stage"><svg class="system-connections" viewBox="0 0 500 270" fill="none" aria-hidden="true"><path d="M100 65 C210 65 170 135 250 135 S300 200 400 200"/><path class="signal" d="M100 65 C210 65 170 135 250 135 S300 200 400 200"/><circle cx="250" cy="135" r="4"/><circle cx="400" cy="200" r="4"/></svg><div class="system-nodes">{nodes.map(([name,detail,index,icon],i)=><button type="button" class:list={['system-node',`node-${i}`,{'is-selected':i===0}]} data-node={i} data-build-label={c[name]} data-build-detail={c[detail]} data-data-label={c[['sourceNode','analysisNode','insightNode'][i] as 'sourceNode']} data-data-detail={c[['sourceDetail','analysisDetail','insightDetail'][i] as 'sourceDetail']} aria-pressed={i===0?'true':'false'}><span class="node-number">{index}</span><span class="node-icon" aria-hidden="true">{icon}</span><span data-node-label>{c[name]}</span></button>)}</div></div>
+<div class="system-detail" aria-live="polite"><span class="micro" data-detail-title>{c.browserNode}</span><p data-detail>{c.browserDetail}</p></div><div class="system-bottom"><span class="micro">{c.nodeHint}</span><span class="system-indicator" aria-hidden="true"><i></i><i></i><i></i></span></div>
+</div>

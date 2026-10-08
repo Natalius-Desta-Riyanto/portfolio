@@ -1,0 +1,10 @@
+---
+import {t,type Locale} from '../data/site';
+import {profileAssets} from '../data/profile';
+interface Props {locale:Locale;}
+const c=t(Astro.props.locale);
+---
+<figure class="profile-portrait">
+<div class="portrait-frame">{profileAssets.photo ? <img src={`${import.meta.env.BASE_URL}${profileAssets.photo}`} alt="Natalius Desta Riyanto" width="640" height="800" loading="eager"/> : <div class="portrait-placeholder"><svg viewBox="0 0 240 300" aria-hidden="true"><circle cx="120" cy="105" r="46"/><path d="M36 280v-24c0-58 38-96 84-96s84 38 84 96v24"/></svg><span>{c.photoPlaceholder}</span><small>{c.photoNote}</small></div>}</div>
+<figcaption><strong>Natalius Desta Riyanto</strong><span>{c.profileRole}</span></figcaption>
+</figure>

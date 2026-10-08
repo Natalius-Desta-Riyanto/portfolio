@@ -1,0 +1,8 @@
+---
+import {projects,t,href,type Locale} from '../data/site';
+import ProjectArt from './ProjectArt.astro';
+interface Props{locale:Locale;}
+const {locale}=Astro.props;const c=t(locale);
+---
+<div class="project-filters" aria-label={c.filterLabel} hidden data-enhance>{[['all',c.allWork],['software',c.software],['analytics',c.analytics]].map(([value,label])=><button type="button" data-filter={value} aria-pressed={value==='all'?'true':'false'}>{label}</button>)}</div>
+<div class="project-list">{projects.map(p=><article class="project-row" data-category={p.category}><a class="art-link" href={href(locale,`work/${p.slug}/`)} aria-label={`${c.read}: ${p.title}`}><ProjectArt kind={p.category} title={p.title}/><span class="art-note">{c.artNote}</span></a><div class="project-copy"><div class="eyebrow"><span>{p.index}</span> / {c[p.category]} {p.sample && <span class="sample-badge">{c.sample}</span>}</div><h3><a href={href(locale,`work/${p.slug}/`)}>{p.title}</a></h3><p>{c[p.copy]}</p><ul class="stack">{p.stack.map(s=><li>{s}</li>)}</ul><a class="project-cta" href={href(locale,`work/${p.slug}/`)}>{c.read}<span aria-hidden="true">↗</span></a></div></article>)}</div>
