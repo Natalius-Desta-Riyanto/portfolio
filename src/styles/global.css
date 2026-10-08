@@ -151,3 +151,5 @@ html{scroll-padding-top:calc(var(--header-height,88px) + 12px)}
 .contact-social-row{gap:8px}.contact-social-row>a{flex:0 1 auto;background:var(--surface);padding:10px 12px;font-size:12px;gap:8px;min-height:44px}.contact-social-row>a>.icon{margin-left:8px}.contact-social-row>a>img{width:22px;height:22px;object-fit:contain}.contact-bottom-row{justify-content:flex-start;padding-block:14px 0;margin-top:auto}.contact-details{padding-bottom:4px}@media(max-width:1024px){.contact-social-row{flex-direction:row;align-items:center;flex-wrap:wrap}.contact-social-row>a{flex:0 1 auto}}
 
 .site-footer{padding-block:20px!important}.footer-summary{padding-right:64px;min-height:44px}.footer-top{width:40px;height:40px}.portrait-frame img{object-position:center center}@media(max-width:700px){.footer-summary{font-size:10px;gap:8px;padding-right:48px}.site-footer{padding-block:14px!important}}
+
+#contact{min-height:calc(100svh - var(--header-height,88px) - var(--footer-height,84px) - 12px)!important}

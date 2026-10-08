@@ -82,3 +82,6 @@ addEventListener('resize',()=>{
  clearTimeout(resizeTimer);resizeTimer=window.setTimeout(()=>{measureHeader();if(anchoredSection)alignSection(anchoredSection);resizeTimer=0;},150);
 });
 addEventListener('load',()=>{const target=document.getElementById(location.hash.slice(1));if(target)alignSection(target);});
+
+const portfolioFooter=document.querySelector<HTMLElement>('.site-footer');
+if(portfolioFooter){const measureFooter=()=>root.style.setProperty('--footer-height',`${portfolioFooter.getBoundingClientRect().height}px`);measureFooter();new ResizeObserver(measureFooter).observe(portfolioFooter);}
