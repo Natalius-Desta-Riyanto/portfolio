@@ -173,3 +173,5 @@ html{overscroll-behavior-y:none;scroll-behavior:smooth}body{overscroll-behavior-
 .portrait-frame{background:radial-gradient(ellipse at 50% 35%,#effbff 0%,#d6edf5 45%,#b8dbe8 100%)!important;border:1px solid var(--line)}:root[data-theme=dark] .portrait-frame{background:radial-gradient(ellipse at 50% 35%,#244b61 0%,#173549 60%,#102638 100%)!important}#contact{padding-bottom:36px!important}.site-footer{padding-block:12px!important}#experience>.section-heading{grid-template-columns:1fr;margin-bottom:24px}
 
 .contact-email-block .contact-email{justify-content:flex-start;width:fit-content;max-width:100%;gap:12px}.contact-email-block .contact-email>.icon{margin-left:0;flex-shrink:0}
+
+html{scroll-padding-top:var(--header-height,88px)}main>section[id]{min-height:calc(100svh - var(--header-height,88px))!important;box-sizing:border-box}#about{display:flex;flex-direction:column;justify-content:center}#contact{min-height:calc(100svh - var(--header-height,88px))!important}@media(max-width:700px){#about{justify-content:flex-start}}

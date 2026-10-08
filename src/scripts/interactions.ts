@@ -65,7 +65,7 @@ document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach(link=>{
   if(location.hash!==`#${id}`)history.pushState(null,'',`#${id}`);
   requestAnimationFrame(()=>{
    const headerHeight=document.querySelector('header')?.getBoundingClientRect().height||0;
-   const top=target.getBoundingClientRect().top+scrollY-headerHeight-12;
+   const top=target.getBoundingClientRect().top+scrollY-headerHeight;
    scrollTo({top:Math.max(0,top),behavior:reducedMotion.matches?'instant':'smooth'});
   });
  });
@@ -73,12 +73,12 @@ document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach(link=>{
 
 // Recalculate the header offset and preserve the visible section on rotation/resize.
 const stickyHeader=document.querySelector<HTMLElement>('header');
-const alignSection=(target:HTMLElement)=>scrollTo({top:Math.max(0,target.getBoundingClientRect().top+scrollY-(stickyHeader?.getBoundingClientRect().height||0)-12),behavior:'instant'});
+const alignSection=(target:HTMLElement)=>scrollTo({top:Math.max(0,target.getBoundingClientRect().top+scrollY-(stickyHeader?.getBoundingClientRect().height||0)),behavior:'instant'});
 const measureHeader=()=>root.style.setProperty('--header-height',`${stickyHeader?.getBoundingClientRect().height||88}px`);
 measureHeader();if(stickyHeader)new ResizeObserver(measureHeader).observe(stickyHeader);
 let resizeTimer=0;let anchoredSection:HTMLElement|null=null;
 addEventListener('resize',()=>{
- if(!resizeTimer)anchoredSection=portfolioSections.find(section=>Math.abs(section.getBoundingClientRect().top-(stickyHeader?.getBoundingClientRect().height||0)-12)<100)||null;
+ if(!resizeTimer)anchoredSection=portfolioSections.find(section=>Math.abs(section.getBoundingClientRect().top-(stickyHeader?.getBoundingClientRect().height||0))<100)||null;
  clearTimeout(resizeTimer);resizeTimer=window.setTimeout(()=>{measureHeader();if(anchoredSection)alignSection(anchoredSection);resizeTimer=0;},150);
 });
 addEventListener('load',()=>{const target=document.getElementById(location.hash.slice(1));if(target)alignSection(target);});
