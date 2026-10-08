@@ -85,3 +85,12 @@ addEventListener('load',()=>{const target=document.getElementById(location.hash.
 
 const portfolioFooter=document.querySelector<HTMLElement>('.site-footer');
 if(portfolioFooter){const measureFooter=()=>root.style.setProperty('--footer-height',`${portfolioFooter.getBoundingClientRect().height}px`);measureFooter();new ResizeObserver(measureFooter).observe(portfolioFooter);}
+
+// Progressive project tabs: all explanations remain readable without JavaScript.
+const caseTabs=Array.from(document.querySelectorAll<HTMLButtonElement>('[data-case-tab]'));
+if(caseTabs.length){
+ const tablist=caseTabs[0].parentElement!;tablist.setAttribute('role','tablist');
+ const selectCaseTab=(index:number)=>caseTabs.forEach((tab,i)=>{tab.setAttribute('role','tab');tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;const panel=document.getElementById(tab.getAttribute('aria-controls')!);if(panel){panel.setAttribute('role','tabpanel');panel.hidden=i!==index;panel.tabIndex=0;}});
+ caseTabs.forEach((tab,i)=>{tab.addEventListener('click',()=>selectCaseTab(i));tab.addEventListener('keydown',event=>{let next=i;if(event.key==='ArrowRight')next=(i+1)%caseTabs.length;else if(event.key==='ArrowLeft')next=(i+caseTabs.length-1)%caseTabs.length;else if(event.key==='Home')next=0;else if(event.key==='End')next=caseTabs.length-1;else return;event.preventDefault();selectCaseTab(next);caseTabs[next].focus();});});
+ document.querySelector('.case-study')?.classList.add('has-case-tabs');selectCaseTab(0);
+}
