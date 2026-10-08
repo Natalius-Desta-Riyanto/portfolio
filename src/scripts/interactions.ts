@@ -4,7 +4,7 @@ try {const saved=localStorage.getItem('ndr-theme');if(saved==='light'||saved==='
 document.querySelectorAll<HTMLElement>('[data-enhance]').forEach(el=>el.hidden=false);
 const theme=document.querySelector<HTMLButtonElement>('.theme-toggle');
 function syncTheme(){theme?.setAttribute('aria-pressed',String(root.dataset.theme==='light'));}
-syncTheme();theme?.addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='light'?'dark':'light';syncTheme();try{localStorage.setItem('ndr-theme',root.dataset.theme);}catch{}});
+syncTheme();theme?.addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='light'?'dark':'light';syncTheme();try{localStorage.setItem('ndr-theme',root.dataset.theme);}catch{}document.dispatchEvent(new Event('ndr:themechange'));});
 document.querySelectorAll<HTMLDetailsElement>('details').forEach(details=>{details.addEventListener('keydown',e=>{if(e.key==='Escape'){details.open=false;details.querySelector('summary')?.focus();}});details.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>details.open=false));});
 document.addEventListener('click',e=>document.querySelectorAll('details[open]').forEach(d=>{if(!d.contains(e.target as Node))d.removeAttribute('open');}));
 document.querySelectorAll<HTMLElement>('[data-system]').forEach(system=>{
@@ -27,11 +27,12 @@ document.addEventListener('visibilitychange',()=>root.classList.toggle('page-hid
 document.querySelectorAll<HTMLElement>('[data-motion-hero]').forEach(figure=>{
  const video=figure.querySelector<HTMLVideoElement>('video');const button=figure.classList.contains('ambient-video')?document.querySelector<HTMLButtonElement>('.background-control'):figure.querySelector<HTMLButtonElement>('[data-motion-toggle]');if(!video)return;
  const ambient=figure.classList.contains('ambient-video');
- let inView=ambient;let userPaused=false;let failed=false;video.muted=true;
+ let inView=ambient;let userPaused=false;let failed=false;video.muted=true;video.defaultMuted=true;video.playsInline=true;
  const sync=()=>{if(!button)return;const playing=!video.paused;const label=playing?button.dataset.pauseLabel:button.dataset.playLabel;button.setAttribute('aria-label',label||'');button.title=label||'';button.setAttribute('aria-pressed',String(playing));const icon=button.querySelector('[data-motion-icon]');if(icon){const playIcon=icon.querySelector<HTMLElement>('[data-play-icon]');const pauseIcon=icon.querySelector<HTMLElement>('[data-pause-icon]');if(playIcon&&pauseIcon){playIcon.hidden=playing;pauseIcon.hidden=!playing;}else icon.textContent=playing?'Ⅱ':'▶';}};
  const update=()=>{if(inView&&!document.hidden&&!reducedMotion.matches&&!userPaused&&!failed){if(!video.getAttribute('src'))video.src=video.dataset.src||'';void video.play().then(sync).catch(()=>{sync();});}else{video.pause();sync();}};
  if(!ambient){const visibility=new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;update();},{threshold:.2});visibility.observe(figure);}else{update();addEventListener('pageshow',update);addEventListener('focus',update);document.addEventListener('pointerdown',()=>{if(video.paused)update();},{passive:true});}
  button?.addEventListener('click',()=>{failed=false;if(!video.paused){userPaused=true;video.pause();sync();}else{userPaused=false;if(!video.getAttribute('src'))video.src=video.dataset.src||'';void video.play().then(sync).catch(()=>sync());}});
+ const resume=()=>{if(!userPaused){failed=false;update();}};document.addEventListener('ndr:themechange',()=>requestAnimationFrame(()=>requestAnimationFrame(resume)));video.addEventListener('canplay',update);video.addEventListener('loadeddata',update);video.addEventListener('pause',()=>{if(!userPaused&&!document.hidden&&!reducedMotion.matches&&inView&&!failed)requestAnimationFrame(update);});
  video.addEventListener('play',sync);video.addEventListener('pause',sync);video.addEventListener('error',()=>{failed=true;video.pause();sync();});document.addEventListener('visibilitychange',update);reducedMotion.addEventListener('change',update);
 });
 
