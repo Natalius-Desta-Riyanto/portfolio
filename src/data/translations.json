@@ -146,7 +146,12 @@
     "faculty": "Faculty of Mathematics and Natural Sciences",
     "educationPeriod": "Aug 2023 – Aug 2027",
     "expectedGraduation": "Expected",
-    "experienceIntro": "Full-stack development at TNEX, from internship to working student."
+    "experienceIntro": "Full-stack development at TNEX, from internship to working student.",
+    "contactTopics": "Let’s talk about",
+    "contactProduct": "Full-stack products",
+    "contactAutomation": "APIs & automation",
+    "contactData": "Data analytics",
+    "contactBrief": "In your email, share the project or role, the scope, and your timeline."
   },
   "id": {
     "work": "Karya pilihan",
@@ -295,7 +300,12 @@
     "faculty": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
     "educationPeriod": "Agu 2023 – Agu 2027",
     "expectedGraduation": "Estimasi",
-    "experienceIntro": "Pengalaman full-stack di TNEX, dari magang hingga working student."
+    "experienceIntro": "Pengalaman full-stack di TNEX, dari magang hingga working student.",
+    "contactTopics": "Mari bahas",
+    "contactProduct": "Produk full-stack",
+    "contactAutomation": "API & otomasi",
+    "contactData": "Analisis data",
+    "contactBrief": "Dalam email, ceritakan proyek atau posisi, cakupan pekerjaan, dan waktunya."
   },
   "ja": {
     "work": "制作実績",
@@ -444,7 +454,12 @@
     "faculty": "数学・自然科学部",
     "educationPeriod": "2023年8月 – 2027年8月",
     "expectedGraduation": "予定",
-    "experienceIntro": "TNEXでのフルスタック開発。インターンからワーキングステューデントへ。"
+    "experienceIntro": "TNEXでのフルスタック開発。インターンからワーキングステューデントへ。",
+    "contactTopics": "ご相談ください",
+    "contactProduct": "フルスタック製品",
+    "contactAutomation": "APIと自動化",
+    "contactData": "データ分析",
+    "contactBrief": "メールにはプロジェクトや職種、作業範囲、スケジュールをお知らせください。"
   },
   "de": {
     "work": "Ausgewählte Projekte",
@@ -593,7 +608,12 @@
     "faculty": "Fakultät für Mathematik und Naturwissenschaften",
     "educationPeriod": "Aug. 2023 – Aug. 2027",
     "expectedGraduation": "Voraussichtlich",
-    "experienceIntro": "Full-Stack-Entwicklung bei TNEX: vom Praktikum zur Werkstudententätigkeit."
+    "experienceIntro": "Full-Stack-Entwicklung bei TNEX: vom Praktikum zur Werkstudententätigkeit.",
+    "contactTopics": "Lassen Sie uns sprechen",
+    "contactProduct": "Full-Stack-Produkte",
+    "contactAutomation": "APIs & Automatisierung",
+    "contactData": "Datenanalyse",
+    "contactBrief": "Beschreiben Sie in Ihrer E-Mail das Projekt oder die Stelle, den Umfang und den Zeitplan."
   },
   "zh": {
     "work": "精选作品",
@@ -742,6 +762,11 @@
     "faculty": "数学与自然科学学院",
     "educationPeriod": "2023年8月 – 2027年8月",
     "expectedGraduation": "预计",
-    "experienceIntro": "在 TNEX 从实习生到在职学生的全栈开发经历。"
+    "experienceIntro": "在 TNEX 从实习生到在职学生的全栈开发经历。",
+    "contactTopics": "一起聊聊",
+    "contactProduct": "全栈产品",
+    "contactAutomation": "API 与自动化",
+    "contactData": "数据分析",
+    "contactBrief": "请在邮件中介绍项目或职位、工作范围和时间安排。"
   }
 }
