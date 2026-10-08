@@ -151,7 +151,10 @@
     "contactProduct": "Full-stack products",
     "contactAutomation": "APIs & automation",
     "contactData": "Data analytics",
-    "contactBrief": "In your email, share the project or role, the scope, and your timeline."
+    "contactBrief": "In your email, share the project or role, the scope, and your timeline.",
+    "contactProductDetail": "Interfaces, backends & databases",
+    "contactAutomationDetail": "Connected tools & workflows",
+    "contactDataDetail": "Dashboards & statistical insights"
   },
   "id": {
     "work": "Karya pilihan",
@@ -305,7 +308,10 @@
     "contactProduct": "Produk full-stack",
     "contactAutomation": "API & otomasi",
     "contactData": "Analisis data",
-    "contactBrief": "Dalam email, ceritakan proyek atau posisi, cakupan pekerjaan, dan waktunya."
+    "contactBrief": "Dalam email, ceritakan proyek atau posisi, cakupan pekerjaan, dan waktunya.",
+    "contactProductDetail": "Antarmuka, backend & database",
+    "contactAutomationDetail": "Integrasi tools & alur kerja",
+    "contactDataDetail": "Dashboard & insight statistik"
   },
   "ja": {
     "work": "制作実績",
@@ -459,7 +465,10 @@
     "contactProduct": "フルスタック製品",
     "contactAutomation": "APIと自動化",
     "contactData": "データ分析",
-    "contactBrief": "メールにはプロジェクトや職種、作業範囲、スケジュールをお知らせください。"
+    "contactBrief": "メールにはプロジェクトや職種、作業範囲、スケジュールをお知らせください。",
+    "contactProductDetail": "UI・バックエンド・データベース",
+    "contactAutomationDetail": "ツール連携とワークフロー",
+    "contactDataDetail": "ダッシュボードと統計分析"
   },
   "de": {
     "work": "Ausgewählte Projekte",
@@ -613,7 +622,10 @@
     "contactProduct": "Full-Stack-Produkte",
     "contactAutomation": "APIs & Automatisierung",
     "contactData": "Datenanalyse",
-    "contactBrief": "Beschreiben Sie in Ihrer E-Mail das Projekt oder die Stelle, den Umfang und den Zeitplan."
+    "contactBrief": "Beschreiben Sie in Ihrer E-Mail das Projekt oder die Stelle, den Umfang und den Zeitplan.",
+    "contactProductDetail": "Interfaces, Backends & Datenbanken",
+    "contactAutomationDetail": "Verbundene Tools & Workflows",
+    "contactDataDetail": "Dashboards & statistische Erkenntnisse"
   },
   "zh": {
     "work": "精选作品",
@@ -767,6 +779,9 @@
     "contactProduct": "全栈产品",
     "contactAutomation": "API 与自动化",
     "contactData": "数据分析",
-    "contactBrief": "请在邮件中介绍项目或职位、工作范围和时间安排。"
+    "contactBrief": "请在邮件中介绍项目或职位、工作范围和时间安排。",
+    "contactProductDetail": "界面、后端与数据库",
+    "contactAutomationDetail": "工具集成与工作流程",
+    "contactDataDetail": "仪表板与统计洞察"
   }
 }
