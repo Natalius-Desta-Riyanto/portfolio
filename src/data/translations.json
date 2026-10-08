@@ -166,6 +166,28 @@
       "Compliance and PPM applications",
       "AI assistants and WBS generation",
       "Integrations and dashboards"
+    ],
+    "engineeringTaskTitles": [
+      "AI chatbot & content tools",
+      "AI integration",
+      "Workflow automation",
+      "Product reliability"
+    ],
+    "engineeringTaskDescriptions": [
+      "Work on AI chatbot and Content Bot features.",
+      "Connect OpenAI capabilities with application workflows.",
+      "Build and maintain automation workflows using n8n.",
+      "Support reliable behavior across product workflows."
+    ],
+    "internTaskTitles": [
+      "Business applications",
+      "AI-assisted planning",
+      "Integrations & dashboards"
+    ],
+    "internTaskDescriptions": [
+      "Work on compliance and project portfolio management applications.",
+      "Work on AI assistants and work breakdown structure generation.",
+      "Connect application workflows and present information in dashboards."
     ]
   },
   "id": {
@@ -335,6 +357,28 @@
       "Aplikasi Compliance dan PPM",
       "Asisten AI dan pembuatan WBS",
       "Integrasi dan dashboard"
+    ],
+    "engineeringTaskTitles": [
+      "Chatbot AI & tools konten",
+      "Integrasi AI",
+      "Otomasi alur kerja",
+      "Keandalan produk"
+    ],
+    "engineeringTaskDescriptions": [
+      "Mengerjakan fitur chatbot AI dan Content Bot.",
+      "Menghubungkan kemampuan OpenAI dengan alur kerja aplikasi.",
+      "Membangun dan memelihara otomasi alur kerja menggunakan n8n.",
+      "Mendukung perilaku produk yang andal dalam berbagai alur kerja."
+    ],
+    "internTaskTitles": [
+      "Aplikasi bisnis",
+      "Perencanaan berbantuan AI",
+      "Integrasi & dashboard"
+    ],
+    "internTaskDescriptions": [
+      "Mengerjakan aplikasi compliance dan manajemen portofolio proyek.",
+      "Mengerjakan asisten AI dan pembuatan work breakdown structure.",
+      "Menghubungkan alur kerja aplikasi dan menyajikan informasi melalui dashboard."
     ]
   },
   "ja": {
@@ -501,6 +545,28 @@
       "製品の信頼性"
     ],
     "internTasks": [
+      "Compliance・PPMアプリケーション",
+      "AIアシスタントとWBS生成",
+      "システム連携とダッシュボード"
+    ],
+    "engineeringTaskTitles": [
+      "AIチャットボットとContent Bot",
+      "OpenAI連携",
+      "n8nワークフロー",
+      "製品の信頼性"
+    ],
+    "engineeringTaskDescriptions": [
+      "AIチャットボットとContent Bot",
+      "OpenAI連携",
+      "n8nワークフロー",
+      "製品の信頼性"
+    ],
+    "internTaskTitles": [
+      "Compliance・PPMアプリケーション",
+      "AIアシスタントとWBS生成",
+      "システム連携とダッシュボード"
+    ],
+    "internTaskDescriptions": [
       "Compliance・PPMアプリケーション",
       "AIアシスタントとWBS生成",
       "システム連携とダッシュボード"
@@ -673,6 +739,28 @@
       "Compliance- und PPM-Anwendungen",
       "KI-Assistenten und WBS-Erstellung",
       "Integrationen und Dashboards"
+    ],
+    "engineeringTaskTitles": [
+      "KI-Chatbot und Content Bot",
+      "OpenAI-Integration",
+      "n8n-Workflows",
+      "Produktzuverlässigkeit"
+    ],
+    "engineeringTaskDescriptions": [
+      "KI-Chatbot und Content Bot",
+      "OpenAI-Integration",
+      "n8n-Workflows",
+      "Produktzuverlässigkeit"
+    ],
+    "internTaskTitles": [
+      "Compliance- und PPM-Anwendungen",
+      "KI-Assistenten und WBS-Erstellung",
+      "Integrationen und Dashboards"
+    ],
+    "internTaskDescriptions": [
+      "Compliance- und PPM-Anwendungen",
+      "KI-Assistenten und WBS-Erstellung",
+      "Integrationen und Dashboards"
     ]
   },
   "zh": {
@@ -839,6 +927,28 @@
       "产品可靠性"
     ],
     "internTasks": [
+      "合规与 PPM 应用",
+      "AI 助手与 WBS 生成",
+      "集成与仪表板"
+    ],
+    "engineeringTaskTitles": [
+      "AI 聊天机器人与 Content Bot",
+      "OpenAI 集成",
+      "n8n 工作流",
+      "产品可靠性"
+    ],
+    "engineeringTaskDescriptions": [
+      "AI 聊天机器人与 Content Bot",
+      "OpenAI 集成",
+      "n8n 工作流",
+      "产品可靠性"
+    ],
+    "internTaskTitles": [
+      "合规与 PPM 应用",
+      "AI 助手与 WBS 生成",
+      "集成与仪表板"
+    ],
+    "internTaskDescriptions": [
       "合规与 PPM 应用",
       "AI 助手与 WBS 生成",
       "集成与仪表板"
