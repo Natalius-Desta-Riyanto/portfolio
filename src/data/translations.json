@@ -188,7 +188,22 @@
       "Work on compliance and project portfolio management applications.",
       "Work on AI assistants and work breakdown structure generation.",
       "Connect application workflows and present information in dashboards."
-    ]
+    ],
+    "caseOverview": "Project overview",
+    "caseFlow": "How it works",
+    "caseFeatures": "Key features",
+    "caseImplementation": "Implementation",
+    "liveProject": "Explore the live app",
+    "sourceProject": "View source on GitHub",
+    "nextProjectLabel": "Next project",
+    "sakuaraOverview": "A personal finance workspace that brings accounts, budgets, savings goals, and analytics into one place.",
+    "sakuaraFlow": "Organize accounts and transactions, review cash flow, plan budgets, and track savings goals through the live application.",
+    "sakuaraFeatures": "Multi-account cash flow · Budget planning · Savings goals · Analytics · Foreign currencies",
+    "sakuaraImplementation": "React and TypeScript power the interface; Supabase and PostgreSQL support the data layer. The application is hosted on Vercel.",
+    "riskOverview": "An explainable lending portfolio analysis exploring payment difficulty across applicant segments. It supports analytical review rather than automated lending approval.",
+    "riskFlow": "CSV sources are cleaned and transformed in Python, combined into an applicant-level model, and exported as aggregate JSON for the Next.js dashboard.",
+    "riskFeatures": "Validated applicant keys · Affordability ratios · Segment exploration · 95% Wilson confidence intervals · Small-segment safeguards",
+    "riskImplementation": "The repository contains the Python pipeline and tests that are not executed by the static frontend. It provides code for reviewing cleaning, feature engineering, metrics, and export logic."
   },
   "id": {
     "work": "Karya pilihan",
@@ -379,7 +394,22 @@
       "Mengerjakan aplikasi compliance dan manajemen portofolio proyek.",
       "Mengerjakan asisten AI dan pembuatan work breakdown structure.",
       "Menghubungkan alur kerja aplikasi dan menyajikan informasi melalui dashboard."
-    ]
+    ],
+    "caseOverview": "Gambaran proyek",
+    "caseFlow": "Cara kerja",
+    "caseFeatures": "Fitur utama",
+    "caseImplementation": "Implementasi",
+    "liveProject": "Coba aplikasi live",
+    "sourceProject": "Lihat source di GitHub",
+    "nextProjectLabel": "Proyek berikutnya",
+    "sakuaraOverview": "Ruang kerja keuangan pribadi yang menyatukan akun, anggaran, target tabungan, dan analitik.",
+    "sakuaraFlow": "Atur akun dan transaksi, tinjau arus kas, susun anggaran, dan pantau target tabungan melalui aplikasi live.",
+    "sakuaraFeatures": "Arus kas multi-akun · Perencanaan anggaran · Target tabungan · Analitik · Mata uang asing",
+    "sakuaraImplementation": "React dan TypeScript membangun antarmuka; Supabase dan PostgreSQL mendukung lapisan data. Aplikasi dihosting di Vercel.",
+    "riskOverview": "Analisis portofolio pinjaman yang menjelaskan kesulitan pembayaran antarsegmen pemohon. Mendukung tinjauan analitis, bukan persetujuan kredit otomatis.",
+    "riskFlow": "Sumber CSV dibersihkan dan ditransformasi dengan Python, digabungkan pada tingkat pemohon, lalu diekspor menjadi agregat JSON untuk dashboard Next.js.",
+    "riskFeatures": "Validasi kunci pemohon · Rasio keterjangkauan · Eksplorasi segmen · Interval kepercayaan Wilson 95% · Pengamanan segmen kecil",
+    "riskImplementation": "Repository berisi pipeline Python dan pengujian yang tidak dijalankan oleh frontend statis. Kodenya memperlihatkan proses pembersihan, feature engineering, metrik, dan ekspor data."
   },
   "ja": {
     "work": "制作実績",
@@ -570,7 +600,22 @@
       "コンプライアンスとプロジェクト・ポートフォリオ管理アプリの開発。",
       "AIアシスタントと作業分解構成図（WBS）の生成。",
       "アプリ連携とダッシュボードによる情報の可視化。"
-    ]
+    ],
+    "caseOverview": "Project overview",
+    "caseFlow": "How it works",
+    "caseFeatures": "Key features",
+    "caseImplementation": "Implementation",
+    "liveProject": "Explore the live app",
+    "sourceProject": "View source on GitHub",
+    "nextProjectLabel": "Next project",
+    "sakuaraOverview": "A personal finance workspace that brings accounts, budgets, savings goals, and analytics into one place.",
+    "sakuaraFlow": "Organize accounts and transactions, review cash flow, plan budgets, and track savings goals through the live application.",
+    "sakuaraFeatures": "Multi-account cash flow · Budget planning · Savings goals · Analytics · Foreign currencies",
+    "sakuaraImplementation": "React and TypeScript power the interface; Supabase and PostgreSQL support the data layer. The application is hosted on Vercel.",
+    "riskOverview": "An explainable lending portfolio analysis exploring payment difficulty across applicant segments. It supports analytical review rather than automated lending approval.",
+    "riskFlow": "CSV sources are cleaned and transformed in Python, combined into an applicant-level model, and exported as aggregate JSON for the Next.js dashboard.",
+    "riskFeatures": "Validated applicant keys · Affordability ratios · Segment exploration · 95% Wilson confidence intervals · Small-segment safeguards",
+    "riskImplementation": "The repository contains the Python pipeline and tests that are not executed by the static frontend. It provides code for reviewing cleaning, feature engineering, metrics, and export logic."
   },
   "de": {
     "work": "Ausgewählte Projekte",
@@ -761,7 +806,22 @@
       "Arbeit an Compliance- und Projektportfoliomanagement-Anwendungen.",
       "Arbeit an KI-Assistenten und der Erstellung von Projektstrukturplänen.",
       "Verknüpfung von Anwendungsabläufen und Darstellung in Dashboards."
-    ]
+    ],
+    "caseOverview": "Project overview",
+    "caseFlow": "How it works",
+    "caseFeatures": "Key features",
+    "caseImplementation": "Implementation",
+    "liveProject": "Explore the live app",
+    "sourceProject": "View source on GitHub",
+    "nextProjectLabel": "Next project",
+    "sakuaraOverview": "A personal finance workspace that brings accounts, budgets, savings goals, and analytics into one place.",
+    "sakuaraFlow": "Organize accounts and transactions, review cash flow, plan budgets, and track savings goals through the live application.",
+    "sakuaraFeatures": "Multi-account cash flow · Budget planning · Savings goals · Analytics · Foreign currencies",
+    "sakuaraImplementation": "React and TypeScript power the interface; Supabase and PostgreSQL support the data layer. The application is hosted on Vercel.",
+    "riskOverview": "An explainable lending portfolio analysis exploring payment difficulty across applicant segments. It supports analytical review rather than automated lending approval.",
+    "riskFlow": "CSV sources are cleaned and transformed in Python, combined into an applicant-level model, and exported as aggregate JSON for the Next.js dashboard.",
+    "riskFeatures": "Validated applicant keys · Affordability ratios · Segment exploration · 95% Wilson confidence intervals · Small-segment safeguards",
+    "riskImplementation": "The repository contains the Python pipeline and tests that are not executed by the static frontend. It provides code for reviewing cleaning, feature engineering, metrics, and export logic."
   },
   "zh": {
     "work": "精选作品",
@@ -952,6 +1012,21 @@
       "参与合规与项目组合管理应用开发。",
       "参与 AI 助手与工作分解结构（WBS）生成。",
       "连接应用流程并通过仪表板展示信息。"
-    ]
+    ],
+    "caseOverview": "Project overview",
+    "caseFlow": "How it works",
+    "caseFeatures": "Key features",
+    "caseImplementation": "Implementation",
+    "liveProject": "Explore the live app",
+    "sourceProject": "View source on GitHub",
+    "nextProjectLabel": "Next project",
+    "sakuaraOverview": "A personal finance workspace that brings accounts, budgets, savings goals, and analytics into one place.",
+    "sakuaraFlow": "Organize accounts and transactions, review cash flow, plan budgets, and track savings goals through the live application.",
+    "sakuaraFeatures": "Multi-account cash flow · Budget planning · Savings goals · Analytics · Foreign currencies",
+    "sakuaraImplementation": "React and TypeScript power the interface; Supabase and PostgreSQL support the data layer. The application is hosted on Vercel.",
+    "riskOverview": "An explainable lending portfolio analysis exploring payment difficulty across applicant segments. It supports analytical review rather than automated lending approval.",
+    "riskFlow": "CSV sources are cleaned and transformed in Python, combined into an applicant-level model, and exported as aggregate JSON for the Next.js dashboard.",
+    "riskFeatures": "Validated applicant keys · Affordability ratios · Segment exploration · 95% Wilson confidence intervals · Small-segment safeguards",
+    "riskImplementation": "The repository contains the Python pipeline and tests that are not executed by the static frontend. It provides code for reviewing cleaning, feature engineering, metrics, and export logic."
   }
 }
