@@ -13,7 +13,7 @@ const canonical=Astro.site ? new URL(href(locale,path),Astro.site) : undefined;
 <a class="skip-link" href="#main">{c.skip}</a>
 <header class="site-header container"><a class="brand" href={href(locale)} aria-label="Natalius Desta Riyanto"><span class="monogram">N.</span><span>Natalius <span class="brand-extra">Desta Riyanto</span></span></a><nav class="desktop-nav" aria-label={c.menu}>{menu.map(([p,label])=><a href={sectionHref(p)} data-section-link={p}>{label}</a>)}</nav><details class="navigation"><summary aria-label={c.menu} title={c.menu}><span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span></summary><nav aria-label={c.menu}>{menu.map(([p,label])=><a href={sectionHref(p)} data-section-link={p}>{label}</a>)}</nav></details><button type="button" class="theme-toggle" aria-label={c.themeLabel} title={c.themeLabel} hidden data-enhance><Icon name="theme"/></button><details class="language"><summary aria-label={c.language}>{labels[locale]} <Icon name="chevron"/></summary><nav aria-label={c.language}>{locales.map(l=><a href={href(l,path)} lang={htmlLang[l]} aria-current={locale===l?'true':undefined}>{labels[l]}</a>)}</nav></details></header>
 <main id="main"><slot/></main>
-<footer class="site-footer"><div class="container"><div class="footer-summary"><span class="footer-mark">N.</span><span>© {new Date().getFullYear()} Natalius Desta Riyanto</span><a class="footer-top" href={sectionHref('about')} aria-label={c.about} title={c.about}><Icon name="arrow"/></a></div></div></footer>
+<footer class="site-footer"><div class="container footer-line"><small>© {new Date().getFullYear()} Natalius Desta Riyanto</small><span>Depok, Indonesia · UTC+7</span></div></footer>
 <script>
 import '../scripts/interactions';
 </script>

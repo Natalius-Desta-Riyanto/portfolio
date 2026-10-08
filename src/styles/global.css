@@ -153,3 +153,5 @@ html{scroll-padding-top:calc(var(--header-height,88px) + 12px)}
 .site-footer{padding-block:20px!important}.footer-summary{padding-right:64px;min-height:44px}.footer-top{width:40px;height:40px}.portrait-frame img{object-position:center center}@media(max-width:700px){.footer-summary{font-size:10px;gap:8px;padding-right:48px}.site-footer{padding-block:14px!important}}
 
 #contact{min-height:calc(100svh - var(--header-height,88px) - var(--footer-height,84px) - 12px)!important}
+
+.site-footer{padding-block:18px!important;background:transparent!important;border-top:1px solid var(--line);position:relative;z-index:1}.footer-line{display:flex;align-items:center;justify-content:space-between;gap:16px;color:var(--muted)}.footer-line small,.footer-line>span{font-size:11px;line-height:1.6}.footer-line>span{opacity:.75}@media(max-width:700px){.footer-line{flex-wrap:wrap;gap:4px 16px}.footer-line small,.footer-line>span{font-size:10px}.site-footer{padding-block:14px!important}}
