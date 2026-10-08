@@ -25,13 +25,13 @@ document.addEventListener('visibilitychange',()=>root.classList.toggle('page-hid
 
 // Video is loaded on visibility, pauses offscreen, and respects motion preferences.
 document.querySelectorAll<HTMLElement>('[data-motion-hero]').forEach(figure=>{
- const video=figure.querySelector<HTMLVideoElement>('video');const button=figure.classList.contains('ambient-video')?document.querySelector<HTMLButtonElement>('.background-control'):figure.querySelector<HTMLButtonElement>('[data-motion-toggle]');if(!video||!button)return;
+ const video=figure.querySelector<HTMLVideoElement>('video');const button=figure.classList.contains('ambient-video')?document.querySelector<HTMLButtonElement>('.background-control'):figure.querySelector<HTMLButtonElement>('[data-motion-toggle]');if(!video)return;
  const ambient=figure.classList.contains('ambient-video');
  let inView=ambient;let userPaused=false;let failed=false;video.muted=true;
- const sync=()=>{const playing=!video.paused;const label=playing?button.dataset.pauseLabel:button.dataset.playLabel;button.setAttribute('aria-label',label||'');button.title=label||'';button.setAttribute('aria-pressed',String(playing));const icon=button.querySelector('[data-motion-icon]');if(icon){const playIcon=icon.querySelector<HTMLElement>('[data-play-icon]');const pauseIcon=icon.querySelector<HTMLElement>('[data-pause-icon]');if(playIcon&&pauseIcon){playIcon.hidden=playing;pauseIcon.hidden=!playing;}else icon.textContent=playing?'Ⅱ':'▶';}};
+ const sync=()=>{if(!button)return;const playing=!video.paused;const label=playing?button.dataset.pauseLabel:button.dataset.playLabel;button.setAttribute('aria-label',label||'');button.title=label||'';button.setAttribute('aria-pressed',String(playing));const icon=button.querySelector('[data-motion-icon]');if(icon){const playIcon=icon.querySelector<HTMLElement>('[data-play-icon]');const pauseIcon=icon.querySelector<HTMLElement>('[data-pause-icon]');if(playIcon&&pauseIcon){playIcon.hidden=playing;pauseIcon.hidden=!playing;}else icon.textContent=playing?'Ⅱ':'▶';}};
  const update=()=>{if(inView&&!document.hidden&&!reducedMotion.matches&&!userPaused&&!failed){if(!video.getAttribute('src'))video.src=video.dataset.src||'';void video.play().then(sync).catch(()=>{sync();});}else{video.pause();sync();}};
  if(!ambient){const visibility=new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;update();},{threshold:.2});visibility.observe(figure);}else{update();addEventListener('pageshow',update);addEventListener('focus',update);document.addEventListener('pointerdown',()=>{if(video.paused)update();},{passive:true});}
- button.addEventListener('click',()=>{failed=false;if(!video.paused){userPaused=true;video.pause();sync();}else{userPaused=false;if(!video.getAttribute('src'))video.src=video.dataset.src||'';void video.play().then(sync).catch(()=>sync());}});
+ button?.addEventListener('click',()=>{failed=false;if(!video.paused){userPaused=true;video.pause();sync();}else{userPaused=false;if(!video.getAttribute('src'))video.src=video.dataset.src||'';void video.play().then(sync).catch(()=>sync());}});
  video.addEventListener('play',sync);video.addEventListener('pause',sync);video.addEventListener('error',()=>{failed=true;video.pause();sync();});document.addEventListener('visibilitychange',update);reducedMotion.addEventListener('change',update);
 });
 
