@@ -154,7 +154,19 @@
     "contactBrief": "In your email, share the project or role, the scope, and your timeline.",
     "contactProductDetail": "Interfaces, backends & databases",
     "contactAutomationDetail": "Connected tools & workflows",
-    "contactDataDetail": "Dashboards & statistical insights"
+    "contactDataDetail": "Dashboards & statistical insights",
+    "workDetails": "Work details",
+    "engineeringTasks": [
+      "AI chatbot and Content Bot",
+      "OpenAI integration",
+      "n8n workflows",
+      "Product reliability"
+    ],
+    "internTasks": [
+      "Compliance and PPM applications",
+      "AI assistants and WBS generation",
+      "Integrations and dashboards"
+    ]
   },
   "id": {
     "work": "Karya pilihan",
@@ -311,7 +323,19 @@
     "contactBrief": "Dalam email, ceritakan proyek atau posisi, cakupan pekerjaan, dan waktunya.",
     "contactProductDetail": "Antarmuka, backend & database",
     "contactAutomationDetail": "Integrasi tools & alur kerja",
-    "contactDataDetail": "Dashboard & insight statistik"
+    "contactDataDetail": "Dashboard & insight statistik",
+    "workDetails": "Detail pekerjaan",
+    "engineeringTasks": [
+      "AI chatbot dan Content Bot",
+      "Integrasi OpenAI",
+      "Alur kerja n8n",
+      "Keandalan produk"
+    ],
+    "internTasks": [
+      "Aplikasi Compliance dan PPM",
+      "Asisten AI dan pembuatan WBS",
+      "Integrasi dan dashboard"
+    ]
   },
   "ja": {
     "work": "制作実績",
@@ -468,7 +492,19 @@
     "contactBrief": "メールにはプロジェクトや職種、作業範囲、スケジュールをお知らせください。",
     "contactProductDetail": "UI・バックエンド・データベース",
     "contactAutomationDetail": "ツール連携とワークフロー",
-    "contactDataDetail": "ダッシュボードと統計分析"
+    "contactDataDetail": "ダッシュボードと統計分析",
+    "workDetails": "業務の詳細",
+    "engineeringTasks": [
+      "AIチャットボットとContent Bot",
+      "OpenAI連携",
+      "n8nワークフロー",
+      "製品の信頼性"
+    ],
+    "internTasks": [
+      "Compliance・PPMアプリケーション",
+      "AIアシスタントとWBS生成",
+      "システム連携とダッシュボード"
+    ]
   },
   "de": {
     "work": "Ausgewählte Projekte",
@@ -625,7 +661,19 @@
     "contactBrief": "Beschreiben Sie in Ihrer E-Mail das Projekt oder die Stelle, den Umfang und den Zeitplan.",
     "contactProductDetail": "Interfaces, Backends & Datenbanken",
     "contactAutomationDetail": "Verbundene Tools & Workflows",
-    "contactDataDetail": "Dashboards & statistische Erkenntnisse"
+    "contactDataDetail": "Dashboards & statistische Erkenntnisse",
+    "workDetails": "Arbeitsdetails",
+    "engineeringTasks": [
+      "KI-Chatbot und Content Bot",
+      "OpenAI-Integration",
+      "n8n-Workflows",
+      "Produktzuverlässigkeit"
+    ],
+    "internTasks": [
+      "Compliance- und PPM-Anwendungen",
+      "KI-Assistenten und WBS-Erstellung",
+      "Integrationen und Dashboards"
+    ]
   },
   "zh": {
     "work": "精选作品",
@@ -782,6 +830,18 @@
     "contactBrief": "请在邮件中介绍项目或职位、工作范围和时间安排。",
     "contactProductDetail": "界面、后端与数据库",
     "contactAutomationDetail": "工具集成与工作流程",
-    "contactDataDetail": "仪表板与统计洞察"
+    "contactDataDetail": "仪表板与统计洞察",
+    "workDetails": "工作详情",
+    "engineeringTasks": [
+      "AI 聊天机器人与 Content Bot",
+      "OpenAI 集成",
+      "n8n 工作流",
+      "产品可靠性"
+    ],
+    "internTasks": [
+      "合规与 PPM 应用",
+      "AI 助手与 WBS 生成",
+      "集成与仪表板"
+    ]
   }
 }
