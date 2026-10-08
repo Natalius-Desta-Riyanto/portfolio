@@ -4,3 +4,11 @@ dist/
 .env*
 test-results/
 .DS_Store
+
+# Unused portrait experiments remain local
+public/media/natalius-charcoal.png
+public/media/natalius-editorial.png
+public/media/natalius-layered-charcoal.png
+public/media/natalius-natural.png
+public/media/natalius-shirt-backdrop.png
+public/media/natalius-smart-casual.png
