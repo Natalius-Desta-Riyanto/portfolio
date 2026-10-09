@@ -204,7 +204,12 @@
     "riskFlow": "CSV sources are cleaned and transformed in Python, combined into an applicant-level model, and exported as aggregate JSON for the Next.js dashboard.",
     "riskFeatures": "Validated applicant keys · Affordability ratios · Segment exploration · 95% Wilson confidence intervals · Small-segment safeguards",
     "riskImplementation": "The repository contains the Python pipeline and tests that are not executed by the static frontend. It provides code for reviewing cleaning, feature engineering, metrics, and export logic.",
-    "allProjects": "All projects"
+    "allProjects": "All projects",
+    "stockwise": "Demand forecasting and inventory planning using 55,000 simulated Indonesian retail transactions, with transparent models and restock budgets in rupiah.",
+    "stockwiseOverview": "I built an end-to-end portfolio MVP covering 26 products, 25 cities and four sales channels throughout 2024. Sales and costs are simulated; stock and supplier lead times are planning assumptions.",
+    "stockwiseFlow": "A reproducible Python pipeline aggregates transactions into 9,516 daily observations. The app compares five baseline forecasts at rolling temporal origins, then converts lead-time demand and a volatility buffer into an editable replenishment plan.",
+    "stockwiseFeatures": "Explore product forecasts, compare historical errors, adjust demand, stock, cost and lead-time assumptions, import validated CSV and export a purchase plan. A real historical UCI UK dataset is available for comparison.",
+    "stockwiseImplementation": "The GitHub Pages demo stores guest work in the browser. The repository also includes a separate single-operator Node backend. Nineteen automated tests passed. Median selected-model WAPE was 39.63% at the default 14-day horizon, on synthetic overlapping selection windows; this does not establish real-world accuracy or reduced stockouts."
   },
   "id": {
     "work": "Karya pilihan",
@@ -411,7 +416,12 @@
     "riskFlow": "Sumber CSV dibersihkan dan ditransformasi dengan Python, digabungkan pada tingkat pemohon, lalu diekspor menjadi agregat JSON untuk dashboard Next.js.",
     "riskFeatures": "Validasi kunci pemohon · Rasio keterjangkauan · Eksplorasi segmen · Interval kepercayaan Wilson 95% · Pengamanan segmen kecil",
     "riskImplementation": "Repository berisi pipeline Python dan pengujian yang tidak dijalankan oleh frontend statis. Kodenya memperlihatkan proses pembersihan, feature engineering, metrik, dan ekspor data.",
-    "allProjects": "Semua proyek"
+    "allProjects": "Semua proyek",
+    "stockwise": "Forecast permintaan dan perencanaan stok dari 55.000 transaksi simulasi retail Indonesia, dengan model transparan dan anggaran restock dalam rupiah.",
+    "stockwiseOverview": "Saya membangun portfolio MVP yang mencakup 26 produk, 25 kota, dan empat kanal penjualan sepanjang 2024. Penjualan dan biaya bersifat simulasi; stok dan lead time supplier merupakan asumsi perencanaan.",
+    "stockwiseFlow": "Pipeline Python yang dapat direproduksi mengagregasi transaksi menjadi 9.516 observasi harian. Aplikasi membandingkan lima baseline forecast dengan validasi berdasarkan waktu, lalu menghitung kebutuhan restock dari permintaan selama lead time dan buffer volatilitas.",
+    "stockwiseFeatures": "Jelajahi forecast produk, bandingkan error historis, ubah asumsi permintaan, stok, biaya dan lead time, impor CSV tervalidasi, serta ekspor rencana pembelian. Dataset UCI UK dengan transaksi historis nyata tersedia sebagai pembanding.",
+    "stockwiseImplementation": "Demo GitHub Pages menyimpan workspace pengunjung di browser. Repository juga menyediakan backend Node terpisah untuk satu operator. Sebanyak 19 tes otomatis lulus. Median WAPE model terpilih 39,63% pada horizon default 14 hari, menggunakan data sintetis dan window pemilihan model yang tumpang tindih; ini belum membuktikan akurasi di bisnis nyata atau pengurangan stockout."
   },
   "ja": {
     "work": "制作実績",
@@ -618,7 +628,12 @@
     "riskFlow": "CSVをPythonで整形・変換し、申込者単位に集約してNext.js向けのJSON集計を出力します。",
     "riskFeatures": "キー検証 · 返済負担比率 · セグメント分析 · 95% Wilson信頼区間 · 小規模セグメントの保護",
     "riskImplementation": "リポジトリには静的フロントエンドでは実行されないPython処理とテストがあり、データ整形、特徴量、指標、出力を確認できます。",
-    "allProjects": "すべてのプロジェクト"
+    "allProjects": "すべてのプロジェクト",
+    "stockwise": "インドネシア小売の模擬取引55,000件を使った需要予測と在庫計画。モデルの根拠とルピア建ての補充予算を確認できます。",
+    "stockwiseOverview": "2024年の26商品、25都市、4販売チャネルを対象とするポートフォリオMVPを開発しました。売上と費用は模擬データで、在庫と調達期間は計画上の仮定です。",
+    "stockwiseFlow": "再現可能なPython処理で取引を9,516件の日次観測へ集約。時間順の検証で5つの予測手法を比較し、調達期間中の需要と変動バッファから補充数量を算出します。",
+    "stockwiseFeatures": "商品予測、過去の誤差比較、需要・在庫・費用・調達期間の調整、CSV取込と購入計画の出力に対応。実際の英国UCI取引データも比較用に選択できます。",
+    "stockwiseImplementation": "GitHub Pagesデモはブラウザ内にデータを保存します。別途、単一運用者向けNodeバックエンドも収録。自動テスト19件に合格。14日予測の選択モデルWAPE中央値は39.63%ですが、模擬データと重複するモデル選択期間での値であり、実務精度や欠品削減の証明ではありません。"
   },
   "de": {
     "work": "Ausgewählte Projekte",
@@ -825,7 +840,12 @@
     "riskFlow": "CSV-Daten werden in Python bereinigt und transformiert, auf Antragstellerebene zusammengeführt und als JSON-Aggregate für das Next.js-Dashboard exportiert.",
     "riskFeatures": "Validierte Schlüssel · Erschwinglichkeitskennzahlen · Segmentanalyse · 95%-Wilson-Konfidenzintervalle · Schutz kleiner Segmente",
     "riskImplementation": "Das Repository enthält die Python-Pipeline und Tests, die das statische Frontend nicht ausführt: Bereinigung, Feature Engineering, Kennzahlen und Export.",
-    "allProjects": "Alle Projekte"
+    "allProjects": "Alle Projekte",
+    "stockwise": "Nachfrageprognosen und Bestandsplanung mit 55.000 simulierten indonesischen Einzelhandelstransaktionen, transparenten Modellen und Nachbestellbudgets in Rupiah.",
+    "stockwiseOverview": "Ich entwickelte ein Portfolio-MVP für 26 Produkte, 25 Städte und vier Vertriebskanäle im Jahr 2024. Verkäufe und Kosten sind simuliert; Bestand und Lieferzeiten sind Planungsannahmen.",
+    "stockwiseFlow": "Eine reproduzierbare Python-Pipeline aggregiert Transaktionen zu 9.516 täglichen Beobachtungen. Fünf Basismodelle werden zeitlich geprüft; Nachfrage während der Lieferzeit und ein Schwankungspuffer ergeben den Nachbestellplan.",
+    "stockwiseFeatures": "Produktprognosen, historische Fehler, anpassbare Nachfrage-, Bestands-, Kosten- und Lieferzeitannahmen, validierter CSV-Import und Einkaufsplan-Export. Reale historische UCI-Daten aus Großbritannien stehen zum Vergleich bereit.",
+    "stockwiseImplementation": "Die GitHub-Pages-Demo speichert Besucherdaten im Browser. Das Repository enthält auch ein separates Node-Backend für einen Betreiber. 19 automatisierte Tests bestanden. Der mediane WAPE der gewählten Modelle beträgt 39,63% bei 14 Tagen; synthetische Daten und überlappende Auswahlfenster belegen keine reale Prognosegüte oder Fehlbestandsreduktion."
   },
   "zh": {
     "work": "精选作品",
@@ -1032,6 +1052,11 @@
     "riskFlow": "在 Python 中清理和转换 CSV，按申请人整合，并导出 JSON 汇总供 Next.js 仪表板使用。",
     "riskFeatures": "键验证 · 负担能力比率 · 群体探索 · 95% Wilson 置信区间 · 小群体保护",
     "riskImplementation": "仓库提供静态前端不会执行的 Python 流水线和测试，可查看清理、特征工程、指标与导出逻辑。",
-    "allProjects": "所有项目"
+    "allProjects": "所有项目",
+    "stockwise": "使用55,000笔模拟印度尼西亚零售交易进行需求预测和库存规划，展示模型依据与印尼盾补货预算。",
+    "stockwiseOverview": "我开发了覆盖2024年26种产品、25座城市和四个销售渠道的作品集MVP。销售和成本为模拟数据，库存和供应商交货时间为规划假设。",
+    "stockwiseFlow": "可复现的Python流程将交易汇总为9,516条每日观测，通过时间顺序验证比较五种基线模型，再根据交货期间需求与波动缓冲计算补货数量。",
+    "stockwiseFeatures": "支持产品预测、历史误差比较、需求与库存成本及交货时间调整、验证CSV导入和采购计划导出。也可选择真实的英国UCI历史交易数据作为对照。",
+    "stockwiseImplementation": "GitHub Pages演示将访客数据保存在浏览器中。仓库另含单运营者Node后端。19项自动测试通过。默认14天预测所选模型的WAPE中位数为39.63%，但使用的是模拟数据和重叠模型选择窗口，不能证明真实业务准确率或缺货改善。"
   }
 }
