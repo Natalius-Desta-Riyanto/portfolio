@@ -54,7 +54,16 @@ document.querySelectorAll<HTMLElement>('[data-carousel]').forEach(carousel=>{
 
 const portfolioSections=Array.from(document.querySelectorAll<HTMLElement>('main > section[id]'));
 if(portfolioSections.length){
- const activeSections=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;document.querySelectorAll<HTMLAnchorElement>('[data-section-link]').forEach(link=>{if(link.dataset.sectionLink===entry.target.id)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});});},{rootMargin:'-15% 0px -60% 0px',threshold:0});portfolioSections.forEach(section=>activeSections.observe(section));
+ const links=Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-section-link]'));
+ const syncActiveSection=()=>{
+  const headerHeight=document.querySelector('.site-header')?.getBoundingClientRect().height||0;
+  const probe=headerHeight+Math.min(120,(innerHeight-headerHeight)*.25);
+  const current=portfolioSections.find(section=>{const rect=section.getBoundingClientRect();return rect.top<=probe&&rect.bottom>probe;})||portfolioSections[0];
+  links.forEach(link=>{if(link.dataset.sectionLink===current.id)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
+ };
+ let activeFrame=0;const scheduleActiveSection=()=>{if(activeFrame)return;activeFrame=requestAnimationFrame(()=>{activeFrame=0;syncActiveSection();});};
+ addEventListener('scroll',scheduleActiveSection,{passive:true});addEventListener('resize',scheduleActiveSection);addEventListener('hashchange',scheduleActiveSection);addEventListener('pageshow',scheduleActiveSection);addEventListener('load',scheduleActiveSection);
+ new ResizeObserver(scheduleActiveSection).observe(document.querySelector('main')!);scheduleActiveSection();
 }
 
 // Align section navigation with the actual sticky header, including mobile menus.
