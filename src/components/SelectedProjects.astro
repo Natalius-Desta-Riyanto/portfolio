@@ -1,0 +1,18 @@
+---
+import Icon from './Icon.astro';
+import {projects,t,href,type Locale} from '../data/site';
+interface Props {locale:Locale;}
+const {locale}=Astro.props;const c=t(locale);
+---
+<div class="selected-projects">
+{projects.map(p=><article class:list={['work-card',{'work-card-featured':p.featured}]} aria-labelledby={`project-${p.slug}`}>
+ <a class="work-preview" href={href(locale,`work/${p.slug}/`)} aria-label={`${c.read}: ${p.title}`} tabindex="-1" aria-hidden="true"><img src={`${import.meta.env.BASE_URL}${p.image}`} alt="" width="1440" height="900" loading="lazy"/></a>
+ <div class="work-copy"><div class="work-meta"><span>{p.index} / {c[p.category]}</span>{p.featured&&<span class="work-featured-label">{c.featuredProject}</span>}</div>
+ <h3 id={`project-${p.slug}`}><a href={href(locale,`work/${p.slug}/`)}>{p.title}</a></h3>
+ <p>{c[p.copy]}</p>
+ <p class="work-evidence">{p.slug==='padun'?c.padunProof:p.slug==='lendsight'?c.lendsightProof:p.slug==='credit-risk-analytics'?c.riskProof:p.slug==='stockwise'?c.stockwiseProof:c.sakuaraProof}</p>
+ <ul class="work-stack" aria-label={c.toolkit}>{p.stack.map(s=><li>{s}</li>)}</ul>
+ <div class="work-actions"><a class="work-primary" href={href(locale,`work/${p.slug}/`)}>{c.read}<Icon name="arrow"/></a>{p.sourcePublic?<a href={p.repoUrl} class="work-source">GitHub<Icon name="arrow"/></a>:<span class="work-private">{c.privateSource}</span>}</div>
+ </div>
+</article>)}
+</div>
