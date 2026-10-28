@@ -37,3 +37,7 @@ The GitHub Pages workflow checks, builds and validates static output on pushes t
 Real portrait and project screenshots; title, summary, technical evidence and actions in that order. The project grid replaces the carousel. Keyboard focus, 44px action targets, small hover feedback and reduced-motion support are retained. Core content exists in generated HTML without JavaScript.
 
 [UI critique and Tailwind equivalent](docs/09-UI-REVIEW.md). Older numbered planning documents record previous directions; current source and release verification describe the active implementation.
+
+## Sakuara portfolio demo
+
+The compiled static demo at public/demo/sakuara/ is built from the existing private Sakuara repository's portfolio-demo branch. It uses fictional browser-local data and no Supabase configuration; its CSP blocks outgoing connections. The personal application remains separately hosted, without production quick login. Regenerate with npm run build:demo in Sakuara, verify using scripts/verify-portfolio-build.mjs, then copy only dist-demo/ here. Never copy an ordinary production build or environment files.

@@ -16,3 +16,11 @@ Scope: curated project selection, two new case studies in five languages, profil
 The existing browser-check script was aligned with the visible selection, anchor navigation and Pages base path. Browser interaction checks above were performed through the connected browser; the terminal browser suite was not run.
 
 No Lighthouse or screen-reader certification is claimed. Deployment verification is recorded in the delivery response after the Pages workflow completes.
+
+## Isolated Sakuara demo
+
+- Source branch: private Desta-Platform/Sakuara, portfolio-demo, commit af9a34b. Personal main and its production deployment were not changed.
+- Demo build and ordinary production build both typechecked and built. Source lint passed after excluding the generated dist-demo directory.
+- Artifact verification: public demo login present only in demo build; no embedded Supabase endpoint/key; connect-src none CSP; static base path under /portfolio/demo/sakuara/.
+- Browser: quick login, six-account synthetic seed, create a fictional account, refresh persistence, reset to original seed, accounts and analytics hash navigation.
+- Existing Sakuara dependency findings remain separate from this release; no security certification is claimed.

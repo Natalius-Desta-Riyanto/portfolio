@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Sakuara</title>
+  <desc id="desc">Five financial growth petals in ink, persimmon, and sakura rose.</desc>
+  <defs>
+    <linearGradient id="ink" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#5d78a0"/><stop offset="1" stop-color="#405a82"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#9fd2f2"/><stop offset="1" stop-color="#72b5e2"/>
+    </linearGradient>
+    <linearGradient id="rose" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#bbb9ee"/><stop offset="1" stop-color="#9699dc"/>
+    </linearGradient>
+  </defs>
+  <g stroke-linejoin="round">
+    <path fill="url(#warm)" d="M256 36c-35 29-65 63-65 111 0 52 31 90 65 118 34-28 65-66 65-118 0-48-30-82-65-111Z"/>
+    <path fill="url(#ink)" d="M68 174c15 42 38 81 84 96 49 16 95-2 132-25-17-40-45-80-94-96-46-15-84 2-122 25Z"/>
+    <path fill="url(#ink)" d="M444 174c-15 42-38 81-84 96-49 16-95-2-132-25 17-40 45-80 94-96 46-15 84 2 122 25Z"/>
+    <path fill="url(#rose)" d="M123 383c45 2 90-5 118-44 31-42 27-91 16-133-44 4-91 18-122 60-28 39-22 81-12 117Z"/>
+    <path fill="url(#warm)" d="M389 383c-45 2-90-5-118-44-31-42-27-91-16-133 44 4 91 18 122 60 28 39 22 81 12 117Z"/>
+  </g>
+  <g fill="#fffdfa">
+    <circle cx="256" cy="137" r="14"/><path d="M251 137h10v92h-10z"/>
+    <circle cx="159" cy="215" r="14"/><path d="m166 211 87 28-3 10-87-29z"/>
+    <circle cx="353" cy="215" r="14"/><path d="m346 211-87 28 3 10 87-29z"/>
+    <circle cx="199" cy="314" r="14"/><path d="m204 307 52-71 8 6-52 71z"/>
+    <circle cx="313" cy="314" r="14"/><path d="m308 307-52-71-8 6 52 71z"/>
+  </g>
+  <path d="M111 382c76 72 193 82 278 19 17-13 31-27 43-43l-3 32 28-50-57 13 31 2c-13 14-27 27-44 38-81 56-188 43-256-21Z" fill="url(#rose)"/>
+</svg>

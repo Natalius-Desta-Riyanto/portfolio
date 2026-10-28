@@ -1,0 +1,10 @@
+{
+  "project": "Sakuara portfolio demo",
+  "source_repository": "Desta-Platform/Sakuara",
+  "source_branch": "portfolio-demo",
+  "source_commit": "af9a34b",
+  "build_command": "npm run build:demo",
+  "storage": "browser-local synthetic data",
+  "cloud_connection": false,
+  "personal_app_deployed": false
+}
