@@ -15,3 +15,7 @@ public/media/natalius-smart-casual.png
 
 # Collage source captures and generated HTML
 scripts/collage/raw/
+
+# Local QA screenshots and alternate package-manager lockfile
+qa/
+pnpm-lock.yaml
