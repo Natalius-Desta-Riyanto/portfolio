@@ -4,10 +4,11 @@ import {editorial} from '../data/editorial';
 import {type Locale} from '../data/site';
 const {locale}=Astro.props as {locale:Locale};
 const e=editorial(locale);
-const practiceLabels={en:['Build','Analyze'],id:['Membangun','Menganalisis'],ja:['開発','分析'],de:['Entwickeln','Analysieren'],zh:['开发','分析']};
+const practiceLabels={en:['Build','Analyze','Integrate AI'],id:['Membangun','Menganalisis','Integrasi AI'],ja:['開発','分析','AI連携'],de:['Entwickeln','Analysieren','KI integrieren'],zh:['开发','分析','AI 集成']};
 const practices=[
- {label:practiceLabels[locale][0],icon:'code',tools:['React','TypeScript','FastAPI','PostgreSQL']},
+ {label:practiceLabels[locale][0],icon:'code',tools:['React','Next.js','Astro','Tailwind CSS','TypeScript','FastAPI','C#','PostgreSQL','Supabase']},
  {label:practiceLabels[locale][1],icon:'grid',tools:['Python','SQL','pandas','Statistics']},
+ {label:practiceLabels[locale][2],icon:'sparkles',tools:['OpenAI API','Anthropic API','RAG','Vector DB','Chatbots']},
 ];
 ---
  <div class="practice-grid" aria-label={e.capabilities} role="list">

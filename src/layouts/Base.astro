@@ -1,7 +1,7 @@
 ---
 import '../styles/site.css';
 import Icon from '../components/Icon.astro';
-import {editorial} from '../data/editorial';
+import {editorial,skillTools} from '../data/editorial';
 import {projects,locales,labels,htmlLang,t,href,type Locale} from '../data/site';
 interface Props {locale:Locale;title?:string;path?:string;}
 const {locale,title,path=''}=Astro.props;
@@ -16,8 +16,7 @@ const sectionHref=(p:string)=>`${href(locale)}#${sections[p]}`;
 const current=path.startsWith('work/')?'work':path.replace(/\/$/,'');
 const pageTitle=title?`${title} · Natalius Desta Riyanto`:`Natalius Desta Riyanto · ${e.role}`;
 const caseProject=projects.find(project=>path===`work/${project.slug}/`);
-const tools=[...new Set(projects.flatMap(project=>project.stack))];
-const ticker=e.skills.flatMap((skill,i)=>[skill,...tools.slice(i*4,i*4+4)]);
+const ticker=e.skills.flatMap((skill,i)=>[{label:skill,skill:true},...skillTools[i].map(label=>({label,skill:false}))]);
 const description=path.startsWith('work/')&&title?`${title}. ${caseProject?c[caseProject.copy]:c.selectedIntro}`
  :current==='contact'?c.contactInvitation
  :current==='about'?e.aboutText
@@ -83,13 +82,13 @@ const canonical=Astro.site?new URL(href(locale,path),Astro.site):undefined;
 </header>
 <main id="main"><slot/></main>
 <footer class="site-footer">
- <div class="footer-ticker" aria-hidden="true">
-  {[0,1].map(()=><ul>{ticker.map((item,i)=><li class:list={{'is-skill':i%5===0}}>{item}</li>)}</ul>)}
- </div>
  <div class="container footer-inner">
   <div class="footer-brand">
    <strong>Natalius Desta Riyanto</strong>
    <span>{e.role}</span>
+  </div>
+  <div class="footer-ticker" aria-hidden="true">
+   {[0,1].map(()=><ul>{ticker.map(item=><li class:list={{'is-skill':item.skill}}>{item.label}</li>)}</ul>)}
   </div>
   <small>© {new Date().getFullYear()} · Depok, Indonesia · UTC+7</small>
  </div>
