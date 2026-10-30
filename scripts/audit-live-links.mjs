@@ -1,0 +1,7 @@
+import {readFile,readdir,writeFile} from 'node:fs/promises';
+import {join} from 'node:path';
+const origin='https://natalius-desta-riyanto.github.io';
+async function walk(dir){let files=[];for(const e of await readdir(dir,{withFileTypes:true})){const p=join(dir,e.name);if(e.isDirectory()&&!p.includes('/demo'))files.push(...await walk(p));else if(e.name.endsWith('.html')&&!p.endsWith('indonesia-map.html'))files.push(p)}return files}
+const targets=new Set();for(const p of await walk('dist')){const html=await readFile(p,'utf8');for(const [,raw] of html.matchAll(/href="([^"]+)"/g)){if(raw.startsWith('/portfolio/')&&!raw.includes('#')&&!raw.endsWith('.css')&&!raw.endsWith('.svg'))targets.add(origin+raw);if(/^https:\/\/(padun-desta|lendsight-plum)\.vercel\.app|^https:\/\/desta-data-analytics\.github\.io|^https:\/\/github\.com\/Desta-/.test(raw))targets.add(raw)}}
+const queue=[...targets],results=[];await Promise.all(Array.from({length:5},async()=>{while(queue.length){const url=queue.shift();try{const r=await fetch(url,{signal:AbortSignal.timeout(45000)});await r.arrayBuffer();results.push({url,status:r.status,ok:r.ok,finalUrl:r.url})}catch(e){results.push({url,ok:false,error:String(e)})}}}));
+results.sort((a,b)=>a.url.localeCompare(b.url));await writeFile('qa/live-links.json',JSON.stringify({checkedAt:new Date().toISOString(),results},null,2));console.log(JSON.stringify({checked:results.length,passed:results.filter(x=>x.ok).length,failures:results.filter(x=>!x.ok)},null,2));

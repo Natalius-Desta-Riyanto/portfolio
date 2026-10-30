@@ -1,18 +1,26 @@
 ---
 import Icon from './Icon.astro';
+import ProjectVisual from './ProjectVisual.astro';
+import {editorial} from '../data/editorial';
 import {projects,t,href,type Locale} from '../data/site';
-interface Props {locale:Locale;}
-const {locale}=Astro.props;const c=t(locale);
+interface Props {locale:Locale;limit?:number;embedded?:boolean;}
+const {locale,limit,embedded=false}=Astro.props;const Heading=limit||embedded?'h3':'h2';const c=t(locale);const e=editorial(locale);
 ---
-<div class="selected-projects">
-{projects.map(p=><article class:list={['work-card',{'work-card-featured':p.featured}]} aria-labelledby={`project-${p.slug}`}>
- <a class="work-preview" href={href(locale,`work/${p.slug}/`)} aria-label={`${c.read}: ${p.title}`} tabindex="-1" aria-hidden="true"><img src={`${import.meta.env.BASE_URL}${p.image}`} alt="" width="1440" height="900" loading="lazy"/></a>
+<div class="project-carousel" data-carousel role="region" aria-label={c.projectsMenu}>
+<div class="carousel-controls"><span class="carousel-count" aria-live="polite" aria-atomic="true">01 / {String(projects.slice(0,limit).length).padStart(2,'0')}</span><div><button type="button" data-prev aria-label={c.previousProject} aria-controls="project-track" hidden data-enhance><Icon name="chevron"/></button><button type="button" data-next aria-label={c.nextProjectLabel} aria-controls="project-track" hidden data-enhance><Icon name="chevron"/></button></div></div>
+<div class="selected-projects" id="project-track" tabindex="0" aria-label={c.projectsMenu}>
+{projects.slice(0,limit).map((p,i)=><article class:list={['work-card',{'work-card-featured':p.featured}]} aria-labelledby={`project-${p.slug}`}>
+ <a class="work-preview" href={href(locale,`work/${p.slug}/`)} aria-label={`${c.read}: ${p.title}`} tabindex="-1" aria-hidden="true">{p.featured?<ProjectVisual slug={p.slug} title={p.title} image={p.image}/>:<img src={`${import.meta.env.BASE_URL}${p.image}`} alt="" width="1440" height="900" loading="lazy"/>}</a>
  <div class="work-copy"><div class="work-meta"><span>{p.index} / {c[p.category]}</span>{p.featured&&<span class="work-featured-label">{c.featuredProject}</span>}</div>
- <h3 id={`project-${p.slug}`}><a href={href(locale,`work/${p.slug}/`)}>{p.title}</a></h3>
+ <Heading id={`project-${p.slug}`}><a href={href(locale,`work/${p.slug}/`)}>{p.title}</a></Heading>
  <p>{c[p.copy]}</p>
+ <div class="project-contribution"><span class="micro">{e.roleLabel}</span><p>{e.contributions[i]}</p></div>
  <p class="work-evidence">{p.slug==='padun'?c.padunProof:p.slug==='lendsight'?c.lendsightProof:p.slug==='credit-risk-analytics'?c.riskProof:p.slug==='stockwise'?c.stockwiseProof:c.sakuaraProof}</p>
+ <span class="project-status">{e.statuses[i]}</span>
  <ul class="work-stack" aria-label={c.toolkit}>{p.stack.map(s=><li>{s}</li>)}</ul>
- <div class="work-actions"><a class="work-primary" href={href(locale,`work/${p.slug}/`)}>{c.read}<Icon name="arrow"/></a>{p.sourcePublic?<a href={p.repoUrl} class="work-source">GitHub<Icon name="arrow"/></a>:<span class="work-private">{c.privateSource}</span>}</div>
+ <div class="work-actions"><a class="work-primary" href={href(locale,`work/${p.slug}/`)}>{c.read}</a><a href={p.url} class="work-demo"><Icon name="play"/>{e.tryDemo}</a>{p.sourcePublic?<a href={p.repoUrl} class="work-source">GitHub<Icon name="arrow"/></a>:<span class="work-private">{c.privateSource}</span>}</div>
  </div>
 </article>)}
+</div>
+
 </div>

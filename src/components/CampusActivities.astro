@@ -1,0 +1,15 @@
+---
+import type {Locale} from '../data/site';
+const {locale}=Astro.props as {locale:Locale};
+const labels={en:['Beyond the classroom','Chair, Commission 1','Law & Student Democracy','Staff, Legal Commission','Staff, Academic Affairs Department','Staff, Events & Creative Division','Volunteering & Events'],id:['Di luar ruang kuliah','Ketua Komisi 1','Hukum & Demokrasi Mahasiswa','Staf Komisi Hukum','Staf Departemen Keilmuan','Staf Divisi Acara & Kreatif','Volunteer & Kegiatan'],de:['Engagement & Aktivitäten','Vorsitz, Kommission 1','Recht & studentische Demokratie','Mitarbeit, Rechtskommission','Mitarbeit, akademische Abteilung','Mitarbeit, Veranstaltungen & Kreatives','Veranstaltungsteams'],ja:['リーダーシップ・課外活動','第1委員会 委員長','法律・学生民主主義','法律委員会 スタッフ','学術部門 スタッフ','イベント・クリエイティブ部門 スタッフ','運営委員会'],zh:['领导力与校园活动','第一委员会主席','法律与学生民主','法律委员会成员','学术部门成员','活动与创意部门成员','活动筹备']}[locale];
+---
+<details class="education-activities">
+ <summary><span>{labels[0]}<small>{({en:'Organizations · Volunteering & Events',id:'Organisasi · Volunteer & Kegiatan',de:'Organisationen · Ehrenamt & Veranstaltungen',ja:'学生団体・ボランティア・イベント',zh:'学生组织 · 志愿活动'})[locale]}</small></span><span class="education-expand" aria-hidden="true">+</span></summary>
+ <div class="education-activities-content"><div class="education-activity-columns">
+  <div><h3>{({en:'Organizations',id:'Organisasi',de:'Organisationen',ja:'学生団体',zh:'学生组织'})[locale]}</h3>
+   <article class="education-activity-row education-leadership"><h4>DPM UI</h4><p>{labels[1]} <time>2025</time></p><small>{labels[2]}</small><p class="education-previous">{labels[3]} <time>2024</time></p></article>
+   {[['HMDM FMIPA UI',locale==='id'?'Deputi 2, Departemen Aksioma':'Deputy 2, Aksioma Department','2024'],['BEM FMIPA UI',labels[4],'2024'],['KMK MIPA · KMK UI',labels[5],'2024']].map(([name,role,year])=><article class="education-activity-row"><h4>{name}</h4><p>{role}{year&&<time>{year}</time>}</p></article>)}
+  </div>
+  <div><h3>{labels[6]}</h3><article class="education-activity-row"><h4>UI Science Olympiad</h4><p>Logistics and Support Coordinator</p><small>Jun — Nov 2024</small></article><article class="education-activity-row"><h4>TOSKA KEMAS UI</h4><p>Head of Sponsorship Division</p><small>Nov 2024 — Jan 2025</small></article></div>
+ </div></div>
+</details>

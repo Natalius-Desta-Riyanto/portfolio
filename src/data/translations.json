@@ -119,7 +119,7 @@
     "sampleDegree": "Sample degree / field of study",
     "previousProject": "Previous project",
     "nextSlide": "Next project",
-    "viewProjects": "Explore projects",
+    "viewProjects": "View selected projects",
     "techTitle": "Software, systems & data.",
     "basedIn": "Based in",
     "location": "Depok, West Java, Indonesia",
@@ -174,10 +174,10 @@
       "Product reliability"
     ],
     "engineeringTaskDescriptions": [
-      "Work on AI chatbot and Content Bot features.",
-      "Connect OpenAI capabilities with application workflows.",
-      "Build and maintain automation workflows using n8n.",
-      "Support reliable behavior across product workflows."
+      "Build AI chatbot and Content Bot features for application workflows.",
+      "Integrate OpenAI capabilities into application features.",
+      "Build and maintain n8n workflows that connect application tasks.",
+      "Maintain interface states and workflow behavior across product features."
     ],
     "internTaskTitles": [
       "Business applications",
@@ -185,9 +185,9 @@
       "Integrations & dashboards"
     ],
     "internTaskDescriptions": [
-      "Work on compliance and project portfolio management applications.",
-      "Work on AI assistants and work breakdown structure generation.",
-      "Connect application workflows and present information in dashboards."
+      "Develop compliance and project portfolio management features using .NET Core, REST APIs, relational databases, and Next.js.",
+      "Integrate AI assistants and work breakdown generation for tasks, risks, and planning components.",
+      "Implement asynchronous Freshdesk–Goliath integration and dashboards for audit and portfolio workflows."
     ],
     "caseOverview": "Project overview",
     "caseFlow": "How it works",

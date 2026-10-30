@@ -1,4 +1,4 @@
 export const profileAssets: { photo: string | null; cv: string | null } = {
- photo: 'media/natalius-cutout.png',
+ photo: 'media/natalius-cutout.webp',
  cv: 'documents/natalius-desta-riyanto-cv.pdf',
 };
