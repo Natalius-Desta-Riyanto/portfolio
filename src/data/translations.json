@@ -139,7 +139,7 @@
     "internRole": "Full-Stack Developer · Intern",
     "engineeringDate": "Aug 2026 – Present",
     "internDate": "Sep 2025 – Jul 2026",
-    "engineeringText": "AI chatbot, Content Bot, OpenAI integration, n8n workflows, and product reliability.",
+    "engineeringText": "AI chatbot, Content Bot, OpenAI & Anthropic integration, n8n workflows, and product reliability.",
     "internText": "Compliance and PPM applications, AI assistants, WBS generation, integrations, and dashboards.",
     "university": "Universitas Indonesia",
     "degree": "Bachelor of Science (B.Sc.) in Mathematics",
@@ -158,7 +158,7 @@
     "workDetails": "Work details",
     "engineeringTasks": [
       "AI chatbot and Content Bot",
-      "OpenAI integration",
+      "OpenAI & Anthropic integration",
       "n8n workflows",
       "Product reliability"
     ],
@@ -175,7 +175,7 @@
     ],
     "engineeringTaskDescriptions": [
       "Build AI chatbot and Content Bot features for application workflows.",
-      "Integrate OpenAI capabilities into application features.",
+      "Integrate OpenAI and Anthropic models into application features.",
       "Build and maintain n8n workflows that connect application tasks.",
       "Maintain interface states and workflow behavior across product features."
     ],
@@ -368,7 +368,7 @@
     "internRole": "Pengembang Full-Stack · Magang",
     "engineeringDate": "Agu 2026 – Sekarang",
     "internDate": "Sep 2025 – Jul 2026",
-    "engineeringText": "Chatbot AI, Content Bot, integrasi OpenAI, alur kerja n8n, dan reliabilitas produk.",
+    "engineeringText": "Chatbot AI, Content Bot, integrasi OpenAI & Anthropic, alur kerja n8n, dan reliabilitas produk.",
     "internText": "Aplikasi compliance dan PPM, asisten AI, pembuatan WBS, integrasi, dan dashboard.",
     "university": "Universitas Indonesia",
     "degree": "Sarjana Sains (S.Si.) Matematika",
@@ -387,7 +387,7 @@
     "workDetails": "Detail pekerjaan",
     "engineeringTasks": [
       "AI chatbot dan Content Bot",
-      "Integrasi OpenAI",
+      "Integrasi OpenAI & Anthropic",
       "Alur kerja n8n",
       "Keandalan produk"
     ],
@@ -404,7 +404,7 @@
     ],
     "engineeringTaskDescriptions": [
       "Mengerjakan fitur chatbot AI dan Content Bot.",
-      "Menghubungkan kemampuan OpenAI dengan alur kerja aplikasi.",
+      "Menghubungkan kemampuan OpenAI dan Anthropic dengan alur kerja aplikasi.",
       "Membangun dan memelihara otomasi alur kerja menggunakan n8n.",
       "Mendukung perilaku produk yang andal dalam berbagai alur kerja."
     ],
@@ -597,7 +597,7 @@
     "internRole": "フルスタック開発者 · インターン",
     "engineeringDate": "2026年8月 – 現在",
     "internDate": "2025年9月 – 2026年7月",
-    "engineeringText": "AIチャットボット、Content Bot、OpenAI統合、n8nワークフロー。",
+    "engineeringText": "AIチャットボット、Content Bot、OpenAI・Anthropic統合、n8nワークフロー。",
     "internText": "コンプライアンス・PPMアプリ、AIアシスタント、WBS生成、統合。",
     "university": "Universitas Indonesia",
     "degree": "数学理学士（B.Sc.）",
@@ -616,7 +616,7 @@
     "workDetails": "業務の詳細",
     "engineeringTasks": [
       "AIチャットボットとContent Bot",
-      "OpenAI連携",
+      "OpenAI・Anthropic連携",
       "n8nワークフロー",
       "製品の信頼性"
     ],
@@ -627,13 +627,13 @@
     ],
     "engineeringTaskTitles": [
       "AIチャットボットとContent Bot",
-      "OpenAI連携",
+      "OpenAI・Anthropic連携",
       "n8nワークフロー",
       "製品の信頼性"
     ],
     "engineeringTaskDescriptions": [
       "AIチャットボットとContent Botの機能開発。",
-      "OpenAIの機能とアプリケーションの連携。",
+      "OpenAI・Anthropicの機能とアプリケーションの連携。",
       "n8nを用いた自動化ワークフローの構築と保守。",
       "製品ワークフローの信頼性を支える業務。"
     ],
@@ -826,7 +826,7 @@
     "internRole": "Full-Stack-Entwickler · Praktikant",
     "engineeringDate": "Aug. 2026 – Heute",
     "internDate": "Sep. 2025 – Juli 2026",
-    "engineeringText": "KI-Chatbot, Content Bot, OpenAI-Integration, n8n-Workflows und Produktzuverlässigkeit.",
+    "engineeringText": "KI-Chatbot, Content Bot, OpenAI- und Anthropic-Integration, n8n-Workflows und Produktzuverlässigkeit.",
     "internText": "Compliance- und PPM-Anwendungen, KI-Assistenten, WBS-Erstellung und Integrationen.",
     "university": "Universitas Indonesia",
     "degree": "Bachelor of Science (B.Sc.) in Mathematik",
@@ -845,7 +845,7 @@
     "workDetails": "Arbeitsdetails",
     "engineeringTasks": [
       "KI-Chatbot und Content Bot",
-      "OpenAI-Integration",
+      "OpenAI- und Anthropic-Integration",
       "n8n-Workflows",
       "Produktzuverlässigkeit"
     ],
@@ -856,13 +856,13 @@
     ],
     "engineeringTaskTitles": [
       "KI-Chatbot und Content Bot",
-      "OpenAI-Integration",
+      "OpenAI- und Anthropic-Integration",
       "n8n-Workflows",
       "Produktzuverlässigkeit"
     ],
     "engineeringTaskDescriptions": [
       "Arbeit an KI-Chatbot- und Content-Bot-Funktionen.",
-      "Verbindung von OpenAI-Funktionen mit Anwendungsabläufen.",
+      "Verbindung von OpenAI- und Anthropic-Funktionen mit Anwendungsabläufen.",
       "Aufbau und Pflege automatisierter Workflows mit n8n.",
       "Unterstützung zuverlässiger Produktabläufe."
     ],
@@ -1055,7 +1055,7 @@
     "internRole": "全栈开发者 · 实习生",
     "engineeringDate": "2026年8月 – 至今",
     "internDate": "2025年9月 – 2026年7月",
-    "engineeringText": "AI聊天机器人、Content Bot、OpenAI集成、n8n工作流。",
+    "engineeringText": "AI聊天机器人、Content Bot、OpenAI与Anthropic集成、n8n工作流。",
     "internText": "合规与PPM应用、AI助手、WBS生成、系统集成。",
     "university": "Universitas Indonesia",
     "degree": "数学理学学士（B.Sc.）",
@@ -1074,7 +1074,7 @@
     "workDetails": "工作详情",
     "engineeringTasks": [
       "AI 聊天机器人与 Content Bot",
-      "OpenAI 集成",
+      "OpenAI 与 Anthropic 集成",
       "n8n 工作流",
       "产品可靠性"
     ],
@@ -1085,13 +1085,13 @@
     ],
     "engineeringTaskTitles": [
       "AI 聊天机器人与 Content Bot",
-      "OpenAI 集成",
+      "OpenAI 与 Anthropic 集成",
       "n8n 工作流",
       "产品可靠性"
     ],
     "engineeringTaskDescriptions": [
       "参与 AI 聊天机器人和 Content Bot 功能开发。",
-      "将 OpenAI 能力集成到应用流程中。",
+      "将 OpenAI 与 Anthropic 能力集成到应用流程中。",
       "使用 n8n 构建和维护自动化工作流。",
       "支持产品流程的可靠运行。"
     ],
