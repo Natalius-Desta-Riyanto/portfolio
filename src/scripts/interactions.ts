@@ -65,11 +65,14 @@ document.querySelectorAll<HTMLElement>('[data-slider]').forEach(slider=>{
  const track=slider.querySelector<HTMLElement>('.project-track')!;
  const controls=slider.querySelector<HTMLElement>('.slider-controls')!;
  const [prev,next]=Array.from(controls.querySelectorAll<HTMLButtonElement>('[data-slide]'));
+ const count=controls.querySelector<HTMLElement>('.slider-count');
  const reduce=matchMedia('(prefers-reduced-motion: reduce)');
  const step=()=>{const card=track.firstElementChild as HTMLElement|null;return card?card.offsetWidth+parseFloat(getComputedStyle(track).columnGap):track.clientWidth;};
  const sync=()=>{
   const max=track.scrollWidth-track.clientWidth;
   controls.hidden=max<=1;prev.disabled=track.scrollLeft<=1;next.disabled=track.scrollLeft>=max-1;
+  if(count){const total=track.children.length,i=next.disabled?total:Math.min(total,Math.round(track.scrollLeft/step())+1);
+   count.textContent=`${String(i).padStart(2,'0')} / ${String(total).padStart(2,'0')}`;}
  };
  controls.querySelectorAll<HTMLButtonElement>('[data-slide]').forEach(button=>button.addEventListener('click',()=>
   track.scrollBy({left:Number(button.dataset.slide)*step(),behavior:reduce.matches?'auto':'smooth'})));
