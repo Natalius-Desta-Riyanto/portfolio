@@ -2,7 +2,24 @@
 import Icon from './Icon.astro';
 import {editorial} from '../data/editorial';
 import {type Locale} from '../data/site';
-const {locale,embedded=false}=Astro.props as {locale:Locale;embedded?:boolean};const Heading=embedded?'h2':'h1';const e=editorial(locale);
-const toolsets=['React / TypeScript / UI','Next.js / FastAPI / Auth','Python / pandas / Statistics','PostgreSQL / SQL / n8n'];
+const {locale,embedded=false}=Astro.props as {locale:Locale;embedded?:boolean};
+const Heading=embedded?'h2':'h1';
+const e=editorial(locale);
+const toolsets=[['React','TypeScript','UI'],['Next.js','FastAPI','Auth'],['Python','pandas','Statistics'],['PostgreSQL','SQL','n8n']];
+const icons=['code','layers','grid','globe'];
 ---
-<section id="capabilities" class="section capabilities-section"><div class="container"><div class="editorial-section-heading"><div><div class="eyebrow">02 / SKILLS</div><Heading>{e.capabilities}</Heading></div><p>{e.capIntro}</p></div><div class="capability-grid">{toolsets.map((tools,i)=><article><div class="capability-marker"><Icon name={["code","layers","grid","globe"][i]}/><span class="capability-number">0{i+1}</span></div><h3>{e.skills[i]}</h3><p>{e.skillDetails[i]}</p><span class="micro capability-tools">{tools}</span></article>)}</div></div></section>
+<section id="capabilities" class="section container">
+ <div class="section-heading">
+  <p class="eyebrow">02 · Skills</p>
+  <Heading>{e.capabilities}</Heading>
+  <p class="section-intro">{e.capIntro}</p>
+ </div>
+ <div class="capability-grid">
+  {toolsets.map((tools,i)=><article class="card capability-card">
+   <span class="icon-tile"><Icon name={icons[i]}/></span>
+   <h3>{e.skills[i]}</h3>
+   <p>{e.skillDetails[i]}</p>
+   <ul class="tag-list">{tools.map(tool=><li class="tag">{tool}</li>)}</ul>
+  </article>)}
+ </div>
+</section>

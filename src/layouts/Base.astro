@@ -1,12 +1,13 @@
 ---
-import '../styles/global.css';
-import '../styles/curated.css';
+import '../styles/site.css';
 import Icon from '../components/Icon.astro';
 import {editorial} from '../data/editorial';
 import {projects,locales,labels,htmlLang,t,href,type Locale} from '../data/site';
 interface Props {locale:Locale;title?:string;path?:string;}
-const {locale,title,path=''}=Astro.props; const c=t(locale);
+const {locale,title,path=''}=Astro.props;
+const c=t(locale);
 const e=editorial(locale);
+const base=import.meta.env.BASE_URL;
 const skillsLabel={en:'Skills',id:'Keahlian',ja:'スキル',de:'Kenntnisse',zh:'技能'}[locale];
 const homeLabel={en:'Home',id:'Beranda',ja:'ホーム',de:'Start',zh:'首页'}[locale];
 const menu=[['',homeLabel],['about',c.about],['skills',skillsLabel],['experience',c.experienceMenu],['education',c.education],['work',c.projectsMenu],['contact',c.contact]];
@@ -15,15 +16,81 @@ const sectionHref=(p:string)=>`${href(locale)}#${sections[p]}`;
 const current=path.startsWith('work/')?'work':path.replace(/\/$/,'');
 const pageTitle=title?`${title} · Natalius Desta Riyanto`:`Natalius Desta Riyanto · ${e.role}`;
 const caseProject=projects.find(project=>path===`work/${project.slug}/`);
-const description=path.startsWith('work/')&&title?`${title}. ${caseProject?c[caseProject.copy]:c.selectedIntro}`:current==='contact'?c.contactInvitation:current==='about'?e.aboutText:current==='skills'?e.capIntro:current==='education'?`${c.degree} · ${c.university}. ${c.educationNote}`:current==='experience'?`${c.engineeringRole} · T-NEX. ${c.engineeringText}`:e.intro;
-const canonical=Astro.site ? new URL(href(locale,path),Astro.site) : undefined;
+const description=path.startsWith('work/')&&title?`${title}. ${caseProject?c[caseProject.copy]:c.selectedIntro}`
+ :current==='contact'?c.contactInvitation
+ :current==='about'?e.aboutText
+ :current==='skills'?e.capIntro
+ :current==='education'?`${c.degree} · ${c.university}. ${c.educationNote}`
+ :current==='experience'?`${c.engineeringRole} · T-NEX. ${c.engineeringText}`
+ :e.intro;
+const canonical=Astro.site?new URL(href(locale,path),Astro.site):undefined;
 ---
-<!doctype html><html lang={htmlLang[locale]} data-theme="light"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width"/><script is:inline>try{const value=localStorage.getItem('ndr-theme');if(value==='light'||value==='dark')document.documentElement.dataset.theme=value;}catch{}</script><title>{pageTitle}</title><meta name="description" content={description}/><meta name="robots" content="index,follow"/><link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon-v4.svg`}/>{canonical && <link rel="canonical" href={canonical}/>}<meta property="og:title" content={pageTitle}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/>{Astro.site && <><meta property="og:url" content={canonical}/><meta property="og:image" content={new URL(`${import.meta.env.BASE_URL}social-preview.png`,Astro.site)}/><meta property="og:image:alt" content="Natalius Desta Riyanto — Full-stack Developer & Data Analyst"/></>}<meta name="twitter:card" content="summary_large_image"/>{Astro.site && locales.map(l=><link rel="alternate" hreflang={htmlLang[l]} href={new URL(href(l,path),Astro.site)}/> )}</head><body><div class="portfolio-backdrop" aria-hidden="true"></div><div class="reading-progress" aria-hidden="true"></div>
+<!doctype html>
+<html lang={htmlLang[locale]} data-theme="light">
+<head>
+ <meta charset="utf-8"/>
+ <meta name="viewport" content="width=device-width, initial-scale=1"/>
+ <script is:inline>try{const v=localStorage.getItem('ndr-theme');if(v==='light'||v==='dark')document.documentElement.dataset.theme=v;}catch{}</script>
+ <title>{pageTitle}</title>
+ <meta name="description" content={description}/>
+ <meta name="robots" content="index,follow"/>
+ <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"/>
+ <meta name="theme-color" content="#0a0a0b" media="(prefers-color-scheme: dark)"/>
+ <link rel="icon" type="image/svg+xml" href={`${base}favicon-v5.svg`}/>
+ {canonical&&<link rel="canonical" href={canonical}/>}
+ <meta property="og:title" content={pageTitle}/>
+ <meta property="og:description" content={description}/>
+ <meta property="og:type" content="website"/>
+ {Astro.site&&<>
+  <meta property="og:url" content={canonical}/>
+  <meta property="og:image" content={new URL(`${base}social-preview.png`,Astro.site)}/>
+  <meta property="og:image:alt" content="Natalius Desta Riyanto — Full-stack Developer & Data Analyst"/>
+ </>}
+ <meta name="twitter:card" content="summary_large_image"/>
+ {Astro.site&&locales.map(l=><link rel="alternate" hreflang={htmlLang[l]} href={new URL(href(l,path),Astro.site)}/>)}
+</head>
+<body>
 <a class="skip-link" href="#main">{c.skip}</a>
-<header class="site-header container"><a class="brand" href={href(locale)} aria-label="Natalius Desta Riyanto"><span class="monogram"><img src={`${import.meta.env.BASE_URL}brands/natalius-mark.svg`} alt="" width="42" height="42"/></span><span>Natalius <span class="brand-extra">Desta Riyanto</span></span></a><nav class="desktop-nav" aria-label={c.menu}>{menu.map(([p,label])=><a href={sectionHref(p)} data-section={sections[p]} aria-current={current===p?'page':undefined}>{label}</a>)}</nav><details class="navigation"><summary aria-label={c.menu} title={c.menu}><span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span></summary><nav aria-label={c.menu}>{menu.map(([p,label])=><a href={sectionHref(p)} data-section={sections[p]} aria-current={current===p?'page':undefined}>{label}</a>)}</nav></details><button type="button" class="theme-toggle" aria-label={c.themeLabel} title={c.themeLabel} hidden data-enhance><span class="theme-switch-track"><span class="theme-switch-thumb"></span><Icon name="sun"/><Icon name="moon"/></span></button><details class="language"><summary aria-label={c.language}>{labels[locale]} <Icon name="chevron"/></summary><nav aria-label={c.language}>{locales.map(l=><a href={href(l,path)} lang={htmlLang[l]} aria-current={locale===l?'true':undefined}>{labels[l]}</a>)}</nav></details></header>
+<header class="site-header">
+ <div class="container header-inner">
+  <a class="brand" href={href(locale)} aria-label="Natalius Desta Riyanto">
+   <img src={`${base}brands/natalius-mark.svg`} alt="" width="32" height="32"/>
+   <span>Natalius <span class="brand-extra">Desta Riyanto</span></span>
+  </a>
+  <nav class="desktop-nav" aria-label={c.menu}>
+   {menu.map(([p,label])=><a href={sectionHref(p)} data-section={sections[p]} aria-current={current===p?'page':undefined}>{label}</a>)}
+  </nav>
+  <div class="header-tools">
+   <button type="button" class="icon-button theme-toggle" aria-label={c.themeLabel} title={c.themeLabel} hidden data-enhance>
+    <Icon name="sun" class="icon-sun"/><Icon name="moon" class="icon-moon"/>
+   </button>
+   <details class="language">
+    <summary class="icon-button" aria-label={c.language}><Icon name="globe"/><span>{labels[locale]}</span></summary>
+    <nav class="popover" aria-label={c.language}>
+     {locales.map(l=><a href={href(l,path)} lang={htmlLang[l]} aria-current={locale===l?'true':undefined}>{labels[l]}</a>)}
+    </nav>
+   </details>
+   <details class="navigation">
+    <summary class="icon-button" aria-label={c.menu} title={c.menu}><span class="hamburger" aria-hidden="true"><span></span><span></span></span></summary>
+    <nav class="popover" aria-label={c.menu}>
+     {menu.map(([p,label])=><a href={sectionHref(p)} data-section={sections[p]} aria-current={current===p?'page':undefined}>{label}</a>)}
+    </nav>
+   </details>
+  </div>
+ </div>
+</header>
 <main id="main"><slot/></main>
-<footer class="site-footer"><div class="container footer-line"><small>© {new Date().getFullYear()} Natalius Desta Riyanto</small><span>Depok, Indonesia · UTC+7</span></div></footer>
+<footer class="site-footer">
+ <div class="container footer-inner">
+  <div class="footer-brand">
+   <strong>Natalius Desta Riyanto</strong>
+   <span>{e.role}</span>
+  </div>
+  <small>© {new Date().getFullYear()} · Depok, Indonesia · UTC+7</small>
+ </div>
+</footer>
 <script>
 import '../scripts/interactions';
 </script>
-</body></html>
+</body>
+</html>

@@ -2,6 +2,32 @@
 import Icon from './Icon.astro';
 import {t,type Locale} from '../data/site';
 interface Props{locale:Locale;}
-const {locale}=Astro.props;const c=t(locale);
+const {locale}=Astro.props;
+const c=t(locale);
+const roles=[
+ {role:c.engineeringRole,date:c.engineeringDate,text:c.engineeringText,titles:c.engineeringTaskTitles,descriptions:c.engineeringTaskDescriptions,current:true},
+ {role:c.internRole,date:c.internDate,text:c.internText,titles:c.internTaskTitles,descriptions:c.internTaskDescriptions,current:false},
+];
 ---
-<section class="experience-section"><div class="experience-grid"><div class="company-experience"><div class="company-heading"><span class="organization-logo tnex-logo"><img src={`${import.meta.env.BASE_URL}brands/tnex.png`} alt="T-NEX" width="147" height="35" loading="lazy"/></span><div><h2 class="company-name">T-NEX</h2><p>Kota Damansara, Selangor, Malaysia · Remote</p><div class="company-websites"><a href="https://t-nex.de/en/">t-nex.de/en</a></div></div></div><div class="timeline">{[[c.engineeringRole,c.engineeringDate,c.engineeringText],[c.internRole,c.internDate,c.internText]].map(([role,date,text],index)=><article><span class="timeline-dot" aria-hidden="true"></span><div class="micro">{date}</div><h2>{role}</h2><p>{text}</p><details class="role-details"><summary><span><Icon name="briefcase"/>{c.workDetails}</span><span class="role-count">{index===0?'04':'03'}<Icon name="chevron"/></span></summary><div class="role-work-grid">{(index===0?c.engineeringTaskTitles:c.internTaskTitles).map((task,i)=><div class="role-work-card"><span class="work-number">{String(i+1).padStart(2,'0')}</span><div><h3>{task}</h3><p>{(index===0?c.engineeringTaskDescriptions:c.internTaskDescriptions)[i]}</p></div></div>)}</div></details></article>)}</div></div></div></section>
+<div class="experience-layout">
+ <aside class="company-card card">
+  <span class="organization-logo"><img src={`${import.meta.env.BASE_URL}brands/tnex.png`} alt="T-NEX" width="147" height="35" loading="lazy"/></span>
+  <p class="company-name">T-NEX</p>
+  <p class="company-location">Kota Damansara, Selangor, Malaysia · Remote</p>
+  <a class="link" href="https://t-nex.de/en/">t-nex.de<Icon name="arrow"/></a>
+ </aside>
+ <ol class="timeline">
+  {roles.map(r=><li class="timeline-item">
+   <span class:list={['timeline-dot',{'is-current':r.current}]} aria-hidden="true"></span>
+   <p class="timeline-date">{r.date}</p>
+   <h3>{r.role}</h3>
+   <p>{r.text}</p>
+   <details class="role-details">
+    <summary><span><Icon name="briefcase"/>{c.workDetails}</span><span class="role-count">{String(r.titles.length).padStart(2,'0')}<Icon name="chevron"/></span></summary>
+    <ul class="role-work-grid">
+     {r.titles.map((task,i)=><li><span class="work-number">{String(i+1).padStart(2,'0')}</span><div><h4>{task}</h4><p>{r.descriptions[i]}</p></div></li>)}
+    </ul>
+   </details>
+  </li>)}
+ </ol>
+</div>

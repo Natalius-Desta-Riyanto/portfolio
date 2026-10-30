@@ -23,7 +23,7 @@ src/
   pages/        index, about, teaching, work, 404, id/*
   content/work/ studi kasus Markdown
   data/         profile, navigation, translations
-  styles/       tokens.css, global.css
+  styles/       site.css (single stylesheet; shadcn-style tokens)
   assets/       foto dan screenshot untuk optimasi build
 public/         favicon, robots.txt, cv final jika tersedia
 docs/           dokumen produk dan rilis

@@ -1,0 +1,21 @@
+---
+import Icon from './Icon.astro';
+import {editorial} from '../data/editorial';
+import {type Locale} from '../data/site';
+const {locale}=Astro.props as {locale:Locale};
+const e=editorial(locale);
+const practiceLabels={en:['Build','Analyze'],id:['Membangun','Menganalisis'],ja:['開発','分析'],de:['Entwickeln','Analysieren'],zh:['开发','分析']};
+const practices=[
+ {label:practiceLabels[locale][0],icon:'code',tools:['React','TypeScript','FastAPI','PostgreSQL']},
+ {label:practiceLabels[locale][1],icon:'grid',tools:['Python','SQL','pandas','Statistics']},
+];
+---
+ <div class="practice-grid" aria-label={e.capabilities} role="list">
+  {practices.map(p=><div class="practice-card" role="listitem">
+   <span class="icon-tile"><Icon name={p.icon}/></span>
+   <span class="practice-body">
+    <strong>{p.label}</strong>
+    <span class="tag-list">{p.tools.map(tool=><span class="tag">{tool}</span>)}</span>
+   </span>
+  </div>)}
+ </div>

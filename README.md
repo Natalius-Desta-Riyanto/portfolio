@@ -28,7 +28,7 @@ SITE_URL=https://natalius-desta-riyanto.github.io BASE_PATH=/portfolio/ npm run 
 BASE_PATH=/portfolio/ npm test
 ```
 
-Project metadata: src/data/site.ts. Locale content: src/data/translations.json. Visible project selection: src/components/SelectedProjects.astro. Current visual layer: src/styles/curated.css. Existing case-study URLs remain supported.
+Project metadata: src/data/site.ts. Locale content: src/data/translations.json. Visible project selection: src/components/SelectedProjects.astro. Single stylesheet and design tokens: src/styles/site.css. Contact links: `contact` in src/data/site.ts. Existing case-study URLs remain supported.
 
 The GitHub Pages workflow checks, builds and validates static output on pushes to main. Public email and LinkedIn remain the contact channels; no form or analytics service is added.
 
@@ -36,7 +36,7 @@ The GitHub Pages workflow checks, builds and validates static output on pushes t
 
 Real portrait and project screenshots; title, summary, technical evidence and actions in that order. The project grid replaces the carousel. Keyboard focus, 44px action targets, small hover feedback and reduced-motion support are retained. Core content exists in generated HTML without JavaScript.
 
-[UI critique and Tailwind equivalent](docs/09-UI-REVIEW.md). Older numbered planning documents record previous directions; current source and release verification describe the active implementation.
+[UI critique and Tailwind equivalent](docs/09-UI-REVIEW.md). [Latest audit and shadcn-style refresh](docs/12-UI-AUDIT-REFRESH.md). Older numbered planning documents record previous directions; current source and release verification describe the active implementation.
 
 ## Sakuara portfolio demo
 

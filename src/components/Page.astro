@@ -2,41 +2,197 @@
 import Icon from './Icon.astro';
 import Base from '../layouts/Base.astro';
 import SelectedProjects from './SelectedProjects.astro';
+import CaseGallery from './CaseGallery.astro';
 import EditorialHero from './EditorialHero.astro';
 import Capabilities from './Capabilities.astro';
-import {editorial} from '../data/editorial';
-
-
-
 import ProfilePortrait from './ProfilePortrait.astro';
 import CvAction from './CvAction.astro';
 import CampusActivities from './CampusActivities.astro';
 import Experience from './Experience.astro';
-import {projects,t,href,caseSections,type Locale} from '../data/site';
+import Practices from './Practices.astro';
+import {editorial} from '../data/editorial';
+import {projects,t,href,caseSections,contact,type Locale} from '../data/site';
 interface Props{locale:Locale;page?:string;slug?:string;}
-const {locale,page='home',slug}=Astro.props;const c=t(locale);const e=editorial(locale);const project=projects.find(p=>p.slug===slug);
+const {locale,page='home',slug}=Astro.props;
+const c=t(locale);
+const e=editorial(locale);
+const base=import.meta.env.BASE_URL;
+const home=href(locale);
+const project=projects.find(p=>p.slug===slug);
 const projectPosition=projects.findIndex(p=>p.slug===slug);
-
-const SectionHeading=page==='home'?'h2':'h1';
-const path=(page==='home'||page==='404')?'':page==='case'?`work/${slug}/`:`${page}/`;
-const title=project?.title||(page==='home'?undefined:page==='404'?c.notFound:page==='experience'?c.experienceMenu:page==='education'?c.education:page==='contact'?c.contact:page==='skills'?e.capabilities:c[page as 'work'|'about']);
+const isHome=page==='home';
+const show=(name:string)=>isHome||page===name;
+const SectionHeading=isHome?'h2':'h1';
+const path=(isHome||page==='404')?'':page==='case'?`work/${slug}/`:`${page}/`;
+const title=project?.title||(isHome?undefined:page==='404'?c.notFound:page==='experience'?c.experienceMenu:page==='education'?c.education:page==='contact'?c.contact:page==='skills'?e.capabilities:c[page as 'work'|'about']);
+const proof={padun:c.padunProof,lendsight:c.lendsightProof,'credit-risk-analytics':c.riskProof,stockwise:c.stockwiseProof,sakuara:c.sakuaraProof};
+const ui={
+ summary:{en:'Summary',id:'Ringkasan',de:'Zusammenfassung',ja:'概要',zh:'摘要'}[locale],
+ all:{en:'All projects',id:'Semua proyek',de:'Alle Projekte',ja:'すべてのプロジェクト',zh:'全部项目'}[locale],
+ current:{en:'You are here',id:'Sedang dibuka',de:'Aktuell',ja:'表示中',zh:'当前'}[locale],
+ highlights:{en:'Highlights',id:'Sorotan',de:'Schwerpunkte',ja:'ハイライト',zh:'亮点'}[locale],
+ onPage:{en:'On this page',id:'Di halaman ini',de:'Auf dieser Seite',ja:'このページの内容',zh:'本页内容'}[locale],
+ copy:{en:'Copy email',id:'Salin email',de:'E-Mail kopieren',ja:'メールをコピー',zh:'复制邮箱'}[locale],
+ copied:{en:'Copied',id:'Tersalin',de:'Kopiert',ja:'コピーしました',zh:'已复制'}[locale],
+ status:{en:'Status',id:'Status',de:'Status',ja:'ステータス',zh:'状态'}[locale],
+ stack:{en:'Stack',id:'Teknologi',de:'Technologien',ja:'技術スタック',zh:'技术栈'}[locale],
+ more:{en:'More projects',id:'Proyek lainnya',de:'Weitere Projekte',ja:'その他のプロジェクト',zh:'更多项目'}[locale],
+};
+const socials=[['LinkedIn',contact.linkedin,'linkedin'],['GitHub',contact.github,'github'],['Instagram',contact.instagram,'instagram']];
 ---
 <Base locale={locale} title={title} path={path}>
 {page!=='case'&&page!=='404'?<>
-{page==='home'&&<EditorialHero locale={locale}/>}
-{(page==='about'||page==='home')&&<section id="about" class="section container about-editorial"><div class="about-portrait"><ProfilePortrait locale={locale}/></div><div class="about-story"><div class="eyebrow">01 / {c.about}</div><SectionHeading>{e.aboutTitle}</SectionHeading><p class="lead">{e.aboutText}</p><div class="about-facts"><a href={`${href(locale)}#education`}><Icon name="graduate"/><span><small>{c.education}</small><strong>{c.university}</strong></span></a><span><Icon name="pin"/><span><small>{c.basedIn}</small><strong>{c.location}</strong></span></span></div><CvAction locale={locale}/></div></section>}
-{(page==='skills'||page==='home')&&<Capabilities locale={locale} embedded={page==='home'}/>}
-{(page==='experience'||page==='home')&&<section id="experience" class="section container"><div class="section-heading"><div><div class="eyebrow">03 / {c.experienceMenu}</div><SectionHeading>{c.experienceMenu}</SectionHeading></div></div><Experience locale={locale}/></section>}
-{(page==='education'||page==='home')&&<section id="education" class="section container"><div class="page-heading"><div class="eyebrow">04 / {c.education}</div><SectionHeading>{c.educationTitle}</SectionHeading><p class="lead">{c.educationNote}</p></div><article class="education-panel"><img class="university-logo" src={`${import.meta.env.BASE_URL}brands/universitas-indonesia.svg`} alt="Makara Universitas Indonesia" width="72" height="72" loading="lazy"/><div class="education-copy"><span class="micro">{c.educationPeriod} · {c.expectedGraduation}</span><h2>{c.university}</h2><p class="education-degree">{c.degree}</p><p class="education-faculty">{c.faculty}</p></div><CampusActivities locale={locale}/></article></section>}
-{(page==='work'||page==='home')&&<section id="projects" class="section container projects-page"><div class="page-heading editorial-section-heading"><div class="eyebrow">05 / {e.indexLabel}</div><SectionHeading>{c.selected}</SectionHeading></div><SelectedProjects locale={locale} embedded={page==='home'}/></section>}
-{(page==='contact'||page==='home')&&<section id="contact" class="section container contact-page"><div class="contact-heading"><div class="eyebrow">06 / {c.contact}</div><SectionHeading>{e.contactLine}</SectionHeading><p>{c.contactInvitation}</p></div><div class="contact-composition"><div class="contact-details"><div class="contact-email-block"><span class="micro icon-label"><Icon name="mail"/>{c.emailMe}</span><a class="contact-email" href="mailto:stefanusriyan26@gmail.com">stefanusriyan26@gmail.com</a></div><div class="contact-social-row"><a href="https://www.linkedin.com/in/natalius-desta-riyanto/"><Icon name="linkedin"/><span>LinkedIn</span></a><a href="https://github.com/Natalius-Desta-Riyanto"><Icon name="github"/><span>GitHub</span></a><a href="https://www.instagram.com/nataliusdesta_/"><img src={`${import.meta.env.BASE_URL}brands/instagram.svg`} alt="" width="22" height="22"/><span>Instagram</span></a></div><div class="contact-bottom-row"><p class="icon-label"><Icon name="clock"/>WIB · UTC+7</p></div></div></div><aside class="contact-brief"><h3>{c.contactTopics}</h3><ul><li><span class="focus-icon"><Icon name="code"/></span><div><strong>{c.contactProduct}</strong><small>{c.contactProductDetail}</small></div></li><li><span class="focus-icon"><Icon name="layers"/></span><div><strong>{c.contactAutomation}</strong><small>{c.contactAutomationDetail}</small></div></li><li><span class="focus-icon"><Icon name="globe"/></span><div><strong>{c.contactData}</strong><small>{c.contactDataDetail}</small></div></li></ul></aside></section>}
-</>:page==='case'&&project?<div class="case-workspace" data-case-workspace>
-<button class="orbit-trigger" type="button" aria-label={c.projectsMenu} aria-expanded="false" aria-controls="project-orbit" hidden data-enhance><Icon name="grid"/><span class="orbit-trigger-label">{c.projectsMenu}</span></button><aside class="project-sidebar" id="project-orbit"><nav id="project-sidebar-list" class="project-sidebar-list" aria-label={c.projectsMenu}><p class="micro sidebar-caption">{c.projectsMenu}</p><div>{projects.map((p,i)=><a style={`--project-position:${i}`} href={href(locale,`work/${p.slug}/`)} aria-current={p.slug===project.slug?'page':undefined} aria-label={p.title} title={p.title}><img src={`${import.meta.env.BASE_URL}${p.image}`} alt="" width="40" height="40"/><span class="orbit-project-copy"><small>{p.index}</small><strong>{p.title}</strong></span><span class="sidebar-active-dot" aria-hidden="true"></span></a>)}</div></nav></aside>
-<article class="section container case-study" data-project={project.slug}>
+ {isHome&&<EditorialHero locale={locale}/>}
 
-<nav class="case-breadcrumb" aria-label={c.projectsMenu}><a href={`${href(locale)}#projects`}><Icon name="left"/>{({en:"Back to projects",id:"Kembali ke proyek",de:"Zurück zu Projekten",ja:"プロジェクトに戻る",zh:"返回项目"})[locale]}</a><span class="case-location">{project.title}</span></nav>
-<header class="case-hero"><div class="case-intro"><div class="eyebrow">{project.index} / {c[project.category]}</div><h1>{project.title}</h1><p class="lead">{c[project.copy]}</p><div class="case-actions"><a class="button" href={project.url}>{e.tryDemo}<Icon name="play"/></a>{project.sourcePublic&&<a class="button source-button" href={project.repoUrl}><Icon name="github"/>{c.sourceProject}</a>}{!project.sourcePublic&&<span class="work-private">{c.privateSource}</span>}</div><div class="case-context"><span class="project-status">{e.statuses[projectPosition]}</span><p><strong>{e.roleLabel}</strong> · {e.contributions[projectPosition]}</p></div><ul class="stack">{project.stack.map(s=><li>{s}</li>)}</ul></div><figure class="case-preview"><div class="case-preview-bar"><span aria-hidden="true">● ● ●</span><span>{project.title}</span></div><a class="case-image-link" href={`${import.meta.env.BASE_URL}${project.image}`} target="_blank" rel="noopener" aria-label={`${project.title} — ${c.read}`}><img class="project-screenshot case-screenshot" src={`${import.meta.env.BASE_URL}${project.image}`} alt={project.title} width="1280" height="720"/><span class="image-expand"><Icon name="arrow"/></span></a></figure></header>
-<div class="case-body"><div class="case-detail-tabs" aria-label={c.caseOverview}>{[c.caseOverview,c.caseFlow,c.caseFeatures,c.caseImplementation].map((heading,i)=><button type="button" id={`case-tab-${i}`} aria-controls={`case-panel-${i}`} data-case-tab={i}>{heading}</button>)}</div><div class="case-content-grid">{caseSections(locale,project.slug).map(([heading,text],i)=><section class="case-content-section" id={`case-panel-${i}`} aria-labelledby={`case-tab-${i}`}><span class="case-section-number">{String(i+1).padStart(2,'0')}</span><div><h2>{heading}</h2><p>{text}</p></div></section>)}</div>
-</div></article></div>:<section class="section container page-heading"><div class="eyebrow">404</div><h1>{c.notFound}</h1><a class="button" href={href(locale)}>{c.home} ↗</a></section>}
+ {show('about')&&<section id="about" class:list={['section container about-section',{'has-portrait':!isHome}]}>
+  {!isHome&&<ProfilePortrait locale={locale}/>}
+  <div class="section-heading">
+   <p class="eyebrow">01 · {c.about}</p>
+   <SectionHeading>{e.aboutTitle}</SectionHeading>
+  </div>
+  <div class="about-body">
+   <p class="lead">{e.aboutText}</p>
+   <p>{e.aboutNote}</p>
+   <dl class="fact-list">
+    <div><dt><Icon name="graduate"/>{c.education}</dt><dd>{c.university}</dd></div>
+    <div><dt><Icon name="pin"/>{c.basedIn}</dt><dd>{c.location}</dd></div>
+    <div><dt><Icon name="briefcase"/>{c.experienceMenu}</dt><dd>T-NEX</dd></div>
+   </dl>
+   {!isHome&&<CvAction locale={locale}/>}
+  </div>
+  <Practices locale={locale}/>
+ </section>}
 
+ {show('skills')&&<Capabilities locale={locale} embedded={isHome}/>}
+
+ {show('experience')&&<section id="experience" class="section container">
+  <div class="section-heading">
+   <p class="eyebrow">03 · {c.experienceMenu}</p>
+   <SectionHeading>{c.experienceMenu}</SectionHeading>
+   {c.experienceIntro&&<p class="section-intro">{c.experienceIntro}</p>}
+  </div>
+  <Experience locale={locale}/>
+ </section>}
+
+ {show('education')&&<section id="education" class="section container">
+  <div class="section-heading">
+   <p class="eyebrow">04 · {c.education}</p>
+   <SectionHeading>{c.educationTitle}</SectionHeading>
+   <p class="section-intro">{c.educationNote}</p>
+  </div>
+  <article class="card education-card">
+   <div class="education-main">
+    <img class="university-logo" src={`${base}brands/universitas-indonesia.svg`} alt="Makara Universitas Indonesia" width="56" height="56" loading="lazy"/>
+    <div>
+     <h3>{c.university}</h3>
+     <p class="education-degree">{c.degree}</p>
+     <p class="education-faculty">{c.faculty}</p>
+    </div>
+    <span class="badge">{c.educationPeriod} · {c.expectedGraduation}</span>
+   </div>
+   <CampusActivities locale={locale}/>
+  </article>
+ </section>}
+
+ {show('work')&&<section id="projects" class="section container">
+  <div class="section-heading">
+   <p class="eyebrow">05 · {e.indexLabel}</p>
+   <SectionHeading>{c.selected}</SectionHeading>
+   <p class="section-intro">{c.selectedIntro}</p>
+  </div>
+  <SelectedProjects locale={locale} embedded={isHome}/>
+ </section>}
+
+ {show('contact')&&<section id="contact" class="section container">
+  <div class="contact-card card">
+   <div class="contact-main">
+    <p class="eyebrow">06 · {c.contact}</p>
+    <SectionHeading>{e.contactLine}</SectionHeading>
+    <p class="lead">{c.contactInvitation}</p>
+    <div class="contact-email">
+     <a class="btn btn-primary btn-lg" href={`mailto:${contact.email}`}><Icon name="mail"/>{contact.email}</a>
+     <button type="button" class="btn btn-outline btn-lg copy-email" data-copy={contact.email} data-copied={ui.copied} hidden data-enhance><Icon name="copy"/><span>{ui.copy}</span></button>
+    </div>
+    <ul class="social-list">
+     {socials.map(([label,url,icon])=><li><a class="btn btn-ghost" href={url}><Icon name={icon}/>{label}</a></li>)}
+    </ul>
+   </div>
+   <aside class="contact-topics">
+    <h3>{c.contactTopics}</h3>
+    <ul>
+     <li><span class="icon-tile"><Icon name="code"/></span><div><strong>{c.contactProduct}</strong><small>{c.contactProductDetail}</small></div></li>
+     <li><span class="icon-tile"><Icon name="layers"/></span><div><strong>{c.contactAutomation}</strong><small>{c.contactAutomationDetail}</small></div></li>
+     <li><span class="icon-tile"><Icon name="globe"/></span><div><strong>{c.contactData}</strong><small>{c.contactDataDetail}</small></div></li>
+    </ul>
+    <p class="contact-time"><Icon name="clock"/>WIB · UTC+7</p>
+   </aside>
+  </div>
+ </section>}
+</>:page==='case'&&project?<article class="section container case-study" data-project={project.slug}>
+ <div class="case-layout">
+  <aside class="case-rail" aria-label={project.title}>
+   <a class="btn btn-ghost btn-sm case-back" href={`${home}#projects`}><Icon name="left"/>{ui.all}</a>
+   <nav class="case-toc" aria-label={ui.onPage}>
+    <p>{ui.onPage}</p>
+    <ol>
+     {[ui.summary,...caseSections(locale,project.slug).map(([heading])=>heading)].map((heading,i)=><li><a href={i===0?'#case-summary':`#case-panel-${i-1}`} data-toc>
+      <span class="toc-number">{String(i).padStart(2,'0')}</span>
+      <span class="toc-label">{heading}</span>
+      <span class="toc-progress" aria-hidden="true"></span>
+     </a></li>)}
+    </ol>
+   </nav>
+   <div class="rail-actions">
+    <a class="btn btn-primary" href={project.url}><Icon name="play"/>{e.tryDemo}</a>
+    {project.sourcePublic?<a class="btn btn-outline" href={project.repoUrl} aria-label={c.sourceProject}><Icon name="github"/><span class="action-label">{c.sourceProject}</span></a>:<span class="work-private"><Icon name="code"/>{c.privateSource}</span>}
+    <button type="button" class="btn btn-ghost switcher-trigger" popovertarget="project-switcher" aria-label={`${ui.more} (${project.index} / ${String(projects.length).padStart(2,'0')})`}><Icon name="grid"/><span class="action-label">{ui.more}</span><span class="switcher-count" aria-hidden="true">{project.index} / {String(projects.length).padStart(2,'0')}</span></button>
+   </div>
+  </aside>
+  <div class="case-main">
+   <header class="case-hero" id="case-summary">
+    <p class="eyebrow">{project.index} · {c[project.category]}</p>
+    <h1>{project.title}</h1>
+    <p class="lead">{c[project.copy]}</p>
+    <CaseGallery locale={locale} slug={project.slug} title={project.title} fallback={project.image}/>
+    <dl class="case-facts">
+     <div><dt>{e.roleLabel}</dt><dd>{e.contributions[projectPosition]}</dd></div>
+     <div><dt>{ui.status}</dt><dd><span class="badge">{e.statuses[projectPosition]}</span></dd></div>
+     <div><dt>{ui.highlights}</dt><dd>{proof[project.slug as keyof typeof proof]}</dd></div>
+     <div><dt>{ui.stack}</dt><dd><ul class="tag-list">{project.stack.map(s=><li class="tag">{s}</li>)}</ul></dd></div>
+    </dl>
+   </header>
+   {caseSections(locale,project.slug).map(([heading,text],i)=><section class="case-section" id={`case-panel-${i}`}>
+    <span class="case-section-number">{String(i+1).padStart(2,'0')}</span>
+    <div><h2>{heading}</h2><p>{text}</p></div>
+   </section>)}
+  </div>
+ </div>
+ <div class="project-switcher" id="project-switcher" popover data-arc role="dialog" aria-labelledby="project-switcher-title">
+  <span class="sheet-handle" aria-hidden="true"></span>
+  <div class="arc-stage">
+   <span class="arc-guide" aria-hidden="true"></span>
+   <ul class="arc-track">
+    {projects.map((p,i)=>{const offset=((i-projectPosition)%projects.length+projects.length+2)%projects.length-2;return <li class="arc-item" data-arc-item style={`--offset:${offset};--abs:${Math.abs(offset)}`}>
+     <a href={href(locale,`work/${p.slug}/`)} aria-current={p.slug===project.slug?'page':undefined}>
+      <img src={`${base}${p.image}`} alt="" width="320" height="200" loading="lazy"/>
+      <span class="arc-copy"><small>{p.index} · {c[p.category]}</small><strong>{p.title}</strong></span>
+      {p.slug===project.slug&&<span class="arc-current">{ui.current}</span>}
+     </a>
+    </li>})}
+   </ul>
+  </div>
+  <div class="arc-head container">
+   <h2 id="project-switcher-title">{ui.more}</h2>
+   <div class="arc-controls">
+    <button type="button" class="icon-button arc-step" data-arc-step="-1" aria-label={c.previousProject} hidden data-enhance><Icon name="left"/></button>
+    <button type="button" class="icon-button arc-step" data-arc-step="1" aria-label={c.nextProjectLabel} hidden data-enhance><Icon name="right"/></button>
+    <button type="button" class="icon-button" popovertarget="project-switcher" popovertargetaction="hide" aria-label={c.close}><Icon name="close"/></button>
+   </div>
+  </div>
+ </div>
+</article>:<section class="section container not-found">
+ <p class="eyebrow">404</p>
+ <h1>{c.notFound}</h1>
+ <a class="btn btn-primary" href={home}><Icon name="left"/>{c.home}</a>
+</section>}
 </Base>

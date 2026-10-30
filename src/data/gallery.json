@@ -1,0 +1,132 @@
+{
+ "padun": [
+  {
+   "src": "media/gallery/padun-01.webp",
+   "label": "Batches"
+  },
+  {
+   "src": "media/gallery/padun-02.webp",
+   "label": "Batch overview"
+  },
+  {
+   "src": "media/gallery/padun-03.webp",
+   "label": "Exceptions"
+  },
+  {
+   "src": "media/gallery/padun-04.webp",
+   "label": "Exception detail"
+  },
+  {
+   "src": "media/gallery/padun-05.webp",
+   "label": "Review queue"
+  },
+  {
+   "src": "media/gallery/padun-06.webp",
+   "label": "Audit trail"
+  }
+ ],
+ "lendsight": [
+  {
+   "src": "media/gallery/lendsight-01.webp",
+   "label": "Overview"
+  },
+  {
+   "src": "media/gallery/lendsight-02.webp",
+   "label": "Delinquency"
+  },
+  {
+   "src": "media/gallery/lendsight-03.webp",
+   "label": "Vintage"
+  },
+  {
+   "src": "media/gallery/lendsight-04.webp",
+   "label": "Concentration"
+  },
+  {
+   "src": "media/gallery/lendsight-05.webp",
+   "label": "Findings"
+  },
+  {
+   "src": "media/gallery/lendsight-06.webp",
+   "label": "Simulation track"
+  },
+  {
+   "src": "media/gallery/lendsight-07.webp",
+   "label": "Datasets"
+  }
+ ],
+ "credit-risk-analytics": [
+  {
+   "src": "media/gallery/credit-risk-analytics-01.webp",
+   "label": "Portfolio overview"
+  },
+  {
+   "src": "media/gallery/credit-risk-analytics-02.webp",
+   "label": "Executive readout"
+  },
+  {
+   "src": "media/gallery/credit-risk-analytics-03.webp",
+   "label": "Risk segmentation"
+  },
+  {
+   "src": "media/gallery/credit-risk-analytics-04.webp",
+   "label": "Affordability"
+  },
+  {
+   "src": "media/gallery/credit-risk-analytics-05.webp",
+   "label": "Prior applications"
+  },
+  {
+   "src": "media/gallery/credit-risk-analytics-06.webp",
+   "label": "Evidence & limitations"
+  }
+ ],
+ "stockwise": [
+  {
+   "src": "media/gallery/stockwise-01.webp",
+   "label": "Overview"
+  },
+  {
+   "src": "media/gallery/stockwise-02.webp",
+   "label": "Demand forecast"
+  },
+  {
+   "src": "media/gallery/stockwise-03.webp",
+   "label": "Purchase plan"
+  },
+  {
+   "src": "media/gallery/stockwise-04.webp",
+   "label": "Data workspace"
+  }
+ ],
+ "sakuara": [
+  {
+   "src": "media/gallery/sakuara-01.webp",
+   "label": "Overview"
+  },
+  {
+   "src": "media/gallery/sakuara-02.webp",
+   "label": "Accounts"
+  },
+  {
+   "src": "media/gallery/sakuara-03.webp",
+   "label": "Transactions"
+  },
+  {
+   "src": "media/gallery/sakuara-04.webp",
+   "label": "FX Vault"
+  },
+  {
+   "src": "media/gallery/sakuara-05.webp",
+   "label": "Analytics"
+  },
+  {
+   "src": "media/gallery/sakuara-06.webp",
+   "label": "Budgets"
+  },
+  {
+   "src": "media/gallery/sakuara-07.webp",
+   "label": "Goals"
+  }
+ ]
+}

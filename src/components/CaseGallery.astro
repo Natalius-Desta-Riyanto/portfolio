@@ -1,0 +1,26 @@
+---
+import Icon from './Icon.astro';
+import gallery from '../data/gallery.json';
+import {type Locale} from '../data/site';
+interface Props {locale:Locale;slug:string;title:string;fallback:string;}
+const {locale,slug,title,fallback}=Astro.props;
+const base=import.meta.env.BASE_URL;
+const items=(gallery as Record<string,{src:string;label:string}[]>)[slug]??[{src:fallback,label:title}];
+const nav={en:['Previous screenshot','Next screenshot','Screenshots'],id:['Tangkapan layar sebelumnya','Tangkapan layar berikutnya','Tangkapan layar'],de:['Vorheriger Screenshot','Nächster Screenshot','Screenshots'],ja:['前のスクリーンショット','次のスクリーンショット','スクリーンショット'],zh:['上一张截图','下一张截图','截图']}[locale];
+const caption=(i:number)=>`${i+1} / ${items.length} · ${items[i].label}`;
+---
+<figure class="case-preview case-gallery" data-gallery aria-roledescription="carousel" aria-label={`${title} — ${nav[2]}`}>
+ <div class="window-bar"><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><span class="gallery-caption" aria-live="polite">{caption(0)}</span></div>
+ <div class="gallery-track" tabindex="0" aria-label={nav[2]}>
+  {items.map((item,i)=><a class="gallery-slide" id={`shot-${slug}-${i+1}`} href={`${base}${item.src}`} target="_blank" rel="noopener" data-caption={caption(i)} aria-label={`${item.label} (${i+1} / ${items.length})`}>
+   <img src={`${base}${item.src}`} alt={`${title} — ${item.label}`} width="1600" height="1000" loading={i===0?'eager':'lazy'} fetchpriority={i===0?'high':undefined} decoding="async"/>
+  </a>)}
+ </div>
+ {items.length>1&&<div class="gallery-nav">
+  <button class="btn btn-outline btn-icon btn-sm" type="button" data-gallery-step="-1" aria-label={nav[0]} hidden data-enhance><Icon name="left"/></button>
+  <ol class="gallery-tabs">
+   {items.map((item,i)=><li><a href={`#shot-${slug}-${i+1}`} data-gallery-index={i} aria-current={i===0?'true':undefined}>{item.label}</a></li>)}
+  </ol>
+  <button class="btn btn-outline btn-icon btn-sm" type="button" data-gallery-step="1" aria-label={nav[1]} hidden data-enhance><Icon name="right"/></button>
+ </div>}
+</figure>
