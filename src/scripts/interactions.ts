@@ -49,15 +49,26 @@ document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach(button=>{
 if(document.querySelector('.hero')){
  const sections=Array.from(document.querySelectorAll<HTMLElement>('main>section[id]'));
  const links=Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-section]'));
- let scheduled=false;
+ let scheduled=false,resizing=false,width=innerWidth;
+ let anchor:{section:HTMLElement;top:number}|undefined;
  const update=()=>{
-  scheduled=false;let active=sections[0]?.id;
-  for(const section of sections)if(section.getBoundingClientRect().top<=innerHeight*.35)active=section.id;
+  scheduled=false;let current=sections[0];
+  for(const section of sections)if(section.getBoundingClientRect().top<=innerHeight*.35)current=section;
+  if(current)anchor={section:current,top:current.getBoundingClientRect().top};
+  let active=current?.id;
   if(innerHeight+scrollY>=document.documentElement.scrollHeight-4)active=sections.at(-1)?.id??active;
   links.forEach(link=>{if(link.dataset.section===active)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
  };
- addEventListener('scroll',()=>{if(!scheduled){scheduled=true;requestAnimationFrame(update);}},{passive:true});
- addEventListener('resize',update);update();
+ addEventListener('scroll',()=>{if(!scheduled&&!resizing){scheduled=true;requestAnimationFrame(update);}},{passive:true});
+ // Section heights change with the viewport width, so rotation would otherwise land on a different section.
+ // Height-only resizes come from mobile toolbars collapsing during scroll and are left alone.
+ addEventListener('resize',()=>{
+  if(innerWidth===width){update();return;}
+  width=innerWidth;resizing=true;
+  if(anchor)scrollTo({top:scrollY+anchor.section.getBoundingClientRect().top-anchor.top,behavior:'instant'});
+  requestAnimationFrame(()=>{resizing=false;update();});
+ });
+ update();
 }
 
 // Project slider: native horizontal scroll stays usable without JavaScript; buttons step one card.
